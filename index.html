@@ -1,0 +1,1934 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FSOP Study Plan — UTS GCPP</title>
+<meta name="description" content="A 4-week study companion for the UTS Graduate Certificate of Pharmacist Prescribing — ACS1 + PS1 OSCE preparation." />
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+  color: #1a1a1a;
+  background: #faf8f5;
+  line-height: 1.55;
+  font-size: 15px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 28px 24px 80px; }
+
+/* Header */
+.hdr { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid #e9e3d8; margin-bottom: 24px; }
+.hdr h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.02em; font-weight: 600; }
+.hdr p { margin: 0; color: #6b6356; font-size: 14px; }
+.hdr-right { display: flex; align-items: center; gap: 12px; }
+.countdown { background: #1a1a1a; color: #faf8f5; padding: 12px 18px; border-radius: 10px; min-width: 180px; text-align: center; }
+.countdown .big { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+.countdown .sub { font-size: 11px; color: #d6cfc1; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+.settings-btn { background: #fff; border: 1px solid #e9e3d8; color: #1a1a1a; padding: 10px 14px; border-radius: 10px; cursor: pointer; font: inherit; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; }
+.settings-btn:hover { border-color: #c2410c; color: #c2410c; }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid #e9e3d8; flex-wrap: wrap; }
+.tab { background: none; border: 0; padding: 10px 16px; font: inherit; font-size: 14px; color: #6b6356; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab.active { color: #1a1a1a; border-bottom-color: #c2410c; font-weight: 500; }
+.tab:hover { color: #1a1a1a; }
+
+/* Panels */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* About */
+.about-card { background: #fff; border: 1px solid #e9e3d8; border-radius: 14px; padding: 28px; margin-bottom: 18px; }
+.about-card h2 { margin: 0 0 6px; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.about-card h3 { margin: 24px 0 8px; font-size: 15px; font-weight: 600; }
+.about-card p, .about-card li { font-size: 14px; line-height: 1.6; color: #2a2a2a; }
+.about-card ol { padding-left: 20px; }
+.about-card .lead { color: #6b6356; font-size: 15px; }
+.disclaimer { background: #fef3ea; border-left: 3px solid #c2410c; padding: 14px 16px; border-radius: 0 8px 8px 0; margin-top: 16px; font-size: 13px; }
+.disclaimer strong { color: #8a2c0a; }
+
+/* Today */
+.today-card { background: #fff; border: 1px solid #e9e3d8; border-radius: 14px; padding: 28px; margin-bottom: 18px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+.today-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #c2410c; font-weight: 600; margin-bottom: 6px; }
+.today-card h2 { margin: 0 0 4px; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.today-card .meta { color: #6b6356; font-size: 13px; margin-bottom: 18px; }
+.today-card .duration { display: inline-block; background: #f5f0e6; padding: 3px 10px; border-radius: 999px; font-size: 12px; margin-right: 8px; }
+.today-card .modes { display: inline-block; }
+.today-card .mode-tag { display: inline-block; background: #fef3ea; color: #c2410c; padding: 3px 10px; border-radius: 999px; font-size: 12px; margin-right: 4px; }
+
+/* Action items with expandable details */
+.actions { list-style: none; padding: 0; margin: 0; }
+.actions > li { padding: 14px 0; border-top: 1px solid #f0ebe0; }
+.actions > li:first-child { border-top: 0; }
+.action-row { display: flex; gap: 12px; align-items: flex-start; }
+.action-row input[type=checkbox] { margin-top: 4px; width: 18px; height: 18px; accent-color: #c2410c; cursor: pointer; flex-shrink: 0; }
+.action-row label { cursor: pointer; flex: 1; }
+.done .action-row label { color: #9a9080; text-decoration: line-through; }
+.expand-toggle { background: none; border: 0; color: #6b6356; padding: 0; font: inherit; font-size: 12px; cursor: pointer; margin-top: 4px; margin-left: 6px; display: inline-flex; align-items: center; gap: 4px; }
+.expand-toggle:hover { color: #c2410c; }
+.expand-toggle .chev { display: inline-block; transition: transform 0.15s; font-size: 9px; }
+.expand-toggle.open .chev { transform: rotate(90deg); }
+.detail { display: none; margin-top: 10px; margin-left: 30px; padding: 14px 16px; background: #f5f0e6; border-radius: 8px; font-size: 13.5px; line-height: 1.6; color: #2a2a2a; }
+.detail.open { display: block; }
+.detail h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6356; margin: 14px 0 6px; font-weight: 600; }
+.detail h4:first-child { margin-top: 0; }
+.detail ul, .detail ol { margin: 4px 0 10px; padding-left: 20px; }
+.detail li { margin-bottom: 3px; }
+.detail table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.detail th, .detail td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #e3dcc8; vertical-align: top; }
+.detail th { color: #6b6356; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+.detail .pearl { background: #fff8ec; border-left: 3px solid #d4a017; padding: 8px 12px; border-radius: 0 6px 6px 0; margin: 8px 0; font-size: 13px; }
+.detail .pearl strong { color: #8a6510; }
+.detail .flag { background: #fef0ee; border-left: 3px solid #c2410c; padding: 8px 12px; border-radius: 0 6px 6px 0; margin: 8px 0; font-size: 13px; }
+.detail .flag strong { color: #8a2c0a; }
+.detail .script { background: #fff; border: 1px solid #e9e3d8; padding: 10px 12px; border-radius: 6px; margin: 8px 0; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-style: italic; color: #1a1a1a; font-size: 13px; }
+.detail .script::before { content: "“"; font-size: 16px; color: #c2410c; font-style: normal; }
+.detail .script::after { content: "”"; font-size: 16px; color: #c2410c; font-style: normal; }
+.detail code { background: #eee5d2; padding: 1px 5px; border-radius: 3px; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.notes { background: #fff8ec; border-left: 3px solid #d4a017; padding: 12px 14px; border-radius: 0 8px 8px 0; margin-top: 16px; font-size: 14px; }
+.notes strong { color: #8a6510; }
+
+/* Calendar */
+.week { margin-bottom: 28px; }
+.week h3 { font-size: 13px; color: #6b6356; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 12px; font-weight: 600; }
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.day { background: #fff; border: 1px solid #e9e3d8; border-radius: 10px; padding: 12px; font-size: 12px; cursor: pointer; transition: all 0.15s; min-height: 110px; display: flex; flex-direction: column; }
+.day:hover { border-color: #c2410c; transform: translateY(-1px); }
+.day.today { background: #1a1a1a; color: #faf8f5; border-color: #1a1a1a; }
+.day.today .day-date, .day.today .day-topic { color: #faf8f5; }
+.day.today .day-meta { color: #d6cfc1; }
+.day.done { background: #f5f0e6; opacity: 0.7; }
+.day.event { background: #fef3ea; border-color: #f5c8a8; }
+.day-date { font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #6b6356; margin-bottom: 4px; }
+.day-topic { font-weight: 500; color: #1a1a1a; line-height: 1.3; flex: 1; }
+.day-meta { font-size: 10px; color: #9a9080; margin-top: 6px; }
+.day-check { font-size: 14px; color: #c2410c; margin-top: 4px; }
+
+/* Stations */
+.station { background: #fff; border: 1px solid #e9e3d8; border-radius: 12px; padding: 22px; margin-bottom: 14px; }
+.station-hdr { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+.station h3 { margin: 0; font-size: 17px; font-weight: 600; }
+.station .num { background: #1a1a1a; color: #faf8f5; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; margin-right: 10px; flex-shrink: 0; }
+.station-row { display: flex; gap: 20px; flex-wrap: wrap; }
+.station-row > div { flex: 1; min-width: 200px; }
+.station h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6356; margin: 0 0 8px; font-weight: 600; }
+.station ul { margin: 0; padding-left: 18px; font-size: 14px; }
+.station ul li { margin-bottom: 5px; }
+.timing { background: #fef3ea; color: #c2410c; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; }
+
+/* Flashcards */
+.fc-filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.fc-filter { background: #fff; border: 1px solid #e9e3d8; padding: 6px 14px; border-radius: 999px; cursor: pointer; font: inherit; font-size: 13px; color: #6b6356; }
+.fc-filter.active { background: #1a1a1a; color: #faf8f5; border-color: #1a1a1a; }
+.fc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.fc { background: #fff; border: 1px solid #e9e3d8; border-radius: 10px; padding: 18px; cursor: pointer; min-height: 140px; display: flex; align-items: center; justify-content: center; text-align: center; transition: all 0.2s; }
+.fc:hover { border-color: #c2410c; }
+.fc.flipped { background: #1a1a1a; color: #faf8f5; }
+.fc .q { font-weight: 500; font-size: 14px; }
+.fc .a { font-size: 13px; line-height: 1.5; }
+.fc .topic-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #c2410c; margin-bottom: 8px; display: block; font-weight: 600; }
+.fc.flipped .topic-tag { color: #f5c8a8; }
+
+/* References */
+.ref-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+.ref-card { background: #fff; border: 1px solid #e9e3d8; border-radius: 12px; padding: 20px; }
+.ref-card h3 { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
+.ref-card table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ref-card th, .ref-card td { text-align: left; padding: 6px 4px; border-bottom: 1px solid #f0ebe0; vertical-align: top; }
+.ref-card th { color: #6b6356; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+.ref-card ul { padding-left: 18px; margin: 4px 0 0; font-size: 13px; }
+
+/* Modal */
+.modal-bg { position: fixed; inset: 0; background: rgba(20,15,10,0.5); display: none; align-items: flex-start; justify-content: center; padding: 40px 20px; z-index: 100; overflow-y: auto; }
+.modal-bg.open { display: flex; }
+.modal { background: #faf8f5; border-radius: 14px; max-width: 520px; width: 100%; padding: 28px; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+.modal.wide { max-width: 760px; }
+.modal .x { position: absolute; top: 14px; right: 18px; background: none; border: 0; font-size: 22px; cursor: pointer; color: #6b6356; }
+.modal h2 { margin-top: 0; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #6b6356; font-weight: 600; margin-bottom: 6px; }
+.field input[type=date] { width: 100%; padding: 10px 12px; border: 1px solid #e9e3d8; border-radius: 8px; font: inherit; font-size: 14px; background: #fff; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.field .hint { font-size: 12px; color: #6b6356; margin-top: 4px; }
+.btn-primary { background: #c2410c; color: #fff; border: 0; padding: 12px 20px; border-radius: 10px; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; }
+.btn-primary:hover { background: #9a3308; }
+.btn-secondary { background: none; border: 1px solid #e9e3d8; color: #1a1a1a; padding: 12px 20px; border-radius: 10px; cursor: pointer; font: inherit; font-size: 14px; margin-right: 8px; }
+.btn-row { display: flex; align-items: center; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+.btn-link { background: none; border: 0; color: #6b6356; padding: 12px 0; cursor: pointer; font: inherit; font-size: 13px; text-decoration: underline; }
+.btn-link:hover { color: #c2410c; }
+
+/* Signup modal */
+.signup-modal h2 { margin: 0 0 8px; font-size: 20px; font-weight: 600; }
+.signup-modal .lead { color: #6b6356; font-size: 14px; margin: 0 0 20px; }
+.signup-modal .field input[type=text], .signup-modal .field input[type=email] { width: 100%; padding: 11px 13px; border: 1px solid #e9e3d8; border-radius: 8px; font: inherit; font-size: 14px; background: #fff; }
+.signup-modal .field input:focus { outline: none; border-color: #c2410c; box-shadow: 0 0 0 3px rgba(194,65,12,0.1); }
+.toggle-row { display: flex; gap: 8px; }
+.toggle-opt { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 12px; border: 1px solid #e9e3d8; border-radius: 8px; cursor: pointer; font-size: 14px; background: #fff; transition: all 0.15s; }
+.toggle-opt:hover { border-color: #c2410c; }
+.toggle-opt input[type=radio] { accent-color: #c2410c; }
+.toggle-opt:has(input:checked) { background: #fef3ea; border-color: #c2410c; color: #c2410c; font-weight: 500; }
+.consent { background: #f5f0e6; border-radius: 8px; padding: 12px 14px; }
+.consent label { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px; line-height: 1.5; color: #2a2a2a; font-weight: 400; text-transform: none; letter-spacing: 0; margin: 0; }
+.consent input[type=checkbox] { margin-top: 2px; width: 16px; height: 16px; accent-color: #c2410c; flex-shrink: 0; }
+.signup-success { text-align: center; padding: 12px 0; }
+.signup-success h2 { font-size: 22px; margin: 0 0 12px; }
+.signup-success p { color: #6b6356; font-size: 14px; margin: 0 0 20px; }
+
+/* Signup banner (bottom) */
+.signup-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a1a; color: #faf8f5; padding: 14px 24px; display: none; z-index: 90; box-shadow: 0 -4px 24px rgba(0,0,0,0.18); }
+.signup-banner.visible { display: block; animation: bannerUp 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.signup-banner-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.signup-banner-text { font-size: 14px; flex: 1; line-height: 1.45; }
+.signup-banner-text strong { font-weight: 600; }
+.signup-banner-text .sub { color: #d6cfc1; font-size: 13px; display: block; margin-top: 2px; }
+.signup-banner-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.banner-cta { background: #c2410c; color: #fff; border: 0; padding: 10px 18px; border-radius: 8px; cursor: pointer; font: inherit; font-size: 13px; font-weight: 500; }
+.banner-cta:hover { background: #d4490e; }
+.banner-dismiss { background: none; border: 0; color: #d6cfc1; padding: 6px 10px; cursor: pointer; font-size: 22px; line-height: 1; border-radius: 6px; font-weight: 300; }
+.banner-dismiss:hover { color: #fff; background: rgba(255,255,255,0.1); }
+@keyframes bannerUp { from { transform: translateY(110%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+body.banner-shown { padding-bottom: 80px; }
+@media (max-width: 720px) {
+  .signup-banner-inner { flex-wrap: wrap; }
+  .signup-banner-text { width: 100%; font-size: 13px; }
+  .signup-banner-actions { width: 100%; justify-content: flex-end; }
+  body.banner-shown { padding-bottom: 130px; }
+}
+
+/* Utility */
+.muted { color: #6b6356; }
+.event-pill { display: inline-block; background: #c2410c; color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.progress-bar { background: #e9e3d8; border-radius: 999px; height: 6px; overflow: hidden; margin-top: 8px; }
+.progress-fill { background: #c2410c; height: 100%; transition: width 0.3s; }
+
+@media (max-width: 720px) {
+  .days { grid-template-columns: repeat(2, 1fr); }
+  .hdr h1 { font-size: 22px; }
+  .countdown { width: 100%; }
+  .field-row { grid-template-columns: 1fr; }
+  .detail { margin-left: 8px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hdr">
+  <div>
+    <h1>FSOP Study Plan</h1>
+    <p>UTS Graduate Certificate of Pharmacist Prescribing · ACS1 (96136) + PS1 (96138) OSCE companion</p>
+    <div class="progress-bar" style="max-width:300px;"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    <p class="muted" style="margin-top:4px;font-size:12px"><span id="progText">0 of 0 actions complete</span></p>
+  </div>
+  <div class="hdr-right">
+    <button class="settings-btn" onclick="openSettings()" title="Set your OSCE / tutorship / residential dates">⚙ My dates</button>
+    <div class="countdown">
+      <div class="big" id="cdDays">—</div>
+      <div class="sub" id="cdLabel">days to OSCE</div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab" data-tab="about">About</button>
+  <button class="tab active" data-tab="today">Today</button>
+  <button class="tab" data-tab="plan">Full Plan</button>
+  <button class="tab" data-tab="stations">OSCE Stations</button>
+  <button class="tab" data-tab="flash">Flashcards</button>
+  <button class="tab" data-tab="ref">Quick Reference</button>
+</nav>
+
+<section class="panel" id="about"></section>
+<section class="panel active" id="today"></section>
+<section class="panel" id="plan"></section>
+<section class="panel" id="stations"></section>
+<section class="panel" id="flash"></section>
+<section class="panel" id="ref"></section>
+
+</div>
+
+<!-- Settings Modal -->
+<div class="modal-bg" id="settingsBg">
+  <div class="modal">
+    <button class="x" onclick="closeSettings()">&times;</button>
+    <h2 style="margin-bottom:6px">My dates</h2>
+    <p class="muted" style="font-size:13px;margin:0 0 18px">Set your OSCE date and your allocated tutorship + residential days. The plan will rebuild around your schedule. Saved to your browser only.</p>
+    <div class="field">
+      <label for="setOsce">OSCE date</label>
+      <input type="date" id="setOsce" />
+      <div class="hint">Your OSCE 1 assessment day.</div>
+    </div>
+    <div class="field">
+      <label>Tutorship day(s)</label>
+      <div class="field-row">
+        <input type="date" id="setTut1" />
+        <input type="date" id="setTut2" />
+      </div>
+      <div class="hint">Up to 2 dates. Leave blank if none.</div>
+    </div>
+    <div class="field">
+      <label>Residential day(s)</label>
+      <div class="field-row">
+        <input type="date" id="setRes1" />
+        <input type="date" id="setRes2" />
+      </div>
+      <div class="hint">Up to 2 dates. Leave blank if none.</div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="saveSettings()">Save & rebuild plan</button>
+      <button class="btn-secondary" onclick="closeSettings()">Cancel</button>
+      <button class="btn-link" onclick="resetSettings()">Reset to defaults</button>
+    </div>
+  </div>
+</div>
+
+<!-- Signup Banner (bottom of page) -->
+<div class="signup-banner" id="signupBanner">
+  <div class="signup-banner-inner">
+    <div class="signup-banner-text">
+      <strong>If this is helping…</strong>
+      <span class="sub">Stay in the loop on pharmacy AI tools — 3 fields, 20 seconds.</span>
+    </div>
+    <div class="signup-banner-actions">
+      <button class="banner-cta" onclick="showSignup()">Keep me posted</button>
+    </div>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal-bg" id="signupBg">
+  <div class="modal signup-modal">
+    <button class="x" onclick="closeSignupModal()">&times;</button>
+    <h2>If this is helping, want to stay in the loop?</h2>
+    <p class="lead">I'm building AI tools for pharmacies — if you want to hear when they launch, drop your details below. Takes 20 seconds.</p>
+    <form id="signupForm" onsubmit="submitSignup(event)">
+      <div class="field">
+        <label for="suFirst">First name</label>
+        <input type="text" id="suFirst" name="firstName" required maxlength="50" autocomplete="given-name" />
+      </div>
+      <div class="field">
+        <label for="suEmail">Email</label>
+        <input type="email" id="suEmail" name="email" required maxlength="120" autocomplete="email" />
+      </div>
+      <div class="field">
+        <label>Pharmacy owner / decision maker?</label>
+        <div class="toggle-row">
+          <label class="toggle-opt"><input type="radio" name="ownerStatus" value="Yes" required /> Yes</label>
+          <label class="toggle-opt"><input type="radio" name="ownerStatus" value="No" /> No</label>
+        </div>
+      </div>
+      <div class="field consent">
+        <label>
+          <input type="checkbox" id="suConsent" required />
+          <span>OK for Anthony to contact me about pharmacy AI tools.</span>
+        </label>
+      </div>
+      <div class="btn-row">
+        <button type="submit" class="btn-primary">Keep me posted</button>
+        <button type="button" class="btn-secondary" onclick="dismissSignup('decline')">Not interested</button>
+      </div>
+      <p class="muted" style="font-size:11px;margin-top:10px">Your details stay private. Opt out anytime.</p>
+    </form>
+    <div id="signupSuccess" class="signup-success" style="display:none">
+      <h2>Thanks! 🎉</h2>
+      <p>You're on the list. I'll be in touch when there's something useful — no spam.</p>
+      <button class="btn-primary" onclick="closeSignup()">Back to studying</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day Detail Modal -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal wide">
+    <button class="x" onclick="closeModal()">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+// =========================
+// CONFIG — set your Google Apps Script Web App URL here
+// =========================
+// Deploy the .gs script (see apps_script.gs file + README), then paste the URL below.
+// Leave as placeholder during testing — submissions will be skipped server-side, still saved locally.
+const SIGNUP_ENDPOINT = "https://script.google.com/macros/s/PASTE_YOUR_DEPLOYED_APPS_SCRIPT_URL_HERE/exec";
+const SIGNUP_TRIGGER_AT_TICKS = 3;          // show banner once user has ticked this many actions
+// Banner persists indefinitely until user submits or clicks "Not interested" in the modal.
+
+// =========================
+// REUSABLE DETAIL SNIPPETS (referenced by action.detail)
+// =========================
+const D = {
+  soap: `<h4>SOAP framework</h4>
+    <table><tr><th>Section</th><th>What goes here</th></tr>
+    <tr><td><strong>S</strong>ubjective</td><td>Patient's reported symptoms (HPC via SOCRATES), PMH, meds, allergies, social hx, family hx, ICE</td></tr>
+    <tr><td><strong>O</strong>bjective</td><td>Vitals, focused physical exam findings, investigations/diagnostics</td></tr>
+    <tr><td><strong>A</strong>ssessment</td><td>Working diagnosis + differentials + your clinical reasoning</td></tr>
+    <tr><td><strong>P</strong>lan</td><td>Drug + dose + duration, non-pharm advice, safety-net, follow-up, referrals, GP communication</td></tr></table>
+    <p class="pearl"><strong>OSCE tip:</strong> for the documentation station (7), label your sections explicitly. Examiners scan for S/O/A/P headings before reading content.</p>`,
+
+  socrates: `<h4>SOCRATES for pain / presenting complaint</h4>
+    <table><tr><th>Letter</th><th>Question to ask</th></tr>
+    <tr><td>S — Site</td><td>"Where exactly is the pain?" Get them to point</td></tr>
+    <tr><td>O — Onset</td><td>"When did it start? Sudden or gradual? What were you doing?"</td></tr>
+    <tr><td>C — Character</td><td>"What does it feel like — sharp, dull, burning, crushing?"</td></tr>
+    <tr><td>R — Radiation</td><td>"Does it spread anywhere?"</td></tr>
+    <tr><td>A — Associated sx</td><td>"Anything else — nausea, sweating, fever, breathlessness?"</td></tr>
+    <tr><td>T — Time course</td><td>"Constant or comes and goes? Getting better, worse, or same?"</td></tr>
+    <tr><td>E — Exacerbating/Relieving</td><td>"What makes it better or worse?"</td></tr>
+    <tr><td>S — Severity</td><td>"Out of 10, where 10 is the worst pain imaginable?"</td></tr></table>
+    <p class="pearl"><strong>Pearl:</strong> add <strong>ICE</strong> (Ideas, Concerns, Expectations) at the end — often explicitly marked in OSCE rubrics.</p>`,
+
+  vitalsRef: `<h4>Adult vital sign reference</h4>
+    <table><tr><th>Vital</th><th>Normal</th><th>Concern</th></tr>
+    <tr><td>BP</td><td>&lt;120/80</td><td>≥140/90 HTN · SBP &lt;90 shock</td></tr>
+    <tr><td>HR</td><td>60–100</td><td>&lt;50 brady · &gt;100 tachy · irregular</td></tr>
+    <tr><td>RR</td><td>12–20</td><td>≥22 (qSOFA flag) · &lt;10 hypoventilation</td></tr>
+    <tr><td>SpO2</td><td>≥95%</td><td>&lt;92% (or &lt;88% COPD)</td></tr>
+    <tr><td>Temp</td><td>36.5–37.5°C</td><td>≥38°C fever · &lt;35°C hypothermia</td></tr>
+    <tr><td>BGL fasting</td><td>4.0–6.0 mmol/L</td><td>≥7.0 diabetes</td></tr>
+    <tr><td>BGL random</td><td>&lt;7.8</td><td>≥11.1 + symptoms = diabetes</td></tr>
+    <tr><td>Pain</td><td>0/10 baseline</td><td>≥7/10 severe — escalate</td></tr></table>
+    <div class="flag"><strong>Sepsis flag (qSOFA ≥2):</strong> RR ≥22 · SBP ≤100 · altered mental status → urgent referral</div>`,
+
+  bpScript: `<h4>BP measurement — narration script for station</h4>
+    <div class="script">"Hand hygiene. I'd select an appropriately sized cuff — bladder covering 80% of upper arm circumference. Patient seated, back supported, feet flat, arm at heart level, no talking. I'd palpate the brachial pulse, inflate the cuff 20–30 mmHg above the point pulse disappears, deflate slowly 2 mmHg/sec, noting systolic by palpation. Then I'd auscultate with stethoscope over brachial artery: re-inflate to estimated SBP +30, deflate slowly — first Korotkoff sound = systolic, disappearance (K5) = diastolic. I'd record both arms on first visit, take 2 readings 1 minute apart, and average them."</div>
+    <p class="pearl"><strong>Common pitfalls:</strong> wrong cuff size (false high if too small), arm below heart (false high), talking during measurement (raises BP).</p>`,
+
+  cvsFpe: `<h4>CVS focused physical exam — narration template</h4>
+    <h4>1. Preparation (always)</h4>
+    <ul><li>Hand hygiene, PPE, introduce self + role, confirm patient identity</li><li>Explain purpose, gain consent, expose chest appropriately while preserving dignity</li><li>Position patient at 45°</li><li>Take vitals — state values aloud</li></ul>
+    <h4>2. General inspection (end of bed)</h4>
+    <ul><li>Comfortable at rest? Pale/cyanosed/diaphoretic? SOB? Devices?</li></ul>
+    <h4>3. Hands &amp; arms</h4>
+    <ul><li>Inspect: clubbing, splinter haemorrhages, Osler nodes/Janeway lesions (endocarditis), peripheral cyanosis, tar staining</li><li>Palpate radial pulse: rate, rhythm, character (collapsing? bounding?)</li><li>Check for radial-radial delay and radio-femoral delay if relevant</li></ul>
+    <h4>4. Face, neck, chest</h4>
+    <ul><li>Face: malar flush (mitral stenosis), xanthelasma, central cyanosis (under tongue)</li><li>JVP: measure vertical height above sternal angle (normal &lt;3 cm)</li><li>Carotid pulse: character + bruits (auscultate)</li><li>Chest inspection: scars (sternotomy, lateral thoracotomy), pacemaker bulge, deformity</li></ul>
+    <h4>5. Palpation</h4>
+    <ul><li>Apex beat: locate (normally 5th ICS, MCL), assess for displacement or heaves</li><li>Parasternal heave (RV hypertrophy)</li><li>Thrills over valve areas</li></ul>
+    <h4>6. Auscultation — 4 valve areas</h4>
+    <table><tr><th>Area</th><th>Location</th><th>Listening for</th></tr>
+    <tr><td>Aortic</td><td>2nd ICS, R sternal edge</td><td>Aortic stenosis (ESM, radiates to carotids), regurgitation (EDM)</td></tr>
+    <tr><td>Pulmonary</td><td>2nd ICS, L sternal edge</td><td>Pulmonary stenosis/regurgitation, fixed split S2 (ASD)</td></tr>
+    <tr><td>Tricuspid</td><td>4th ICS, L sternal edge</td><td>Tricuspid regurg (PSM, louder on inspiration)</td></tr>
+    <tr><td>Mitral</td><td>5th ICS, MCL (apex)</td><td>Mitral regurg (PSM, radiates to axilla), stenosis (mid-diastolic)</td></tr></table>
+    <ul><li>Use diaphragm (high-pitched) and bell (low-pitched: mitral stenosis, S3/S4)</li><li>Identify S1 (closure of AV valves — "lub") and S2 ("dub")</li><li>Note any added sounds (S3, S4, murmurs) and time them (systolic vs diastolic)</li></ul>
+    <h4>7. Finish</h4>
+    <ul><li>Sacral oedema (sit forward)</li><li>Bilateral lower limb oedema (press 5 sec over tibia)</li><li>Auscultate lung bases for crackles (LVF)</li><li>Thank patient, redrape, summarise findings aloud</li></ul>
+    <p class="pearl"><strong>OSCE rule:</strong> name every action and every finding aloud. Examiners cannot mark a silent exam.</p>`,
+
+  respFpe: `<h4>Respiratory focused physical exam — narration template</h4>
+    <h4>1. Preparation + general inspection</h4>
+    <ul><li>Hand hygiene, introduce, consent, expose chest, position at 45°, vitals (note RR, SpO2, work of breathing)</li><li>End of bed: cachexia, accessory muscle use, pursed-lip breathing, audible wheeze/stridor, sputum pot</li></ul>
+    <h4>2. Hands &amp; face</h4>
+    <ul><li>Hands: clubbing (lung Ca, bronchiectasis, IPF), peripheral cyanosis, tar staining, fine tremor (β-agonist), CO₂ flap (asterixis)</li><li>Face: central cyanosis (tongue), pursed-lip breathing, plethora</li><li>Neck: tracheal deviation (palpate from above, away from pneumothorax/effusion, towards collapse), JVP, cervical lymphadenopathy</li></ul>
+    <h4>3. Chest inspection</h4>
+    <ul><li>Shape: barrel chest (hyperinflation), pectus excavatum/carinatum, kyphoscoliosis</li><li>Scars, asymmetric expansion, accessory muscle use</li><li>RR — count over 30 sec ×2</li></ul>
+    <h4>4. Palpation</h4>
+    <ul><li>Tracheal position (confirm)</li><li>Chest expansion: hands on lower chest, thumbs to midline, watch thumbs separate symmetrically</li><li>Tactile vocal fremitus (say "99"): increased in consolidation, decreased in effusion/pneumothorax</li></ul>
+    <h4>5. Percussion</h4>
+    <ul><li>Compare L vs R at each level (apex, upper, middle, lower zones); front and back</li><li>Resonant = normal · Hyper-resonant = pneumothorax/COPD · Dull = consolidation · Stony dull = effusion</li></ul>
+    <h4>6. Auscultation</h4>
+    <table><tr><th>Sound</th><th>Cause</th></tr>
+    <tr><td>Vesicular breath sounds</td><td>Normal lung</td></tr>
+    <tr><td>Bronchial</td><td>Consolidation (sounds heard at trachea but in periphery)</td></tr>
+    <tr><td>Crackles (fine, late insp)</td><td>Pulmonary oedema, IPF</td></tr>
+    <tr><td>Crackles (coarse)</td><td>Bronchiectasis, pneumonia</td></tr>
+    <tr><td>Wheeze (polyphonic, exp)</td><td>Asthma, COPD</td></tr>
+    <tr><td>Stridor (insp)</td><td>Upper airway obstruction — EMERGENCY</td></tr>
+    <tr><td>Pleural rub</td><td>Pleurisy, PE</td></tr></table>
+    <ul><li>Vocal resonance ("99"): increased in consolidation, decreased in effusion</li></ul>
+    <h4>7. Finish</h4>
+    <ul><li>Examine back (sit patient forward — repeat palp/perc/ausc)</li><li>Check sputum pot, peak flow if appropriate</li><li>Thank patient, summarise findings</li></ul>
+    <div class="flag"><strong>Resp red flags:</strong> RR ≥22, SpO2 &lt;92%, haemoptysis, stridor, accessory muscle use, single-word dyspnoea → urgent referral</div>`,
+
+  spirometry: `<h4>Spirometry interpretation basics</h4>
+    <table><tr><th>Pattern</th><th>FEV1/FVC</th><th>FVC</th><th>Examples</th></tr>
+    <tr><td>Normal</td><td>≥0.70</td><td>≥80% predicted</td><td>—</td></tr>
+    <tr><td>Obstructive</td><td>&lt;0.70</td><td>Normal or reduced</td><td>Asthma, COPD</td></tr>
+    <tr><td>Restrictive</td><td>≥0.70</td><td>&lt;80% predicted</td><td>IPF, kyphoscoliosis, NMD</td></tr>
+    <tr><td>Mixed</td><td>&lt;0.70</td><td>&lt;80%</td><td>Severe COPD with hyperinflation</td></tr></table>
+    <p><strong>Reversibility:</strong> &gt;12% AND &gt;200 mL improvement in FEV1 post-bronchodilator suggests asthma (vs fixed COPD).</p>
+    <p><strong>COPD severity (post-BD FEV1 % predicted):</strong> Mild ≥80 · Moderate 50–79 · Severe 30–49 · Very severe &lt;30</p>`,
+
+  utiFull: `<h4>Uncomplicated UTI — pharmacist prescribing pathway (NSW)</h4>
+    <h4>Eligibility (must meet ALL)</h4>
+    <ul><li>Adult female 18–65 (check current NSW criteria — was 18–65 at trial; may have expanded)</li><li>Not pregnant or breastfeeding</li><li>Typical symptoms: dysuria + frequency + urgency</li><li>No red flag features (see below)</li><li>No UTI in past month / no recent antibiotic course (resistance risk)</li></ul>
+    <div class="flag"><strong>Red flags — refer (do NOT prescribe):</strong>
+      <ul><li>Pregnancy, breastfeeding</li><li>Male, child, &gt;65</li><li>Pyelonephritis: loin pain, fever ≥38°C, vomiting, rigors, systemic upset</li><li>Haematuria persisting beyond UTI</li><li>Vaginal discharge (consider STI/candidiasis)</li><li>Recurrent UTI (≥2 in 6 months or ≥3 in 12 months)</li><li>Immunocompromised, diabetes with complications, structural urinary abnormality, catheter, recent urological procedure</li></ul>
+    </div>
+    <h4>Empirical antibiotic therapy (per eTG / NSW protocol)</h4>
+    <table><tr><th>Agent</th><th>Dose</th><th>Duration</th><th>Notes</th></tr>
+    <tr><td>Trimethoprim</td><td>300 mg nocte</td><td>3 days</td><td>Avoid 1st trimester pregnancy; caution renal impairment</td></tr>
+    <tr><td>Nitrofurantoin</td><td>100 mg q6h</td><td>5 days</td><td>Avoid if eGFR &lt;45; G6PD deficiency; avoid late pregnancy (term)</td></tr>
+    <tr><td>Cefalexin</td><td>500 mg q12h</td><td>5 days</td><td>2nd-line; broader spectrum</td></tr></table>
+    <h4>Non-pharmacological advice</h4>
+    <ul><li>Increase fluids (2–3 L/day if appropriate)</li><li>Void frequently, after intercourse</li><li>Wipe front to back</li><li>Avoid douches and irritant soaps</li><li>Cranberry products — limited evidence; may help prevention not treatment</li></ul>
+    <h4>Safety-net</h4>
+    <p>Return / present to GP or ED if: fever ≥38°C, loin pain, vomiting, blood in urine, no improvement in 48h, or symptoms worsen.</p>
+    <p>Communicate to GP via SOAP letter within 48h. Document everything.</p>`,
+
+  acneFull: `<h4>Acne — classification + management</h4>
+    <h4>Classification</h4>
+    <table><tr><th>Severity</th><th>Features</th><th>First-line</th></tr>
+    <tr><td>Mild comedonal</td><td>Open + closed comedones, few inflamed lesions</td><td>Topical retinoid (adapalene 0.1% nocte) ± BPO</td></tr>
+    <tr><td>Mild–moderate inflammatory</td><td>Papules, pustules, comedones</td><td>Topical retinoid + BPO + topical antibiotic (clindamycin/erythromycin) — NEVER topical abx as monotherapy</td></tr>
+    <tr><td>Moderate</td><td>Widespread papules + pustules, mild scarring risk</td><td>Add oral antibiotic (doxycycline 50–100 mg daily, 3–4 months) + topicals</td></tr>
+    <tr><td>Severe / nodulocystic</td><td>Nodules, cysts, scarring</td><td>REFER to dermatologist (isotretinoin)</td></tr></table>
+    <h4>Pharmacist OSCE approach</h4>
+    <ul><li>Assess: distribution (face/trunk), lesion types (comedonal vs inflammatory vs nodular), severity, scarring, psychological impact, current/past tx</li><li>Screen for endocrine causes if signs (hirsutism, irregular menses) — refer</li><li>Counsel: 6–8 weeks before effect; retinoid causes initial flare + photosensitivity; BPO bleaches fabrics; combine to reduce resistance</li></ul>
+    <div class="flag"><strong>Refer:</strong> nodulocystic/scarring, treatment failure after 3 months, severe psychological impact, suspected endocrine cause</div>`,
+
+  impetigoFull: `<h4>Impetigo — assessment + management</h4>
+    <h4>Recognise</h4>
+    <ul><li><strong>Non-bullous</strong> (most common, ~70%): honey-coloured crusted lesions, around mouth/nose. Cause: S. aureus ± S. pyogenes</li><li><strong>Bullous</strong>: flaccid blisters → crusts, larger lesions. Cause: S. aureus toxin</li><li>Highly contagious — exclude from school/childcare until 24h after starting antibiotic OR lesions crusted over</li></ul>
+    <h4>Management (per eTG)</h4>
+    <table><tr><th>Extent</th><th>Treatment</th></tr>
+    <tr><td>Localised (≤2 lesions, small area)</td><td><strong>Mupirocin 2% topical</strong>, apply TDS × 5 days. Remove crusts gently with saline first.</td></tr>
+    <tr><td>Widespread / multiple sites / systemic</td><td><strong>Cefalexin</strong> 500 mg q6h × 7d (adult) OR <strong>di/flucloxacillin</strong> 500 mg q6h × 7d</td></tr>
+    <tr><td>Severe penicillin allergy</td><td>Trimethoprim/sulfamethoxazole 160/800 mg BD × 7d OR clindamycin</td></tr></table>
+    <h4>Non-pharm</h4>
+    <ul><li>Wash skin daily with soap/water</li><li>Keep lesions covered if possible</li><li>Don't share towels/clothing</li><li>Hand hygiene critical</li></ul>
+    <div class="flag"><strong>Refer if:</strong> systemic symptoms (fever, lymphadenopathy), facial/orbital involvement, failure to improve after 7 days, recurrent infection, immunocompromised</div>`,
+
+  shinglesFull: `<h4>Herpes zoster (Shingles) — full pathway</h4>
+    <h4>Recognise</h4>
+    <ul><li>Prodrome: tingling/burning pain in dermatome 2–3 days before rash</li><li>Rash: erythematous → vesicular → pustular → crusted, unilateral, follows single dermatome (does NOT cross midline)</li><li>Most common dermatomes: thoracic (T3–L2), ophthalmic (V1)</li></ul>
+    <h4>Antiviral therapy — start within 72h of rash onset (per eTG)</h4>
+    <table><tr><th>Drug</th><th>Adult dose</th><th>Notes</th></tr>
+    <tr><td>Famciclovir</td><td>500 mg TDS × 7 days</td><td>Once-daily 1.5g single dose option for uncomplicated immunocompetent</td></tr>
+    <tr><td>Valaciclovir</td><td>1 g TDS × 7 days</td><td>Good bioavailability</td></tr>
+    <tr><td>Aciclovir</td><td>800 mg 5×/day × 7 days</td><td>5 doses/day = poor adherence</td></tr></table>
+    <p><strong>Renal dose adjustment</strong> needed for all — check eGFR.</p>
+    <h4>Symptom management</h4>
+    <ul><li>Pain: paracetamol ± NSAID; if severe consider gabapentin/amitriptyline (refer)</li><li>Topical: calamine, cool compresses; cover weeping lesions</li><li>Keep dressings clean</li></ul>
+    <div class="flag"><strong>Red flags — REFER:</strong>
+      <ul><li><strong>Ophthalmic involvement (V1):</strong> Hutchinson sign = vesicles on tip of nose → ophthalmology urgent</li><li><strong>Ramsay Hunt syndrome:</strong> CN VII palsy + ear/auditory canal vesicles → urgent ENT</li><li>Disseminated (&gt;1 dermatome) → immunocompromised? medical review</li><li>Pregnancy</li><li>Severe immunocompromise (HIV, chemo, transplant)</li><li>Severe pain not responsive to OTC analgesia</li></ul>
+    </div>
+    <h4>Post-zoster vaccine</h4>
+    <p>Shingrix recommended ≥6–12 months after acute episode in eligible patients (≥50yo, immunocompetent; ≥18 immunocompromised). 2 doses, 2–6 months apart.</p>`,
+
+  rhinitisFull: `<h4>Allergic + non-allergic rhinitis — management</h4>
+    <h4>Distinguish</h4>
+    <table><tr><th>Feature</th><th>Allergic</th><th>Non-allergic</th></tr>
+    <tr><td>Triggers</td><td>Pollen, dust mite, pet dander, mould</td><td>Cold air, fumes, hormones, foods, drugs</td></tr>
+    <tr><td>Itch / sneeze</td><td>Prominent</td><td>Usually absent</td></tr>
+    <tr><td>Eye symptoms</td><td>Often (conjunctivitis)</td><td>Rare</td></tr>
+    <tr><td>Family hx atopy</td><td>Common</td><td>Less common</td></tr></table>
+    <h4>Stepwise management</h4>
+    <ol><li><strong>Avoidance + saline irrigation</strong> (best evidence for non-pharm)</li><li><strong>Intranasal corticosteroid (INCS) — first-line preventive therapy</strong>: fluticasone furoate 27.5 mcg/spray, 2 sprays each nostril daily; or mometasone, budesonide, fluticasone propionate. Onset days; max effect at 2 weeks. Counsel: aim spray away from septum.</li><li><strong>Oral 2nd-gen antihistamines</strong> PRN for breakthrough: loratadine 10 mg daily, cetirizine 10 mg daily, fexofenadine 120–180 mg daily. (Avoid 1st-gen for daily use — sedation, anticholinergic)</li><li><strong>Combination INCS + intranasal antihistamine</strong> (azelastine/fluticasone, e.g. Dymista) for moderate–severe</li><li>Add leukotriene antagonist (montelukast) only if asthma + AR — black box warning for mood/behaviour</li><li>Refer for allergen immunotherapy if persistent despite optimal pharmacotherapy</li></ol>
+    <h4>Decongestants — careful!</h4>
+    <p><strong>Topical (oxymetazoline, xylometazoline):</strong> max 5–7 days (rhinitis medicamentosa risk). <strong>Systemic (pseudoephedrine):</strong> contraindicated in HTN, IHD, glaucoma, BPH; pharmacist-only schedule.</p>
+    <div class="flag"><strong>Refer:</strong> unilateral nasal symptoms, unilateral discharge, epistaxis, anosmia, facial pain (sinusitis), nasal obstruction not responding, suspected polyps, paediatric chronic symptoms</div>`,
+
+  aomAoeFull: `<h4>Acute otitis media (AOM) vs externa (AOE) — management</h4>
+    <h4>AOM (middle ear)</h4>
+    <p>Most viral; antibiotics often unnecessary. Bulging red TM ± otorrhoea (if perforated) ± fever.</p>
+    <h4>AOM — when to give antibiotics (per eTG)</h4>
+    <ul><li>&lt;6 months: always</li><li>6 months–2 years: bilateral AOM</li><li>Severe symptoms (high fever, severe pain) at any age</li><li>Perforation with discharge</li><li>Failure to improve after 48–72h watchful waiting</li><li>Indigenous children or other high-risk populations</li></ul>
+    <p><strong>First-line:</strong> Amoxicillin 15 mg/kg (max 500 mg) TDS × 5–7 days. Pen-allergic: cefuroxime or trimethoprim/sulfamethoxazole.</p>
+    <h4>AOE (outer ear / "swimmer's ear")</h4>
+    <p>Painful tragus on touch, swollen canal, discharge. Predisposing: water exposure, trauma, eczema.</p>
+    <table><tr><th>Treatment</th><th>Detail</th></tr>
+    <tr><td>1st-line topical</td><td>Ciprofloxacin 0.3% + hydrocortisone 1% ear drops — 4 drops BD × 7 days</td></tr>
+    <tr><td>Alternative</td><td>Dexamethasone/framycetin/gramicidin drops</td></tr>
+    <tr><td>Adjuncts</td><td>Keep ear dry, analgesia (paracetamol/NSAID), wick if canal swollen shut (refer for wick insertion)</td></tr></table>
+    <div class="flag"><strong>Refer (both):</strong> Severe pain, facial nerve palsy, vertigo, hearing loss persisting, suspected mastoiditis (post-auricular swelling/tenderness), immunocompromised, diabetes (risk of malignant otitis externa), grommet in situ</div>`,
+
+  mskGordNvFull: `<h4>Acute MSK pain — management</h4>
+    <p>Most acute non-specific back/MSK pain is benign and self-limiting. Screen for red flags first.</p>
+    <div class="flag"><strong>Back pain red flags (refer urgently):</strong> age &lt;20 or &gt;50 (new), trauma, weight loss, fever, neurological deficit, saddle anaesthesia / urinary incontinence (cauda equina), night pain, hx cancer, IV drug use, immunocompromised</div>
+    <h4>Stepwise tx</h4>
+    <ol><li>Paracetamol 1 g QID PRN (max 4 g/day) ± topical NSAID (diclofenac gel 1–2%)</li><li>Oral NSAID short course: ibuprofen 400 mg q6–8h PRN (max 1200 mg OTC) — consider GI protection (PPI) if risk factors</li><li>Avoid opioids for first-line acute MSK</li><li>Reassurance, early mobilisation, heat/ice, physiotherapy referral if not improving in 4 weeks</li></ol>
+    <h4>NSAID comparison (acute use, OTC dose)</h4>
+    <table><tr><th>Drug</th><th>GI risk</th><th>CV risk</th><th>Notes</th></tr>
+    <tr><td>Ibuprofen ≤1200 mg/d</td><td>Lower</td><td>Lower</td><td>Best OTC profile short-term</td></tr>
+    <tr><td>Naproxen</td><td>Higher</td><td>Lower (potentially safer if CV risk)</td><td>Longer half-life — BD dosing</td></tr>
+    <tr><td>Diclofenac</td><td>Moderate</td><td>Higher</td><td>Avoid if CV risk</td></tr></table>
+
+    <h4>GORD — management</h4>
+    <div class="flag"><strong>GORD alarm symptoms (REFER):</strong> dysphagia, odynophagia, weight loss, anaemia, GI bleed (melaena, haematemesis), persistent vomiting, age &gt;50 with new symptoms, FHx upper GI cancer</div>
+    <ol><li><strong>Lifestyle</strong>: weight loss, elevate head of bed, avoid lying within 3h post-meal, smaller meals, trigger avoidance (alcohol, caffeine, fatty/spicy), smoking cessation</li><li><strong>Antacids/alginates</strong> PRN (Gaviscon)</li><li><strong>H2RA</strong> (famotidine 20 mg BD) for mild intermittent</li><li><strong>PPI</strong> first-line for typical GORD: esomeprazole 20 mg or omeprazole 20 mg daily, 4–8 weeks. Review and step down.</li><li>Long-term PPI: counsel re B12, Mg, fracture risk, C. diff — use lowest effective dose</li></ol>
+
+    <h4>Nausea & vomiting — selection</h4>
+    <table><tr><th>Cause / scenario</th><th>1st-line antiemetic</th><th>Notes / cautions</th></tr>
+    <tr><td>Motion sickness</td><td>Hyoscine, promethazine, cinnarizine</td><td>Anticholinergic effects</td></tr>
+    <tr><td>Vestibular (vertigo)</td><td>Prochlorperazine, promethazine</td><td>EPSE risk</td></tr>
+    <tr><td>Gastroenteritis</td><td>Ondansetron 4–8 mg PRN</td><td><strong>QT prolongation</strong> — avoid with other QT drugs</td></tr>
+    <tr><td>Gastric stasis</td><td>Metoclopramide 10 mg TDS (max 5 days)</td><td>EPSE risk esp. women &lt;30; max 30 mg/day</td></tr>
+    <tr><td>Migraine-associated</td><td>Metoclopramide ± analgesia</td><td>Helps gastric absorption</td></tr></table>
+    <div class="flag"><strong>Refer:</strong> dehydration signs, unable to keep fluids down &gt;24h, bilious/bloody vomiting, abdominal pain + vomiting, suspected pregnancy, head injury, severe headache</div>`,
+
+  woundFull: `<h4>Wound care — TIME + SAFE WOUND</h4>
+    <h4>TIME framework</h4>
+    <table><tr><th>T</th><th>Tissue</th><td>Identify non-viable tissue (slough, eschar) — debride if appropriate</td></tr>
+    <tr><th>I</th><th>Infection / Inflammation</th><td>Signs: erythema, warmth, swelling, pain, exudate, odour, delayed healing. Systemic: fever, lymphadenopathy</td></tr>
+    <tr><th>M</th><th>Moisture balance</th><td>Match dressing to exudate level (see below)</td></tr>
+    <tr><th>E</th><th>Edge of wound</th><td>Assess epithelialisation; check for undermining/tunnelling</td></tr></table>
+    <h4>Dressing selection by exudate</h4>
+    <table><tr><th>Wound state</th><th>Dressing choice</th></tr>
+    <tr><td>Dry / minimal exudate</td><td>Film (Tegaderm), hydrocolloid (DuoDERM)</td></tr>
+    <tr><td>Moderate exudate</td><td>Hydrocolloid, foam (Allevyn, Mepilex)</td></tr>
+    <tr><td>Heavy exudate</td><td>Foam, alginate (Kaltostat), superabsorbent</td></tr>
+    <tr><td>Dry necrotic / slough</td><td>Hydrogel (Intrasite) — rehydrate; consider autolytic debridement</td></tr>
+    <tr><td>Infected</td><td>Silver-impregnated dressing (Acticoat, Aquacel Ag) or iodine (Inadine)</td></tr>
+    <tr><td>Cavity wound</td><td>Alginate ribbon, foam cavity, packing</td></tr></table>
+    <h4>Closure decision</h4>
+    <table><tr><th>Choice</th><th>Appropriate for</th></tr>
+    <tr><td>Steri-strips</td><td>Clean, linear, low-tension wounds &lt;5cm; superficial</td></tr>
+    <tr><td>Topical adhesive (Dermabond)</td><td>Small facial wounds, low-tension, dry</td></tr>
+    <tr><td>Sutures</td><td>REFER — deeper, high-tension, gaping, or cosmetically sensitive</td></tr>
+    <tr><td>Staples</td><td>REFER — scalp wounds</td></tr></table>
+    <div class="flag"><strong>Wound REFER red flags:</strong> Deep (through fascia), contaminated, bite (animal or human), tendon/bone exposed, length &gt;5 cm, &gt;12h since injury, signs of infection, immunocompromised host, foreign body retained, suspected nerve/vascular injury</div>
+    <p class="pearl"><strong>Don't forget tetanus:</strong> ask about last tetanus booster; if &gt;5 years for dirty wound or &gt;10 years for clean wound → refer for booster.</p>`,
+
+  imInjFull: `<h4>IM injection (vaccine) — full procedural narration</h4>
+    <h4>Pre-vaccination</h4>
+    <ol><li>Hand hygiene, PPE, introduce, confirm patient identity (name + DOB)</li><li>Verify the 7 rights: right <strong>patient</strong>, <strong>drug</strong>, <strong>dose</strong>, <strong>route</strong>, <strong>time</strong>, <strong>documentation</strong>, <strong>reason</strong></li><li>Screen contraindications: anaphylaxis to vaccine/component, current significant illness, immunosuppression considerations, pregnancy (where relevant)</li><li>Consent — explain vaccine, common side effects (pain at site, low-grade fever 24–48h), rare risks (anaphylaxis), benefit</li><li>Confirm anaphylaxis kit on hand: adrenaline 1:1000, IM administration set, oxygen, BP cuff</li></ol>
+    <h4>Site selection</h4>
+    <table><tr><th>Site</th><th>When</th><th>Landmark</th></tr>
+    <tr><td>Deltoid</td><td>Adults + ≥12 months, vaccines ≤2 mL</td><td>2–3 finger-widths below acromion, into thickest part</td></tr>
+    <tr><td>Anterolateral thigh (vastus lat)</td><td>Infants &lt;12 months, larger volumes in adults</td><td>Middle third, lateral aspect</td></tr>
+    <tr><td>Ventrogluteal</td><td>Adults, larger volumes</td><td>Hand on greater trochanter, index to ASIS, middle to iliac crest, inject in triangle</td></tr></table>
+    <h4>Technique</h4>
+    <ol><li>Position patient seated, expose site, support arm relaxed</li><li>Clean site with alcohol swab, allow to air-dry (don't blow on it)</li><li>Stretch skin taut; insert needle <strong>90°</strong>, full depth in one swift motion (25 mm needle typical adult)</li><li><strong>No aspiration</strong> (per AIH — vaccines don't enter major blood vessels at recommended sites; aspiration ↑ pain, no safety benefit)</li><li>Inject smoothly over 1–2 seconds</li><li>Withdraw needle, apply gentle pressure (no rubbing)</li><li>Dispose of sharps immediately into sharps bin — do NOT recap</li></ol>
+    <h4>Post-vaccination</h4>
+    <ol><li>Observe patient for 15 minutes minimum (longer if hx anaphylaxis, anxiety, asthma)</li><li>Provide written information; advise on post-vaccine symptom management</li><li>Document in AIR (Australian Immunisation Register): vaccine name, brand, batch number, expiry, dose number, route, site, date, time, your provider number</li><li>Provide receipt / record to patient</li></ol>
+    <div class="flag"><strong>Recognise anaphylaxis (within 15 min observation):</strong> sudden skin (urticaria, angioedema), respiratory (wheeze, stridor, dyspnoea), CV (hypotension, collapse), GI (vomiting). <strong>Action:</strong> adrenaline 1:1000 IM 0.5 mL adult (0.01 mg/kg child) anterolateral thigh; call 000; lie patient flat; second dose at 5 min if no improvement.</div>`,
+
+  cultSafety: `<h4>Cultural safety — opening lines for OSCE Station 1</h4>
+    <p>Cultural safety is often explicitly marked. Practise these phrases until natural:</p>
+    <h4>Identifying preferred name + pronouns</h4>
+    <div class="script">"What name do you prefer I use? And what pronouns?"</div>
+    <h4>Asking about Aboriginal &amp; Torres Strait Islander identity (respectfully)</h4>
+    <div class="script">"As part of standard care, I ask everyone — do you identify as Aboriginal, Torres Strait Islander, both, or neither? This helps us provide the best care for you."</div>
+    <h4>Cultural needs &amp; preferences</h4>
+    <div class="script">"Is there anything about your culture, religion, or background that's important for me to know in providing your care?"</div>
+    <h4>Language &amp; interpreter</h4>
+    <div class="script">"Would you prefer to speak with an interpreter? We can arrange one — it's free and confidential."</div>
+    <h4>Family / community involvement</h4>
+    <div class="script">"Would you like to involve a family member or carer in this conversation, or any decisions?"</div>
+    <p class="pearl"><strong>Pearl:</strong> Tailored questions show cultural humility. Don't make assumptions based on appearance. Acknowledge the land if appropriate, and offer choice — never assume preferences.</p>`,
+
+  case_uti: `<h4>Sample OSCE case — UTI</h4>
+    <p><strong>Stem:</strong> Sarah, 28yo female, presents requesting "something for a UTI". Reports 2 days of dysuria, frequency, urgency. No fever, no loin pain, no vomiting. LMP 2 weeks ago, on COC. No relevant PMH, no allergies. Never had a UTI before.</p>
+    <h4>Your tasks (10 min)</h4>
+    <ol><li>Take focused history (5 min)</li><li>Identify red flags or referral triggers</li><li>Outline management plan with rationale</li><li>Counsel patient + safety-net</li></ol>
+    <h4>Expected approach</h4>
+    <ul><li>Confirm typical Sx (dysuria/frequency/urgency)</li><li>Screen red flags: fever, loin pain, vomiting, haematuria, vaginal discharge, pregnancy possibility</li><li>Verify eligibility: non-pregnant, non-recurrent, age, no recent abx</li><li>Treatment: trimethoprim 300 mg nocte × 3 days OR nitrofurantoin 100 mg q6h × 5 days</li><li>Counsel: increase fluids, void post-intercourse, expected improvement 48h</li><li>Safety-net: return if fever, loin pain, vomiting, blood in urine, no improvement at 48h</li><li>Document SOAP; communicate to GP</li></ul>`,
+
+  case_shingles: `<h4>Sample OSCE case — shingles</h4>
+    <p><strong>Stem:</strong> Brian, 62yo male, presents with a painful rash on his right chest for 3 days. Says it started as tingling 2 days before the rash appeared. Vesicles in a band on right side, not crossing midline. Otherwise well. PMH HTN, T2DM (HbA1c 6.8%), on perindopril + metformin. No allergies.</p>
+    <h4>Your tasks</h4>
+    <ol><li>Confirm diagnosis (history + targeted exam questions)</li><li>Assess red flags</li><li>Initiate appropriate therapy</li><li>Counsel + follow-up plan</li></ol>
+    <h4>Expected approach</h4>
+    <ul><li>Confirm dermatomal distribution, unilateral, vesicular</li><li>Red flag check: NOT in V1 (Hutchinson sign), not Ramsay Hunt, immunocompetent (DM well-controlled is OK), not pregnant, not disseminated</li><li>Within 72h window? — Yes (3 days = 72h)</li><li>Antiviral: famciclovir 500 mg TDS × 7 days OR valaciclovir 1g TDS × 7d (check renal function)</li><li>Pain: paracetamol ± NSAID first; refer if severe</li><li>Symptom care: calamine, cool compress, cover weeping lesions, hygiene</li><li>Counsel: contagious to non-immune (chickenpox); avoid pregnant + immunocompromised contacts until crusted</li><li>Post-acute: discuss Shingrix vaccine timing (6–12 months after acute)</li></ul>`,
+
+  case_uri: `<h4>Sample OSCE case — allergic rhinitis</h4>
+    <p><strong>Stem:</strong> Priya, 32yo, presents in spring with 3 weeks of sneezing, watery rhinorrhoea, nasal itch, and itchy/watery eyes. Worse outdoors. Has tried loratadine 10 mg PRN with partial relief. Works at a desk; previously had childhood eczema. No nasal obstruction, no facial pain, no anosmia.</p>
+    <h4>Your tasks</h4>
+    <ol><li>Confirm allergic rhinitis vs other causes</li><li>Step up management appropriately</li><li>Counsel on technique + expectations</li></ol>
+    <h4>Expected approach</h4>
+    <ul><li>Confirm allergic pattern (triggers, atopic hx, classic Sx)</li><li>Rule out structural / sinusitis / unilateral disease</li><li>Step up: <strong>add intranasal corticosteroid</strong> (fluticasone furoate 2 sprays each nostril daily) as primary therapy; continue antihistamine PRN</li><li>Counsel INCS technique: aim away from septum, gentle sniff, full daily use, max effect at 2 weeks</li><li>Saline irrigation as adjunct</li><li>Trigger avoidance where possible</li><li>Review in 4 weeks; if inadequate consider combination INCS+intranasal antihistamine; refer for immunotherapy if persistent</li><li>Document; safety-net for orange/red flags</li></ul>`,
+
+  case_msk: `<h4>Sample OSCE case — acute back pain</h4>
+    <p><strong>Stem:</strong> Tom, 40yo male, presents with 5 days of lower back pain after lifting boxes at work. Pain in lumbar region, no radiation, no neuro symptoms, no fevers, no weight loss, no bowel/bladder issues. Tried paracetamol with partial relief. Works in logistics.</p>
+    <h4>Your tasks</h4>
+    <ol><li>Targeted history + red flag screen</li><li>Provide stepwise management</li><li>Reassure + safety-net</li></ol>
+    <h4>Expected approach</h4>
+    <ul><li>Confirm mechanical pattern, no radicular, no red flags</li><li>Red flag mnemonic: TUNAFISH — Trauma, Unexplained weight loss, Neuro deficit, Age &lt;20/&gt;50, Fever, IV drug use, Steroid use, History of cancer; plus saddle anaesthesia/incontinence (cauda equina)</li><li>Pain: paracetamol 1g QID + topical NSAID (diclofenac gel) regularly; oral ibuprofen 400 mg TDS PRN short course if needed (counsel GI risk)</li><li>Reassure: most resolve in 4–6 weeks; bed rest is NOT helpful — encourage early mobilisation, gentle stretches</li><li>Heat/cold packs, sleep position, ergonomic advice</li><li>Workplace: graduated return rather than total time off; refer to GP for cert/work restrictions if needed</li><li>Refer for physio if not improving by 4 weeks</li><li>Safety-net: any new neuro Sx, bladder/bowel disturbance, fever, weight loss, night pain → urgent review</li></ul>`,
+
+  caseBank: `<h4>OSCE case bank — for mock practice</h4>
+    <p>Use these for full mock OSCE runs. Pick 7 different cases for a complete simulation. Have a colleague act as patient/examiner where possible.</p>
+    <h4>History stations</h4>
+    <ol><li>50yo female: 1 week productive cough + low-grade fever; smoker. Differential incl. CAP, exacerbation</li><li>35yo male: episodic palpitations + lightheadedness. Family hx sudden cardiac death — RED FLAG</li><li>28yo female: severe headache for 2 days. PMH migraine. Worst headache of life — RED FLAG</li><li>65yo male: progressive shortness of breath on exertion + ankle swelling. ?CHF</li></ol>
+    <h4>FPE stations</h4>
+    <ol><li>CVS exam on 70yo with HTN — listen for AS murmur</li><li>Respiratory exam on 45yo asthmatic — wheeze, prolonged expiration</li><li>Abdominal exam on 50yo with RUQ pain — Murphy positive</li><li>HEENT on 25yo with sore throat — Centor score</li><li>MSK on 60yo with knee pain — ROM, special tests</li><li>Neuro (cranial nerves) on 55yo with Bell's palsy — CN VII LMN</li><li>Derm on 35yo with new mole — ABCDE</li></ol>
+    <h4>DDx + management stations</h4>
+    <ol><li>30yo female with dysuria + frequency — UTI workup</li><li>45yo with shingles in T5 dermatome — antiviral within 72h</li><li>5yo with bilateral AOM and fever — antibiotic indicated</li><li>22yo with mild–moderate acne — topical retinoid + BPO</li><li>62yo with GORD + new dysphagia — REFER</li><li>40yo wanting to quit smoking, 20 pack-year — NRT combo</li><li>30yo seeking contraception, BP 140/95 — UKMEC review</li></ol>
+    <h4>Procedure stations</h4>
+    <ol><li>Wound: 4cm laceration from kitchen knife, &lt;6h old, edges clean — steri-strips, dress, tetanus check</li><li>Wound: dog bite to forearm — REFER (always)</li><li>Injection: flu vaccine in 65yo</li><li>Injection: COVID booster with anxiety hx — extended observation</li></ol>
+    <h4>Documentation stations</h4>
+    <ol><li>SOAP for UTI consult above</li><li>GP referral letter for suspected pyelonephritis</li><li>ED handover for chest pain refusing transfer — ISBAR + SOAP</li></ol>`,
+
+  dermNeuro: `<h4>Dermatological assessment</h4>
+    <h4>Lesion description (SCAM)</h4>
+    <table><tr><th>S</th><th>Site &amp; distribution</th></tr>
+    <tr><th>C</th><th>Configuration (linear, annular, target, dermatomal)</th></tr>
+    <tr><th>A</th><th>Arrangement (single, grouped, scattered)</th></tr>
+    <tr><th>M</th><th>Morphology (see below)</th></tr></table>
+    <h4>Primary lesion types</h4>
+    <table><tr><th>Term</th><th>Description</th></tr>
+    <tr><td>Macule</td><td>Flat, &lt;1cm, colour change only (e.g. freckle)</td></tr>
+    <tr><td>Patch</td><td>Flat, &gt;1cm (e.g. vitiligo)</td></tr>
+    <tr><td>Papule</td><td>Raised, &lt;1cm (e.g. wart)</td></tr>
+    <tr><td>Plaque</td><td>Raised, &gt;1cm, flat-topped (e.g. psoriasis)</td></tr>
+    <tr><td>Nodule</td><td>Raised, &gt;1cm, deeper than plaque</td></tr>
+    <tr><td>Vesicle</td><td>Fluid-filled, &lt;1cm (e.g. herpes)</td></tr>
+    <tr><td>Bulla</td><td>Fluid-filled, &gt;1cm</td></tr>
+    <tr><td>Pustule</td><td>Pus-filled (e.g. acne)</td></tr>
+    <tr><td>Wheal</td><td>Transient raised, oedematous (urticaria)</td></tr>
+    <tr><td>Ulcer</td><td>Loss of epidermis ± dermis</td></tr></table>
+    <h4>ABCDE — melanoma screening</h4>
+    <ul><li><strong>A</strong>symmetry · <strong>B</strong>order irregular · <strong>C</strong>olour variegated · <strong>D</strong>iameter ≥6mm · <strong>E</strong>volution/changing</li></ul>
+
+    <h4>Cranial nerves — quick exam narration</h4>
+    <table><tr><th>CN</th><th>Test</th></tr>
+    <tr><td>I Olfactory</td><td>Often deferred. "Have you noticed any change in your sense of smell?"</td></tr>
+    <tr><td>II Optic</td><td>Visual acuity (Snellen), visual fields (confrontation), pupillary light reflex, fundoscopy</td></tr>
+    <tr><td>III/IV/VI</td><td>"Follow my finger" (H pattern). Inspect pupils (size, equality, reactivity), accommodation, lid (ptosis)</td></tr>
+    <tr><td>V Trigeminal</td><td>Sensation in 3 divisions (V1 forehead, V2 cheek, V3 jaw — light touch). Motor: clench jaw, open against resistance. Corneal reflex (often deferred)</td></tr>
+    <tr><td>VII Facial</td><td>Raise eyebrows (frontalis), screw eyes shut (orbicularis oculi), smile/show teeth (orbicularis oris), puff cheeks</td></tr>
+    <tr><td>VIII Vestibulocochlear</td><td>Whisper test each ear; Rinne (tuning fork mastoid → ear canal); Weber (midline forehead — should be central)</td></tr>
+    <tr><td>IX/X</td><td>"Open mouth, say AHH" — palate should rise symmetrically. Gag reflex if indicated</td></tr>
+    <tr><td>XI Accessory</td><td>Shrug shoulders against resistance (trapezius); turn head against resistance (sternocleidomastoid)</td></tr>
+    <tr><td>XII Hypoglossal</td><td>Protrude tongue — deviates TOWARDS the side of LMN lesion</td></tr></table>
+    <h4>GCS scoring</h4>
+    <table><tr><th>Component</th><th>Score</th></tr>
+    <tr><td>Eyes: spontaneous / to voice / to pain / none</td><td>4 / 3 / 2 / 1</td></tr>
+    <tr><td>Verbal: oriented / confused / inappropriate / incomprehensible / none</td><td>5 / 4 / 3 / 2 / 1</td></tr>
+    <tr><td>Motor: obeys / localises pain / withdraws / flexion / extension / none</td><td>6 / 5 / 4 / 3 / 2 / 1</td></tr></table>
+    <p>Total 3 (worst) → 15 (best). ≤8 = severe (consider airway protection).</p>`,
+
+  abdFpe: `<h4>Abdominal exam — full narration</h4>
+    <h4>Preparation</h4>
+    <ul><li>Hand hygiene, consent, expose nipples → mid-thigh (modesty preserved)</li><li>Patient supine, head on single pillow, arms by sides, abdomen relaxed</li></ul>
+    <h4>General inspection</h4>
+    <ul><li>End of bed: comfortable? jaundice? cachexia? distress?</li><li>Hands: clubbing (cirrhosis, IBD), leuconychia (low albumin), palmar erythema, Dupuytren's, asterixis (hepatic flap)</li><li>Eyes: jaundice (sclera), pallor (conjunctiva), Kayser-Fleischer ring</li><li>Mouth: glossitis, ulcers, fetor hepaticus, dentition</li><li>Neck: lymphadenopathy (Virchow node — L supraclavicular = abdo malignancy)</li><li>Chest: gynaecomastia, spider naevi (5+ = significant)</li></ul>
+    <h4>Abdo inspection (specific)</h4>
+    <ul><li>Scars (laparotomy, port sites), distension, masses, peristalsis, hernias (cough)</li><li>Cullen sign (umbilical bruising), Grey-Turner (flank bruising) — pancreatitis/intra-abdo bleed</li></ul>
+    <h4>Palpation</h4>
+    <ol><li>Ask if any pain — start away from painful area</li><li><strong>Light palpation</strong> all 9 regions (R/M/L hypochondrium · R/M/L flank · R/M/L iliac fossa) — assess tenderness, guarding, rigidity</li><li><strong>Deep palpation</strong> — masses (size, shape, mobility, pulsation)</li><li><strong>Liver</strong>: start RIF, move toward RUQ on inspiration; assess edge (smooth/nodular), span (percuss upper + lower border)</li><li><strong>Spleen</strong>: start RIF, move toward LUQ on inspiration; cannot get above it; notched edge</li><li><strong>Kidneys</strong>: bimanual ballottement</li><li><strong>Aorta</strong>: midline above umbilicus — expansile? &gt;3cm suggests AAA</li></ol>
+    <h4>Percussion</h4>
+    <ul><li>Liver upper border (resonance → dullness in 5th ICS MCL)</li><li>Spleen percussion</li><li>Shifting dullness (ascites): percuss flank dull → roll patient → resonant on top</li></ul>
+    <h4>Auscultation</h4>
+    <ul><li>Bowel sounds (1 site, listen 30 sec → 1 min)</li><li>Bruits over aorta, renal arteries</li></ul>
+    <h4>Special signs</h4>
+    <table><tr><th>Sign</th><th>Test</th><th>Suggests</th></tr>
+    <tr><td>Murphy</td><td>RUQ pressure during inspiration — sudden arrest</td><td>Acute cholecystitis</td></tr>
+    <tr><td>McBurney</td><td>Tenderness at 1/3 from ASIS to umbilicus</td><td>Appendicitis</td></tr>
+    <tr><td>Rovsing</td><td>LIF pressure → RIF pain</td><td>Appendicitis (peritoneal)</td></tr>
+    <tr><td>Rebound / guarding</td><td>Release pressure → pain</td><td>Peritonism</td></tr>
+    <tr><td>Cullen / Grey-Turner</td><td>Umbilical / flank bruising</td><td>Pancreatitis, intra-abdo haemorrhage</td></tr></table>
+    <div class="flag"><strong>Abdo red flags:</strong> rigid abdomen, guarding, severe localised pain, hypotension, melaena/haematemesis, jaundice + RUQ pain + fever (Charcot triad — cholangitis), absent bowel sounds, pulsatile expansile mass (AAA)</div>`,
+
+  mskFpe: `<h4>MSK exam — Look · Feel · Move (for any joint)</h4>
+    <h4>Look</h4>
+    <ul><li>Compare L vs R (always inspect both sides)</li><li>Swelling, deformity, asymmetry, muscle wasting, scars, redness</li><li>Posture, gait (walk in if possible — antalgic? Trendelenburg? hemiplegic?)</li></ul>
+    <h4>Feel</h4>
+    <ul><li>Skin temperature (back of hand), compare sides</li><li>Tenderness — be systematic, watch face</li><li>Effusion (knee: patellar tap, sweep test, bulge sign)</li><li>Crepitus over joint movement</li></ul>
+    <h4>Move</h4>
+    <ul><li>Active ROM first (patient moves)</li><li>Passive ROM (you move), comparing both sides</li><li>Note pain, restriction, end-feel</li><li>Resisted movement (power) — for muscle/tendon testing</li></ul>
+    <h4>Normal ROM values (approximate)</h4>
+    <table><tr><th>Joint</th><th>Movement</th><th>Range</th></tr>
+    <tr><td>Shoulder</td><td>Flexion / Abduction / IR / ER</td><td>180° / 180° / 70° / 90°</td></tr>
+    <tr><td>Elbow</td><td>Flexion / Pronation / Supination</td><td>150° / 90° / 90°</td></tr>
+    <tr><td>Wrist</td><td>Flex / Extend / Radial / Ulnar deviation</td><td>80° / 70° / 20° / 30°</td></tr>
+    <tr><td>Hip</td><td>Flexion / Abduction / IR / ER</td><td>120° / 45° / 40° / 45°</td></tr>
+    <tr><td>Knee</td><td>Flex / Extend</td><td>135° / 0°</td></tr>
+    <tr><td>Ankle</td><td>Dorsi / Plantar / Inv / Ev</td><td>20° / 50° / 30° / 20°</td></tr>
+    <tr><td>Spine cervical</td><td>Flex / Ext / Rot / Lat flex</td><td>45° / 45° / 80° / 45°</td></tr>
+    <tr><td>Spine lumbar</td><td>Flex / Ext / Rot / Lat flex</td><td>60° / 25° / 30° / 25°</td></tr></table>
+    <h4>Functional tests</h4>
+    <ul><li>Gait observation</li><li>Sit-to-stand × 5</li><li>Single-leg balance</li><li>Heel-toe walking</li><li>Tandem stand</li></ul>
+    <div class="flag"><strong>MSK red flags:</strong> trauma + inability to weight-bear, gross deformity, severe night pain, fever + joint pain (septic arthritis), weight loss + back pain (malignancy), saddle anaesthesia (cauda equina), neuro deficit, vascular compromise</div>`,
+
+  heentFpe: `<h4>HEENT exam — by region</h4>
+    <h4>Otoscopy (ear exam)</h4>
+    <ol><li>Inspect pinna externally — tragus tenderness? swelling?</li><li>Pull pinna up &amp; back (adult) / down &amp; back (child) to straighten ear canal</li><li>Insert speculum gently; identify cone of light (anterior-inferior), malleus, normal pearly grey TM</li><li>Pneumatic otoscopy if equipment available — TM mobility</li></ol>
+    <table><tr><th>Finding</th><th>Suggests</th></tr>
+    <tr><td>Bulging, red, dull TM ± fluid level</td><td>AOM</td></tr>
+    <tr><td>Retracted TM, fluid level</td><td>Otitis media with effusion</td></tr>
+    <tr><td>Perforation</td><td>AOM perforated; trauma; chronic</td></tr>
+    <tr><td>Swollen tender canal, discharge</td><td>AOE</td></tr>
+    <tr><td>Wax obscuring view</td><td>Cerumen impaction</td></tr></table>
+    <h4>Throat exam</h4>
+    <ol><li>Inspect lips, mucosa, gums, teeth, tongue (dorsal + ventral)</li><li>Tongue depressor + good light: examine palate, uvula (midline?), tonsils (size 0–4)</li><li>Lymphadenopathy: anterior + posterior cervical chain, submandibular</li></ol>
+    <h4>Centor criteria (strep throat probability)</h4>
+    <table><tr><th>Criterion</th><th>Score</th></tr>
+    <tr><td>Tonsillar exudate</td><td>+1</td></tr>
+    <tr><td>Tender anterior cervical lymphadenopathy</td><td>+1</td></tr>
+    <tr><td>Fever &gt;38°C (history)</td><td>+1</td></tr>
+    <tr><td>Absence of cough</td><td>+1</td></tr>
+    <tr><td>Age 3–14</td><td>+1</td></tr>
+    <tr><td>Age 15–44</td><td>0</td></tr>
+    <tr><td>Age ≥45</td><td>−1</td></tr></table>
+    <p>Score ≥4: consider empirical abx or testing. Score &lt;2: virtually rules out GAS — no abx.</p>
+    <h4>Nasal exam</h4>
+    <ul><li>External: deformity, asymmetry, tip patency (sniff one nostril at a time)</li><li>Internal: tilt head back, use otoscope with large speculum or Thudichum — inspect septum (deviation, perforation), turbinates (pale &amp; boggy = allergic; red &amp; congested = infective), polyps (pale grey/pink mobile masses)</li></ul>
+    <h4>Eye exam (focused)</h4>
+    <ul><li>Visual acuity (Snellen), pupillary light response, EOM (H pattern), confrontation visual fields, red reflex/fundus if equipment</li><li>Inspection: conjunctival injection, discharge, sclera (icterus), eyelids (stye, chalazion, blepharitis)</li></ul>
+    <div class="flag"><strong>HEENT red flags:</strong> facial nerve palsy + ear symptoms (Ramsay Hunt), mastoid tenderness/swelling, severe headache + neck stiffness, photophobia, periorbital cellulitis, vision loss, unilateral nasal mass / bleeding, dysphagia + drooling (epiglottitis — emergency)</div>`,
+
+  smokingDetail: `<h4>Smoking cessation — 5As framework</h4>
+    <table><tr><th>A</th><th>What you do</th></tr>
+    <tr><td><strong>Ask</strong></td><td>Smoking status — document. Quantify pack-years.</td></tr>
+    <tr><td><strong>Assess</strong></td><td>Readiness to quit (5 stages of change); nicotine dependence (Fagerström or simpler: smokes within 30 min of waking? smokes &gt;20/day?)</td></tr>
+    <tr><td><strong>Advise</strong></td><td>Clear personalised message: "Quitting is the single best thing you can do for your health."</td></tr>
+    <tr><td><strong>Assist</strong></td><td>Set quit date, problem-solve triggers, prescribe pharmacotherapy, refer (Quitline 13 78 48), provide written info</td></tr>
+    <tr><td><strong>Arrange</strong></td><td>Follow-up at 1 week, 1 month, 3 months</td></tr></table>
+    <h4>NRT options</h4>
+    <table><tr><th>Form</th><th>Dose (≥10 cig/day)</th><th>Notes</th></tr>
+    <tr><td>Patch (24h)</td><td>21 mg → 14 mg → 7 mg (8–12 wk taper)</td><td>Steady level; remove if vivid dreams</td></tr>
+    <tr><td>Patch (16h)</td><td>15 mg → 10 mg → 5 mg</td><td>Worn day-time only</td></tr>
+    <tr><td>Gum</td><td>2 mg (low) / 4 mg (high); 1 every 1–2h, max 24/day</td><td>Bite-park technique; avoid acidic drinks 15 min before</td></tr>
+    <tr><td>Lozenge</td><td>2 mg / 4 mg; 1 every 1–2h</td><td>Dissolve, don't chew/swallow</td></tr>
+    <tr><td>Inhaler</td><td>15 mg cartridge, 6–12/day</td><td>Hand-mouth ritual replacement</td></tr>
+    <tr><td>Mouth spray</td><td>1–2 sprays PRN, max 2 per craving, max 64/day</td><td>Fastest peak</td></tr></table>
+    <p><strong>Combination NRT</strong> (patch + short-acting) is more effective than monotherapy and is recommended for moderate–heavy smokers.</p>
+    <h4>Other pharmacotherapy (refer to GP / authorised prescriber)</h4>
+    <ul><li><strong>Varenicline</strong> (Champix) — most effective single agent. Start 1 week before quit date. CI: severe renal impairment. Caution: psychiatric history.</li><li><strong>Bupropion</strong> — alternative. CI: seizure disorder, eating disorder, MAOIs.</li></ul>`,
+
+  contraDetail: `<h4>Contraception decision points</h4>
+    <h4>Combined hormonal contraception (CHC) — eligibility (UKMEC)</h4>
+    <p>Category 1 = no restriction; 2 = use with caution; 3 = risks usually outweigh benefits; 4 = absolute CI</p>
+    <ul><li><strong>UKMEC 4 (absolute CI):</strong> BP ≥160/100; current/past VTE without anticoagulation; migraine with aura; smoker ≥35 + ≥15 cig/day; &lt;6 weeks postpartum &amp; breastfeeding; major surgery with immobilisation; current breast cancer; severe liver disease; SLE with antiphospholipid antibodies</li><li><strong>UKMEC 3:</strong> Smoker ≥35 + &lt;15 cig/day; BMI ≥35; controlled HTN 140–159/90–99; established cardiovascular risk factors</li></ul>
+    <h4>Missed COC pill rules (Faculty SRH)</h4>
+    <table><tr><th>Pills missed</th><th>Action</th></tr>
+    <tr><td>1 pill (24–48h late)</td><td>Take as soon as remembered + continue pack. No EC, no extra precautions.</td></tr>
+    <tr><td>2+ pills (&gt;48h late)</td><td>Take last missed pill ASAP + continue pack. Use condoms or abstain for 7 days. If in week 3 (pills 15–21): skip the hormone-free interval. EC needed if UPSI in last 5 days &amp; pills missed in week 1.</td></tr></table>
+    <h4>Emergency contraception</h4>
+    <table><tr><th>Method</th><th>Window</th><th>Notes</th></tr>
+    <tr><td>Levonorgestrel 1.5 mg PO</td><td>≤72h (best); up to 96h (less effective)</td><td>Less effective with BMI &gt;26 — may need double dose; less effective than UPA</td></tr>
+    <tr><td>Ulipristal acetate 30 mg PO</td><td>≤120h</td><td>Most effective oral; delay hormonal contraception for 5 days after</td></tr>
+    <tr><td>Copper IUD</td><td>≤120h post-UPSI OR up to 5 days post-ovulation</td><td>Most effective overall; provides ongoing contraception. Refer for insertion.</td></tr></table>
+    <h4>Pharmacist-supplied contraception (NSW, check current scope)</h4>
+    <p>NSW pharmacist scope expanding — confirm what is currently authorised. As of trial: re-supply of existing oral contraceptive (continuation), supply of EC (LNG, UPA). Initiation may follow.</p>`,
+
+  fpeMockScript: `<h4>Mock station — how to run it yourself</h4>
+    <ol><li>Pick a case from the bank (Quick Reference or sample cases)</li><li>Set a timer for 10 minutes</li><li>Imagine the manikin/patient is in front of you</li><li>Run the entire exam aloud — actually speak, don't think it</li><li>Self-mark using the OSCE Stations tab checklist for that station</li></ol>
+    <h4>Sample station 1 prompt (history)</h4>
+    <div class="script">Sarah, 28, presents with 2 days of burning when urinating. You have 10 minutes to take a focused history including cultural safety elements. The examiner will not interrupt.</div>
+    <h4>Sample station 2 prompt (FPE)</h4>
+    <div class="script">Mr Lee, 65, complains of intermittent chest pain. Perform a focused cardiovascular examination on the manikin. Narrate your actions aloud. Time: 10 minutes.</div>
+    <h4>Self-mark your run</h4>
+    <ul><li>Structure: did you follow the framework (intro → exam → close)?</li><li>Coverage: did you miss any key components?</li><li>Pace: were you finished with time to spare, or rushed?</li><li>Narration: did you talk through everything you did?</li><li>Red flags: did you identify and articulate them?</li></ul>`,
+
+  soapTemplates: `<h4>SOAP note templates</h4>
+    <h4>GP referral letter (after UTI consult example)</h4>
+    <div class="script" style="font-style:normal">Dear Dr [GP name],<br><br>
+    I am writing to inform you of a recent pharmacist prescribing consultation with your patient [Name, DOB, address].<br><br>
+    <strong>S:</strong> Sarah, 28F, presented [date] requesting management of urinary symptoms. 2 days of dysuria, frequency, urgency. No fever, loin pain, vomiting, haematuria. LMP 2 weeks ago, COC user. No PMH or allergies. First UTI.<br><br>
+    <strong>O:</strong> Vitals: BP 118/76, HR 78, T 36.7°C, RR 14, SpO2 99%. Appears well, no flank tenderness on history.<br><br>
+    <strong>A:</strong> Uncomplicated cystitis — meets NSW pharmacist UTI eligibility criteria.<br><br>
+    <strong>P:</strong> Trimethoprim 300 mg PO nocte × 3 days dispensed. Counselled on technique, fluids, voiding habits. Safety-net advice: return / present to GP or ED if fever, loin pain, vomiting, blood in urine, or no improvement at 48h. No follow-up booked with pharmacy. Please review if symptoms persist or recur.<br><br>
+    Kind regards, [Your name], Pharmacist Prescriber</div>
+    <h4>ED handover (suspected pyelonephritis — ISBAR + SOAP)</h4>
+    <div class="script" style="font-style:normal"><strong>I</strong>dentify: Pharmacist [name] from [pharmacy] calling re: 35F patient Jane Doe DOB 12/05/91 presenting now.<br>
+    <strong>S</strong>ituation: Pt presents with dysuria + frequency + new-onset fever 38.5°C + L-sided loin pain + vomiting × 12h.<br>
+    <strong>B</strong>ackground: PMH nil. No prior UTI. No allergies. Not pregnant (LMP 1 week ago).<br>
+    <strong>A</strong>ssessment: Likely acute pyelonephritis. Vitals: BP 110/70 HR 105 T 38.5 RR 18 SpO2 98%. Pt tolerating sips, no haemodynamic compromise.<br>
+    <strong>R</strong>ecommendation: Requesting ED review for IV antibiotics, fluid status. Pt is being transported now by [method].</div>`,
+
+  preventRevQuiz2: `<h4>Quiz 2 revision summary</h4>
+    <h4>Smoking cessation</h4>
+    <ul><li>5As, Fagerström for dependence</li><li>NRT combinations, doses, contraindications (see today's smoking detail)</li><li>Varenicline / bupropion contraindications</li></ul>
+    <h4>Weight management</h4>
+    <table><tr><th>BMI (kg/m²)</th><th>Classification</th></tr>
+    <tr><td>&lt;18.5</td><td>Underweight</td></tr>
+    <tr><td>18.5–24.9</td><td>Healthy</td></tr>
+    <tr><td>25–29.9</td><td>Overweight</td></tr>
+    <tr><td>30–34.9</td><td>Obese class I</td></tr>
+    <tr><td>35–39.9</td><td>Obese class II</td></tr>
+    <tr><td>≥40</td><td>Obese class III</td></tr></table>
+    <p>Waist circumference: men &gt;94 increased risk, &gt;102 high risk; women &gt;80 / &gt;88. Note: lower cutoffs for Asian populations.</p>
+    <p>Pharmacotherapy options (under prescriber): orlistat, liraglutide, semaglutide (where authorised), phentermine. All adjunctive to lifestyle.</p>
+    <h4>Contraception</h4>
+    <ul><li>UKMEC categories (1–4)</li><li>Missed pill rules</li><li>EC: LNG (72h) vs UPA (120h) vs copper IUD (120h, most effective)</li></ul>`,
+
+  travelOral: `<h4>Travel health risk assessment</h4>
+    <h4>Pre-travel assessment</h4>
+    <ul><li>Destination(s) + duration + style (urban vs rural, hotel vs trekking)</li><li>Medical history, medications, allergies</li><li>Pregnancy status / planning</li><li>Special activities (diving, altitude, healthcare work)</li><li>Vaccination history</li><li>Time available before travel</li></ul>
+    <h4>Pharmacist-administered vaccines (NSW, current authorisation)</h4>
+    <p>Always verify with current NSW Health authorisation. Typically includes:</p>
+    <ul><li>Influenza, COVID-19</li><li>dTpa, Hep A, Hep B (and combinations)</li><li>Typhoid (typically polysaccharide injectable)</li><li>Japanese encephalitis (where authorised)</li><li>MMR, varicella (catch-up programs)</li><li>HPV (Gardasil)</li></ul>
+    <p>NOT typically pharmacist-administered: yellow fever (requires accreditation), rabies, BCG, cholera, some specialised travel vaccines.</p>
+    <h4>Non-vaccine prevention</h4>
+    <ul><li>Insect avoidance: DEET 20–50%, picaridin, permethrin-treated clothing, bed nets</li><li>Food/water safety: bottled/treated water, peel-it/boil-it/cook-it/forget-it, avoid ice</li><li>Travellers' diarrhoea: loperamide for symptom control; consider standby azithromycin/ciprofloxacin under prescription</li><li>Malaria chemoprophylaxis (under medical prescriber) — atovaquone/proguanil, doxycycline, mefloquine depending on destination + traveller</li></ul>
+    <h4>Oral health quick</h4>
+    <ul><li>Risk assessment: caries, periodontal, oral cancer (smoking, alcohol)</li><li>Fluoride application — variants and frequency per NSW protocols</li><li>Refer: pain &gt;48h, abscess, broken tooth, oral lesions persisting &gt;2 weeks, suspected malignancy</li></ul>`,
+
+  oscePackList: `<h4>OSCE day checklist</h4>
+    <h4>Bring</h4>
+    <ul><li>Stethoscope (Littmann Classic III or similar)</li><li>Otoscope (Welch Allyn pocket LED or similar)</li><li>Penlight torch</li><li>Tape measure</li><li>Photo ID</li><li>Water bottle</li><li>Snack</li><li>Pen</li><li>Comfortable, professional clothing</li><li>Watch (if examiner permits)</li></ul>
+    <h4>On the day</h4>
+    <ul><li>Eat breakfast — your brain runs on glucose</li><li>Arrive 30 minutes early — find the building, settle in, hit the bathroom</li><li>At each station: use the 1-min read time. Plan your first sentence.</li><li>Between stations: take 3 slow breaths. Reset. Don't ruminate.</li><li>If you blank: state your framework aloud ("First, I'd take a focused history using SOCRATES…")</li><li>Don't seek the examiner's reaction — they often have a poker face on purpose</li></ul>
+    <p class="pearl"><strong>Final pep:</strong> You don't need to be perfect. You need to be safe, structured, and patient-centred. Trust your preparation.</p>`,
+};
+
+// =========================
+// PLAN DATA
+// =========================
+// Each action: string OR { text, detail (HTML string) }
+
+const PLAN = [
+  { pid: "d01", kind: "study", title: "Orientation & OSCE roadmap", duration: 45, modes: ["Planning"], focus: "Setup",
+    actions: [
+      { text: "Skim the OSCE 1 page on Canvas: 7 stations × 10 min, format and rules",
+        detail: `<h4>OSCE structure at a glance</h4>
+          <ol><li>History taking + cultural safety</li>
+          <li>Focused physical exam + vitals (system 1)</li>
+          <li>Focused physical exam + vitals (system 2)</li>
+          <li>Differential diagnosis + management (case interpretation)</li>
+          <li>Wound care procedure</li>
+          <li>IM injection procedure</li>
+          <li>Documentation (SOAP)</li></ol>
+          <p>50% of total mark for BOTH ACS1 and PS1. 1-min read at each station, 10 min performance.</p>` },
+      { text: "Bookmark eTG, UpToDate, NSW Pharmacy Scope authorities",
+        detail: `<h4>Core resources</h4>
+          <ul><li>eTG complete — Australian Therapeutic Guidelines (via UTS Library)</li>
+          <li>UpToDate — clinical decision support</li>
+          <li>NSW Pharmacy Scope of Practice authorities (Pharmacy Council of NSW)</li>
+          <li>Australian Immunisation Handbook (immunisationhandbook.health.gov.au)</li>
+          <li>Anatomy.tv — 3D anatomy via UTS</li>
+          <li>Geeky Medics — free OSCE technique videos</li></ul>` },
+      { text: "Refresh SOAP framework — write your own 1-pager", detail: D.soap },
+      { text: "Refresh SOCRATES for history of presenting complaint", detail: D.socrates }
+    ],
+    notes: "Day 1 — orient and commit. Real study begins tomorrow." },
+
+  { pid: "d02", kind: "study", title: "Vital signs mastery", duration: 60, modes: ["Active recall", "Reference drill"], focus: "Physical exam foundations",
+    actions: [
+      { text: "Memorise normal adult ranges: BP, HR, RR, SpO2, Temp, BGL, pain", detail: D.vitalsRef },
+      { text: "Practise BP technique narration aloud", detail: D.bpScript },
+      { text: "Drill: 3 abnormal sets of vitals — what do they suggest?",
+        detail: `<h4>Interpret these vital sign sets</h4>
+          <table><tr><th>Set</th><th>Possible meaning</th></tr>
+          <tr><td>BP 88/52, HR 122, RR 28, SpO2 94%, T 39.1°C</td><td>Sepsis (qSOFA ≥2: ↑RR, ↓SBP). Activate sepsis pathway / urgent referral.</td></tr>
+          <tr><td>BP 196/104, HR 84, RR 16, T 36.7°C + severe headache</td><td>Hypertensive emergency. Urgent medical referral; do NOT just prescribe analgesia.</td></tr>
+          <tr><td>RR 28, SpO2 88%, HR 118, T 37.4°C + accessory muscle use</td><td>Acute respiratory distress — possible severe asthma, PE, pneumonia. Call 000.</td></tr>
+          <tr><td>HR 130 irregular, BP 110/70, no chest pain</td><td>?New AF. Refer for ECG + assessment; consider stroke risk.</td></tr>
+          <tr><td>BGL random 18.4, T 36.5°C, RR 26, glucose-smelling breath</td><td>?DKA — urgent ED referral.</td></tr></table>
+          <p class="pearl"><strong>Pearl:</strong> in OSCE, always read out your vitals and then EXPLICITLY state if any are concerning and what they suggest.</p>` },
+      "Flashcards: Vitals deck (15 cards) — see Flashcards tab"
+    ] },
+
+  { pid: "d03", kind: "study", title: "Preventive services I — Smoking, Weight, Contraception", duration: 50, modes: ["Active recall"], focus: "Quiz 2 prep + OSCE management content",
+    actions: [
+      { text: "Smoking: 5As, dependence assessment, NRT options + doses, varenicline/bupropion contraindications", detail: D.smokingDetail },
+      { text: "Weight: BMI/waist cutoffs, lifestyle interventions, pharmacotherapy thresholds",
+        detail: `<h4>Weight management quick ref</h4>
+          ${D.preventRevQuiz2.split('<h4>Contraception</h4>')[0].split('<h4>Weight management</h4>')[1]}
+          <h4>Lifestyle first-line</h4>
+          <ul><li>500–750 kcal/day deficit</li><li>150 min moderate aerobic + 2× resistance/week</li><li>Behavioural intervention (CBT, dietitian)</li><li>Sleep hygiene; alcohol reduction</li></ul>
+          <h4>Pharmacotherapy thresholds (BMI)</h4>
+          <ul><li>≥30 OR ≥27 with comorbidity</li><li>After 6-month lifestyle trial</li><li>Options (under authorised prescriber): orlistat, liraglutide, semaglutide, naltrexone/bupropion, phentermine</li></ul>` },
+      { text: "Contraception: COC vs POP vs DMPA vs LARC — UKMEC, missed-pill rules, EC", detail: D.contraDetail },
+      "Flashcards: Preventive deck"
+    ] },
+
+  { pid: "d04", kind: "study", title: "Preventive II + sit Quiz 2", duration: 60, modes: ["Quiz", "Active recall"], focus: "Travel + Oral + Quiz 2",
+    actions: [
+      { text: "Travel health: risk assessment, vaccines, malaria chemoprophylaxis", detail: D.travelOral },
+      { text: "NSW pharmacist-administered vaccine list",
+        detail: `<h4>Verify current NSW authorisation</h4>
+          <p>The list has been expanding — always check the current Pharmacy Council of NSW authority. As a baseline:</p>
+          <ul><li><strong>Routine adult:</strong> Influenza, COVID-19, dTpa, MMR, varicella, HPV (Gardasil 9), pneumococcal (per NIP)</li>
+          <li><strong>Travel:</strong> Hep A, Hep B (+ combo), typhoid (injectable), Japanese encephalitis (where authorised)</li>
+          <li><strong>Specific cohorts:</strong> shingles (Shingrix) per current authority</li></ul>
+          <p><strong>Generally NOT pharmacist:</strong> yellow fever (separate accreditation), rabies, BCG, cholera (some sites), live oral vaccines</p>` },
+      "Oral health: risk assessment, fluoride application, referral triggers",
+      "👉 Sit Quiz 2 (ACS1) on Canvas — 20 min individual"
+    ],
+    notes: "Quiz 2 is 5% but its content is the foundation of Station 4 management answers — treat it as free OSCE prep." },
+
+  { pid: "d05", kind: "study", title: "Tutorship case — Day 1: dissect", duration: 60, modes: ["Case work"], focus: "Tutorship preparation",
+    actions: [
+      "Download your individual tutorship case (released ~1 week before your slot)",
+      { text: "Read twice. Identify presenting complaint, demographic factors, red flags",
+        detail: `<h4>Case dissection framework</h4>
+          <ol><li><strong>First read:</strong> get the gestalt — what's the patient story?</li>
+          <li><strong>Second read:</strong> highlight in 3 colours: (1) presenting symptoms, (2) risk factors / red flags, (3) social/cultural context</li>
+          <li>Write a 1-sentence problem representation: "[Demographic] presenting with [duration] of [key features] in the context of [relevant background]"</li>
+          <li>Note 3 differentials with reasoning</li>
+          <li>Identify information gaps you'd want to fill</li></ol>` },
+      "Build a problem list and broad differential — don't narrow yet",
+      "Note information gaps — what would you ask the patient if you could?"
+    ],
+    notes: "Tutorship is 35% of PS1. If you don't have a tutorship in this period, use this as buffer/review." },
+
+  { pid: "d06", kind: "study", title: "Tutorship case — Day 2: SOAP + management", duration: 60, modes: ["Case work", "SOAP"], focus: "Tutorship preparation",
+    actions: [
+      { text: "Write full SOAP for your case", detail: D.soap },
+      "Justify your working diagnosis with clinical reasoning",
+      { text: "Outline pharmacological + non-pharmacological management with eTG citation",
+        detail: `<h4>Citation tips</h4>
+          <ul><li>Cite eTG by topic and access year: "Therapeutic Guidelines: Antibiotic, 2024"</li>
+          <li>Cite NSW protocols by name: "NSW Health Pharmacist Prescribing Pilot — UTI Protocol"</li>
+          <li>For doses, name the source: "first-line per eTG Antibiotic"</li>
+          <li>For non-pharm, cite NHMRC or specialist body where relevant</li></ul>` },
+      "Identify red flags / referral criteria explicitly"
+    ] },
+
+  { pid: "d07", kind: "study", title: "Tutorship rehearse + start CVS history", duration: 60, modes: ["Case work", "Mock station"], focus: "Tutorship + CVS",
+    actions: [
+      "Rehearse 15-min case presentation aloud — time yourself",
+      "Anticipate 3 tutor questions",
+      { text: "Quick start on CVS: subjective assessment (chest pain, dyspnoea, palpitations, syncope)",
+        detail: `<h4>CVS history — key questions</h4>
+          <ul><li><strong>Chest pain</strong>: full SOCRATES; cardiac features (central, crushing, radiating to L arm/jaw, exertional, relieved by rest/GTN, ass. with diaphoresis/N/V)</li>
+          <li><strong>Dyspnoea</strong>: at rest vs exertional; orthopnoea (how many pillows?); paroxysmal nocturnal dyspnoea</li>
+          <li><strong>Palpitations</strong>: regular vs irregular; sudden onset/offset; associated symptoms (lightheadedness, syncope)</li>
+          <li><strong>Syncope</strong>: precipitating factors, prodrome (warm, lightheaded vs none — concerning), tongue bite, incontinence (?seizure)</li>
+          <li><strong>Ankle swelling</strong>: bilateral suggests CHF; unilateral DVT</li>
+          <li><strong>Claudication</strong>: pain in calves with walking, relieved by rest</li>
+          <li><strong>Risk factors</strong>: HTN, dyslipidaemia, DM, smoking, FHx (esp. premature), obesity, sedentary</li></ul>` }
+    ] },
+
+  { pid: "d08", kind: "study", title: "Tutorship final rehearsal + record", duration: 60, modes: ["Case work"], focus: "Tutorship preparation",
+    actions: [
+      "Record yourself doing the 15-min case presentation",
+      { text: "Play back — review pace, filler words, structure, eye contact",
+        detail: `<h4>Self-review checklist</h4>
+          <ul><li><strong>Pace</strong> — aim for ~150 words per minute; not too fast</li>
+          <li><strong>Filler words</strong> — count "um", "like", "so"; aim to reduce</li>
+          <li><strong>Structure</strong> — signposting clear? ("First I'll discuss…", "Moving to management…")</li>
+          <li><strong>Eye contact</strong> (video) — looking at camera/examiner regularly</li>
+          <li><strong>Evidence</strong> — did you cite guidelines? Were doses specific?</li>
+          <li><strong>Safety-net + follow-up</strong> — explicit?</li></ul>` },
+      "Re-do once. Aim: confident, structured, evidence-cited",
+      "Prep written notes (1 page) you can glance at if allowed"
+    ] },
+
+  { pid: "d09", kind: "study", title: "CVS focused physical exam", duration: 60, modes: ["Mock station", "Active recall"], focus: "CVS FPE",
+    actions: [
+      { text: "Run CVS FPE narration aloud: inspection → palpation → percussion → auscultation", detail: D.cvsFpe },
+      { text: "Inspection: hands, face, chest scars, peripheral oedema, JVP",
+        detail: `<h4>CVS peripheral signs cheatsheet</h4>
+          <table><tr><th>Finding</th><th>Suggests</th></tr>
+          <tr><td>Clubbing</td><td>Endocarditis, cyanotic CHD</td></tr>
+          <tr><td>Splinter haemorrhages</td><td>Endocarditis</td></tr>
+          <tr><td>Osler nodes / Janeway lesions</td><td>Endocarditis</td></tr>
+          <tr><td>Xanthelasma / corneal arcus</td><td>Hyperlipidaemia</td></tr>
+          <tr><td>Malar flush</td><td>Mitral stenosis</td></tr>
+          <tr><td>Raised JVP</td><td>Fluid overload, CHF, tricuspid regurg</td></tr>
+          <tr><td>Sternotomy scar</td><td>Prior CABG/valve surgery</td></tr></table>` },
+      "Auscultation: 4 valve areas; identify S1/S2; murmur character",
+      { text: "ECG basics: rate, rhythm, axis. Recognise AF",
+        detail: `<h4>ECG quick interpretation steps</h4>
+          <ol><li><strong>Rate</strong>: 300 / large squares between R waves; or count R waves in 30 large squares × 10</li>
+          <li><strong>Rhythm</strong>: regular? P before every QRS? Irregularly irregular = AF</li>
+          <li><strong>Axis</strong>: Lead I + aVF both positive = normal axis</li>
+          <li><strong>P waves</strong>: present? upright in I, II, aVF? Bifid (LAE)? Peaked (RAE)?</li>
+          <li><strong>PR interval</strong>: 120–200 ms (3–5 small squares). Long = heart block</li>
+          <li><strong>QRS</strong>: narrow &lt;120 ms (3 small squares)? Wide = BBB / ventricular</li>
+          <li><strong>ST segment</strong>: elevated (STEMI) or depressed (ischaemia)?</li>
+          <li><strong>T waves</strong>: inverted (ischaemia)? peaked (hyperK)?</li></ol>
+          <p>Common: AF (no P, irreg-irreg), 1st-degree heart block (long PR), LVH (S in V1 + R in V5/6 ≥35mm)</p>` }
+    ],
+    notes: "OSCE stations 2&3 are FPE on manikin — practise narrating every action. Examiners mark what you SAY." },
+
+  { pid: "d10", kind: "study", title: "Respiratory FPE + Quiz 3 prep", duration: 60, modes: ["Mock station", "Quiz prep"], focus: "Resp FPE + Documentation",
+    actions: [
+      { text: "Resp FPE: inspection → palpation → percussion → auscultation", detail: D.respFpe },
+      { text: "Spirometry interpretation basics", detail: D.spirometry },
+      { text: "Quiz 3 prep: SOAP for GP letter vs ED handover", detail: D.soapTemplates }
+    ] },
+
+  { pid: "d11", kind: "study", title: "Tutorship polish + sit Quiz 3", duration: 60, modes: ["Quiz", "Case work"], focus: "Tutorship + Quiz 3",
+    actions: [
+      "Final tutorship rehearsal",
+      "Lay out tomorrow: outfit/Zoom setup, notes printed, water, quiet room booked",
+      "👉 Sit Quiz 3 (PS1) on Canvas — 10 min, documentation-focused",
+      { text: "Practice writing a brief SOAP note from a 1-paragraph case prompt", detail: D.soapTemplates }
+    ] },
+
+  { pid: "tut1", kind: "tutorship", title: "Tutorship Day 1", duration: 20, modes: ["Light review"], focus: "Tutorship",
+    actions: [
+      "Morning: quick re-read of your case + key citations (15 min only — no cramming)",
+      "Tutorship: be present, ask questions, take notes on tutor feedback",
+      "Evening: brain dump — what came up that you want to remember for tomorrow?"
+    ] },
+
+  { pid: "tut2", kind: "tutorship", title: "Tutorship Day 2", duration: 20, modes: ["Light review"], focus: "Tutorship",
+    actions: [
+      "Light review only — you've earned the lighter day",
+      "Tutorship Day 2: present your case confidently",
+      "Tonight: rest. Tomorrow we pivot fully to OSCE."
+    ] },
+
+  { pid: "d12", kind: "study", title: "Derm + Simplified Neuro FPE", duration: 60, modes: ["Mock station", "Active recall"], focus: "Derm + Neuro FPE",
+    actions: [
+      { text: "Derm: SCAM mnemonic, lesion types, ABCDE for melanoma", detail: D.dermNeuro },
+      "Lesion types: macule/papule/plaque/vesicle/pustule/wheal/nodule/ulcer",
+      { text: "Neuro: GCS, cranial nerves I–XII quick screen", detail: D.dermNeuro },
+      "Practise CN exam narration aloud"
+    ] },
+
+  { pid: "d13", kind: "study", title: "GI / Abdominal FPE", duration: 60, modes: ["Mock station"], focus: "Abdominal FPE",
+    actions: [
+      { text: "Inspection: scars, distension, masses, peristalsis, hernias", detail: D.abdFpe },
+      { text: "Palpation: light → deep, 9 regions; check guarding/rebound/rigidity", detail: D.abdFpe },
+      { text: "Special signs: Murphy, McBurney, Rovsing, Cullen, Grey-Turner", detail: D.abdFpe },
+      "Red flags in abdo pain"
+    ] },
+
+  { pid: "d14", kind: "study", title: "MSK FPE — ROM & functional", duration: 60, modes: ["Mock station"], focus: "MSK FPE",
+    actions: [
+      { text: "Look–Feel–Move structure for any joint", detail: D.mskFpe },
+      { text: "ROM: shoulder, knee, spine — normal values", detail: D.mskFpe },
+      "Functional tests: gait, sit-to-stand, balance",
+      "MSK red flags"
+    ] },
+
+  { pid: "d15", kind: "study", title: "HEENT FPE", duration: 60, modes: ["Mock station"], focus: "HEENT FPE",
+    actions: [
+      { text: "Otoscopy: technique + findings (AOM, AOE, OME, perforation)", detail: D.heentFpe },
+      { text: "Throat exam + Centor criteria", detail: D.heentFpe },
+      { text: "Nose: speculum exam, turbinates, polyps", detail: D.heentFpe },
+      { text: "Eye: focused exam basics", detail: D.heentFpe }
+    ] },
+
+  { pid: "d16", kind: "study", title: "Acute: UTI + Acne", duration: 60, modes: ["Active recall", "SOAP", "Flashcards"], focus: "UTI + Acne",
+    actions: [
+      { text: "UTI: NSW eligibility, red flags, empirical therapy", detail: D.utiFull },
+      { text: "Acne classification + stepwise management", detail: D.acneFull },
+      { text: "Practise sample case — UTI", detail: D.case_uti }
+    ] },
+
+  { pid: "d17", kind: "study", title: "Acute: Impetigo + Shingles", duration: 60, modes: ["Active recall", "SOAP", "Flashcards"], focus: "Impetigo + HZ",
+    actions: [
+      { text: "Impetigo: localised vs widespread management", detail: D.impetigoFull },
+      { text: "Shingles: 72h antiviral window + red flags", detail: D.shinglesFull },
+      { text: "Practise sample case — shingles", detail: D.case_shingles }
+    ] },
+
+  { pid: "d18", kind: "study", title: "Acute: Rhinitis + AOM + AOE", duration: 60, modes: ["Active recall", "Flashcards"], focus: "Upper respiratory + ENT",
+    actions: [
+      { text: "Allergic / non-allergic rhinitis — INCS first-line", detail: D.rhinitisFull },
+      { text: "AOM antibiotic indications + AOE topical management", detail: D.aomAoeFull },
+      { text: "Practise sample case — allergic rhinitis", detail: D.case_uri }
+    ] },
+
+  { pid: "d19", kind: "study", title: "Acute: MSK pain + GORD + N+V", duration: 60, modes: ["Active recall", "SOAP"], focus: "MSK + GI",
+    actions: [
+      { text: "Acute MSK pain — red flag screen, NSAID comparison", detail: D.mskGordNvFull },
+      { text: "GORD — alarm symptoms, PPI dosing", detail: D.mskGordNvFull },
+      { text: "N+V — antiemetic selection by cause", detail: D.mskGordNvFull },
+      { text: "Practise sample case — acute back pain", detail: D.case_msk }
+    ] },
+
+  { pid: "d20", kind: "study", title: "Wound care procedure (Station 5)", duration: 60, modes: ["Mock station", "Procedure"], focus: "Wound care",
+    actions: [
+      { text: "TIME framework + dressing selection table", detail: D.woundFull },
+      "SAFE WOUND process: walk through end-to-end aloud",
+      { text: "Closure decision: steri-strips vs adhesive vs refer", detail: D.woundFull },
+      "Red flags + tetanus consideration"
+    ] },
+
+  { pid: "d21", kind: "study", title: "IM injection procedure + Cultural safety", duration: 60, modes: ["Mock station", "Procedure"], focus: "IM/SC + Station 1 prep",
+    actions: [
+      { text: "Full IM injection procedural narration", detail: D.imInjFull },
+      { text: "Site selection: deltoid vs ventrogluteal vs vastus lateralis", detail: D.imInjFull },
+      { text: "Anaphylaxis preparedness — recognise + manage", detail: D.imInjFull },
+      { text: "Cultural safety opening lines — Station 1", detail: D.cultSafety }
+    ] },
+
+  { pid: "d22", kind: "study", title: "Mock Station 1 (History) + Station 4 (DDx)", duration: 60, modes: ["Mock station", "Timed"], focus: "Mock OSCE rehearsal",
+    actions: [
+      { text: "Timer 10 min — Station 1: history + cultural safety on sample case", detail: D.fpeMockScript },
+      { text: "Sample stem to use: UTI case (Sarah, 28F)", detail: D.case_uti },
+      { text: "Timer 10 min — Station 4: DDx + mgmt from vignette", detail: D.fpeMockScript },
+      "Self-mark: structure ✓ red flags ✓ mgmt justified ✓ time used well ✓"
+    ],
+    notes: "Today is the gear-shift: stop learning new content, start performing it under time pressure." },
+
+  { pid: "d23", kind: "study", title: "Mock Stations 2&3 (FPE) + Station 7 (Documentation)", duration: 60, modes: ["Mock station", "Timed"], focus: "Mock OSCE rehearsal",
+    actions: [
+      { text: "Timer 10 min × 2: pick CVS+Resp; HEENT+MSK — FPE narration aloud", detail: D.fpeMockScript },
+      "Mark on what you SAID, not just what you DID",
+      { text: "Timer 10 min — Station 7: write SOAP note from 5-min case scenario", detail: D.soapTemplates },
+      "Check: S/O/A/P labelled, safety-net included, follow-up planned"
+    ] },
+
+  { pid: "res1", kind: "residential", title: "Residential Day 1 — light review", duration: 30, modes: ["Light review"], focus: "Residential",
+    actions: [
+      { text: "Pack equipment + ID for residential", detail: D.oscePackList },
+      "Morning: 15-min flashcard sprint on red flags",
+      "Residential: practise, ask examiners questions, identify your weakest station",
+      "Tonight: 15 min note-taking on residential feedback"
+    ] },
+
+  { pid: "res2", kind: "residential", title: "Residential Day 2 — light review", duration: 30, modes: ["Light review"], focus: "Residential",
+    actions: [
+      "Residential: focus on stations you were weakest on yesterday",
+      "Ask examiners: \"What would have made that a clear pass?\"",
+      "Tonight: brief journal — top 3 things to drill in the final stretch"
+    ] },
+
+  { pid: "d24", kind: "study", title: "Full mock OSCE run 1 (all 7 stations)", duration: 75, modes: ["Mock OSCE"], focus: "Integration",
+    actions: [
+      { text: "Run all 7 stations back-to-back with 10-min timer + 2-min rest", detail: D.fpeMockScript },
+      { text: "Use cases from the OSCE case bank — pick 7 fresh ones", detail: D.caseBank },
+      "Score yourself (or have a colleague score) using OSCE Stations tab",
+      "Identify the 2 weakest stations for targeted drills"
+    ],
+    notes: "First end-to-end test. Expect it to feel rough — that's the point." },
+
+  { pid: "d25", kind: "study", title: "Drill weakest stations + procedures", duration: 60, modes: ["Mock station", "Procedure"], focus: "Targeted drilling",
+    actions: [
+      "Pick your 2 weakest stations — drill each 2× with new cases",
+      { text: "Re-run wound care procedure narration", detail: D.woundFull },
+      { text: "Re-run IM injection procedure narration", detail: D.imInjFull },
+      "Flashcard sprint: red flags + empirical antibiotic doses + vaccine schedules"
+    ] },
+
+  { pid: "d26", kind: "study", title: "Full mock OSCE run 2", duration: 75, modes: ["Mock OSCE"], focus: "Integration",
+    actions: [
+      { text: "Second end-to-end run — different cases from Run 1", detail: D.caseBank },
+      "Compare to Run 1: where did you improve? where still wobbly?",
+      "Pick 1 station to drill tomorrow"
+    ] },
+
+  { pid: "d27", kind: "study", title: "Targeted weak-station drill + reference review", duration: 60, modes: ["Mock station", "Reference drill"], focus: "Polish",
+    actions: [
+      "Run weakest station 3× with new cases — focus on the specific thing that wobbled",
+      "Re-read Quick Reference tab — red flags, dose tables, vaccine schedules",
+      "Check OSCE allocation: confirm time, room, building"
+    ] },
+
+  { pid: "d28", kind: "study", title: "Full mock OSCE run 3 (final practice)", duration: 75, modes: ["Mock OSCE"], focus: "Final integration",
+    actions: [
+      { text: "Final end-to-end run with new cases", detail: D.caseBank },
+      "Time-check: are you using all 10 minutes? wasting any?",
+      "Note any wording you want to polish tomorrow"
+    ] },
+
+  { pid: "d29", kind: "study", title: "Light polish + rest", duration: 30, modes: ["Light review"], focus: "OSCE eve",
+    actions: [
+      { text: "Light review only: red flags + vitals + opening lines", detail: D.vitalsRef },
+      { text: "Pack equipment + ID for OSCE day", detail: D.oscePackList },
+      "Confirm travel time, room, allocation slot",
+      "8 hours sleep > 8 hours cramming. Stop studying by 8pm."
+    ],
+    notes: "Tomorrow is OSCE day. You've done the work. Trust your preparation." },
+
+  { pid: "osce", kind: "osce", title: "🎯 OSCE DAY", duration: 0, modes: ["Exam"], focus: "OSCE",
+    actions: [
+      { text: "Arrive 30 min early. Eat breakfast. Hydrate.", detail: D.oscePackList },
+      "At each station: take the full 1-min read, plan your first sentence, then go",
+      "Narrate everything you do (examiners mark what they see + hear)",
+      "Between stations: reset. Don't ruminate on the previous one.",
+      "You've got this. 🦘"
+    ] }
+];
+
+// =========================
+// OSCE STATIONS
+// =========================
+const STATIONS = [
+  { num: 1, title: "History taking + Cultural safety",
+    aim: "Take a focused, patient-centred history with explicit cultural-safety elements.",
+    structure: ["Introduce self + role + confirm patient identity","Gain consent + explain purpose","Presenting complaint (open question → SOCRATES)","Associated symptoms / systems review","PMH, medications, allergies, family hx","Social hx: occupation, smoking, alcohol, drugs, living situation","Cultural safety: preferred name/pronouns, cultural needs, interpreter? Aboriginal/Torres Strait Islander identification","ICE: Ideas, Concerns, Expectations","Summarise back to patient; ask if anything missed"],
+    pitfalls: ["Closed questions too early — let the patient talk","Forgetting cultural safety component","Skipping ICE — examiners often mark this explicitly","Running out of time on social hx tangent"]
+  },
+  { num: 2, title: "Focused Physical Exam + Vitals (1)",
+    aim: "Perform a system-focused exam on manikin with narration of findings.",
+    structure: ["Hand hygiene + PPE + introduce + consent + position","Vitals (BP/HR/RR/SpO2/Temp ± BGL) — state values aloud","Inspection: general → focused. State what you see.","Palpation / Percussion / Auscultation in correct order","Use correct anatomical landmarks; state them aloud","Conclude: thank patient, redrape, summary of findings"],
+    pitfalls: ["Silent exam — examiners can't read your mind","Forgetting hand hygiene or consent","Skipping symmetry comparison (L vs R)","Wrong order (e.g. palpating abdomen before auscultating)"]
+  },
+  { num: 3, title: "Focused Physical Exam + Vitals (2)",
+    aim: "Same as Station 2, different system.",
+    structure: ["Same structure as Station 2 — system likely complementary","Be ready for ALL systems: CVS · Resp · Derm · Neuro · GI · MSK · HEENT"],
+    pitfalls: ["Practising only your favourite system","Forgetting special tests","Missing system-specific red flags"]
+  },
+  { num: 4, title: "Differential dx + Management",
+    aim: "Interpret a short case, generate differentials, justify a management plan.",
+    structure: ["State your problem representation (1-sentence summary)","List top 3 differentials with brief justification","Identify red flags / referral triggers","Outline non-pharmacological management","Outline pharmacological management with drug, dose, duration, citation","Safety-net + follow-up plan"],
+    pitfalls: ["Jumping to single diagnosis without differentials","Not citing evidence base (eTG, NSW protocol)","Forgetting safety-netting","Cognitive biases: anchoring, premature closure"]
+  },
+  { num: 5, title: "Wound care procedure",
+    aim: "Perform appropriate wound assessment + cleansing + dressing + closure on model.",
+    structure: ["PPE + hand hygiene + consent + position","Assess: type, TIME framework","Decide referral need (red flags)","Cleanse: saline/water; debride if appropriate","Closure choice: steri-strips vs adhesive vs refer","Dressing: match exudate level","Document + advise + follow-up + safety-net"],
+    pitfalls: ["Skipping the referral assessment","Wrong dressing for exudate level","Forgetting tetanus status","Not documenting properly"]
+  },
+  { num: 6, title: "IM injection procedure",
+    aim: "Administer an IM injection safely on model.",
+    structure: ["Check 7 rights: patient, drug, dose, route, time, documentation, reason","PPE + hand hygiene + consent + screen contraindications","Identify site: deltoid (most adult) — landmark","Clean site, allow to dry","Insert needle 90°, full depth, no aspiration (AIH)","Inject smoothly, withdraw, apply pressure","Dispose sharps immediately","Observe 15 min for anaphylaxis","Document in AIR: vaccine, batch, expiry, site, time, route"],
+    pitfalls: ["Wrong landmark (too low → axillary nerve risk)","Forgetting AIR documentation","Skipping 15-min observation","Forgetting anaphylaxis preparedness statement"]
+  },
+  { num: 7, title: "Documentation (computer room)",
+    aim: "Type a SOAP-format clinical note for a presented case.",
+    structure: ["Subjective: PC, history, PMH, meds, allergies, social","Objective: vitals, exam findings, investigations","Assessment: working diagnosis + differentials + reasoning","Plan: intervention, education, safety-net, follow-up, referrals, GP communication","Sign + date + designation"],
+    pitfalls: ["Disorganised (jumping between S/O/A/P)","Missing safety-net or follow-up","No reasoning shown in assessment","Forgetting GP communication / handover"]
+  }
+];
+
+// =========================
+// FLASHCARDS
+// =========================
+const CARDS = [
+  { topic: "Vitals", q: "Normal adult BP, HR, RR, SpO2, Temp", a: "BP <120/80 (HTN ≥140/90); HR 60–100; RR 12–20; SpO2 ≥95%; Temp 36.5–37.5°C" },
+  { topic: "Vitals", q: "Fasting BGL normal vs diabetic threshold", a: "Normal 4.0–6.0 mmol/L; impaired 6.1–6.9; diabetes ≥7.0 fasting or ≥11.1 random/2h OGTT" },
+  { topic: "Vitals", q: "Sepsis red flag vitals (qSOFA)", a: "RR ≥22, SBP ≤100, altered mental status (qSOFA ≥2 = high risk)" },
+  { topic: "Vitals", q: "Abnormal pulse oximetry threshold", a: "SpO2 <92% (or <88% in COPD) — investigate; <90% = urgent" },
+  { topic: "UTI", q: "NSW pharmacist UTI eligibility criteria", a: "Non-pregnant female, 18–65, typical symptoms, no red flags, no recent UTI/antibiotics" },
+  { topic: "UTI", q: "UTI red flags requiring referral", a: "Pregnancy, male, child, recurrent, immunocompromised, loin pain/fever/vomiting (pyelo), haematuria" },
+  { topic: "UTI", q: "Empirical UTI antibiotic (first-line)", a: "Trimethoprim 300mg nocte × 3 days OR Nitrofurantoin 100mg q6h × 5 days (check eGFR)" },
+  { topic: "Acne", q: "Mild acne first-line", a: "Topical retinoid (adapalene/tretinoin) + benzoyl peroxide; ± topical antibiotic if inflammatory" },
+  { topic: "Acne", q: "When to refer acne", a: "Nodulocystic, scarring, treatment-resistant, severe psychological impact, suspected endocrine cause" },
+  { topic: "Impetigo", q: "Localised impetigo first-line", a: "Mupirocin 2% topical TDS × 5 days; remove crusts gently first" },
+  { topic: "Impetigo", q: "Widespread / severe impetigo", a: "Oral cefalexin OR di/flucloxacillin × 7 days (per eTG)" },
+  { topic: "Shingles", q: "Shingles antiviral window + options", a: "Within 72h: famciclovir 500mg TDS × 7d OR valaciclovir 1g TDS × 7d OR aciclovir 800mg 5×/day × 7d" },
+  { topic: "Shingles", q: "Shingles red flags = refer", a: "Ophthalmic (V1, Hutchinson sign), Ramsay Hunt, disseminated, immunocompromised, pregnancy" },
+  { topic: "Rhinitis", q: "Allergic rhinitis first-line", a: "Intranasal corticosteroid (fluticasone, mometasone); add PRN antihistamine" },
+  { topic: "Rhinitis", q: "Why avoid prolonged topical decongestants?", a: "Rhinitis medicamentosa (rebound congestion) — limit to ≤5 days" },
+  { topic: "Ear", q: "AOM antibiotic indications", a: "<6mo any; 6mo–2yo bilateral; perforation; severe; no improvement at 48h. First-line: amoxicillin" },
+  { topic: "Ear", q: "AOE first-line", a: "Topical ciprofloxacin ± hydrocortisone drops; keep dry; wick if canal swollen shut" },
+  { topic: "MSK", q: "Back pain red flags (TUNAFISH+)", a: "Trauma, Unexplained wt loss, Neuro deficit, Age <20/>50, Fever, IVDU, Steroid use, Hx cancer + saddle anaesthesia/incontinence" },
+  { topic: "MSK", q: "NSAID with lowest CV risk at OTC dose", a: "Ibuprofen ≤1200mg/day; naproxen also low. Diclofenac highest CV risk." },
+  { topic: "GORD", q: "GORD alarm symptoms (refer)", a: "Dysphagia, odynophagia, wt loss, anaemia, GI bleed, persistent vomiting, age >50 new, FHx upper GI cancer" },
+  { topic: "GORD", q: "GORD pharmacological first-line", a: "PPI (esomeprazole 20mg, omeprazole 20mg) daily × 4–8 weeks; review and step down" },
+  { topic: "N+V", q: "Ondansetron caution", a: "QT prolongation — avoid with other QT-prolonging drugs; max single dose 16mg IV" },
+  { topic: "N+V", q: "Metoclopramide adverse effects", a: "Extrapyramidal symptoms (esp. <30yo women), prolactin ↑; avoid >5 days, max 30mg/day" },
+  { topic: "Wound", q: "TIME framework", a: "Tissue (debridement) · Infection/Inflammation · Moisture balance · Edge (epithelialisation)" },
+  { topic: "Wound", q: "Dressing for exudative wound", a: "Foam or alginate (absorptive); silver if infected" },
+  { topic: "Wound", q: "Wound referral red flags", a: "Deep, contaminated, bite, tendon/bone exposed, large (>5cm), >12h old, infected, immunocompromised" },
+  { topic: "Injection", q: "Deltoid IM landmark", a: "2–3 finger-widths below acromion, into thickest part of muscle; needle 90°" },
+  { topic: "Injection", q: "Why no aspiration for IM vaccines (AIH)?", a: "No large vessels at recommended sites; aspiration ↑ pain, delays injection, not evidence-based" },
+  { topic: "Injection", q: "Post-injection observation time", a: "15 minutes minimum; longer if hx allergy/anxiety. Anaphylaxis kit on hand" },
+  { topic: "Contraception", q: "Missed COC pill (1 pill 24–48h late)", a: "Take ASAP, continue pack. No EC, no extra precautions." },
+  { topic: "Contraception", q: "Missed COC pill (2+ pills)", a: "Take last missed pill + condoms/abstain × 7 days; if week 3 → skip break" },
+  { topic: "Contraception", q: "EC options + timing", a: "LNG 1.5mg ≤72h; UPA 30mg ≤120h; copper IUD ≤120h (most effective)" },
+  { topic: "Smoking", q: "5As for smoking cessation", a: "Ask · Assess · Advise · Assist · Arrange follow-up" },
+  { topic: "Smoking", q: "Combination NRT regimen", a: "Long-acting patch + short-acting (gum/lozenge/inhaler/spray) for breakthrough — more effective than monotherapy" },
+  { topic: "Travel", q: "Pharmacist-administered vaccines NSW (typical)", a: "Influenza, COVID-19, MMR, dTpa, Hep A/B, typhoid, JE, HPV. Check current NSW Health authority." },
+  { topic: "Documentation", q: "SOAP acronym", a: "Subjective · Objective · Assessment · Plan" },
+  { topic: "Documentation", q: "Safety-net in clinical notes", a: "Document: specific return-symptoms, timeframe, where to go (ED vs GP), expected course" },
+  { topic: "Reasoning", q: "Anchoring bias + mitigation", a: "Sticking to initial dx despite contradicting evidence. Mitigate: explicit differentials, 'what else could this be?'" },
+  { topic: "Reasoning", q: "Premature closure", a: "Accepting dx before fully verified. Mitigate: pause, review, ensure findings explain ALL symptoms" },
+  { topic: "Neuro", q: "GCS components & max scores", a: "Eyes 4 / Verbal 5 / Motor 6. Max 15, min 3. ≤8 = severe (airway concern)" },
+  { topic: "Throat", q: "Centor criteria for strep throat", a: "1pt each: exudate, tender LN, fever, no cough. +1 age 3–14, −1 age ≥45. ≥4 = consider abx" }
+];
+
+// =========================
+// SETTINGS & SCHEDULE BUILDING
+// =========================
+const STORAGE_KEY = "fsop_study_2026";
+const DEFAULT_OSCE = "2026-06-23";
+const DEFAULT_TUT = ["2026-06-01", "2026-06-02"];
+const DEFAULT_RES = ["2026-06-15", "2026-06-16"];
+
+let state = loadState();
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    return { done: s.done || {}, settings: s.settings || {}, signup: s.signup || {} };
+  } catch { return { done: {}, settings: {}, signup: {} }; }
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+function getOsceDate() { return state.settings.osce || DEFAULT_OSCE; }
+function getTutDates() {
+  const t = state.settings.tutorship;
+  if (t === undefined) return DEFAULT_TUT.slice();
+  return (t || []).filter(Boolean);
+}
+function getResDates() {
+  const r = state.settings.residential;
+  if (r === undefined) return DEFAULT_RES.slice();
+  return (r || []).filter(Boolean);
+}
+
+function todayISO() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function addDaysISO(iso, n) {
+  const d = new Date(iso + "T00:00:00");
+  d.setDate(d.getDate() + n);
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function dayDiff(a, b) {
+  const da = new Date(a + "T00:00:00"), db = new Date(b + "T00:00:00");
+  return Math.round((db - da) / 86400000);
+}
+function fmtDate(iso) {
+  const d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString("en-AU", { weekday: "short", day: "numeric", month: "short" });
+}
+
+function buildSchedule() {
+  const oscDate = getOsceDate();
+  const tutDates = getTutDates().slice(0, 2).sort();
+  const resDates = getResDates().slice(0, 2).sort();
+  const oscItem = PLAN.find(p => p.kind === "osce");
+  const tutItems = PLAN.filter(p => p.kind === "tutorship").slice(0, tutDates.length);
+  const resItems = PLAN.filter(p => p.kind === "residential").slice(0, resDates.length);
+  const studyItems = PLAN.filter(p => p.kind === "study");
+  const totalDays = 1 + tutDates.length + resDates.length + studyItems.length;
+  const startDate = addDaysISO(oscDate, -(totalDays - 1));
+  const allDates = [];
+  for (let i = 0; i < totalDays; i++) allDates.push(addDaysISO(startDate, i));
+  const schedule = {};
+  schedule[oscDate] = oscItem;
+  tutDates.forEach((d, i) => { schedule[d] = tutItems[i]; });
+  resDates.forEach((d, i) => { schedule[d] = resItems[i]; });
+  const usedDates = new Set(Object.keys(schedule));
+  const remainingDates = allDates.filter(d => !usedDates.has(d));
+  remainingDates.forEach((d, i) => { if (i < studyItems.length) schedule[d] = studyItems[i]; });
+  return { schedule, dates: allDates, oscDate };
+}
+
+let SCHEDULE = buildSchedule();
+
+// =========================
+// RENDER
+// =========================
+function actionText(a) { return typeof a === 'string' ? a : a.text; }
+function actionDetail(a) { return typeof a === 'string' ? null : a.detail; }
+
+function findTodayPlan() {
+  const today = todayISO();
+  if (SCHEDULE.schedule[today]) return { item: SCHEDULE.schedule[today], date: today, isToday: true };
+  const future = SCHEDULE.dates.filter(d => d >= today).sort();
+  if (future.length) {
+    return { item: SCHEDULE.schedule[future[0]], date: future[0], isToday: false, note: "Today isn't a scheduled day — showing your next session." };
+  }
+  const last = SCHEDULE.dates[SCHEDULE.dates.length - 1];
+  return { item: SCHEDULE.schedule[last], date: last, isToday: false, note: "Your plan window has ended." };
+}
+
+function renderActionListHtml(item, idPrefix) {
+  const doneMap = state.done[item.pid] || {};
+  return item.actions.map((a, i) => {
+    const text = actionText(a);
+    const detail = actionDetail(a);
+    const isDone = !!doneMap[i];
+    const checkId = `${idPrefix}_${item.pid}_${i}`;
+    const expandId = `exp_${idPrefix}_${item.pid}_${i}`;
+    const detailHtml = detail
+      ? `<button type="button" class="expand-toggle" onclick="toggleDetail('${expandId}', this)"><span class="chev">▶</span>Learn more</button>
+         <div class="detail" id="${expandId}">${detail}</div>` : '';
+    return `<li class="${isDone ? 'done' : ''}">
+      <div class="action-row">
+        <input type="checkbox" id="${checkId}" ${isDone ? 'checked' : ''} onchange="toggleAction('${item.pid}', ${i})" />
+        <label for="${checkId}">${escapeHtml(text)}</label>
+      </div>
+      ${detailHtml}
+    </li>`;
+  }).join("");
+}
+
+function renderToday() {
+  const { item, date, isToday, note } = findTodayPlan();
+  const root = document.getElementById("today");
+  if (!item) { root.innerHTML = "<p class='muted'>No plan items found.</p>"; return; }
+  const modeTags = item.modes.map(m => `<span class="mode-tag">${escapeHtml(m)}</span>`).join("");
+  const eventPill = item.kind !== "study" ? `<div class="event-pill">${item.kind.toUpperCase()}</div>` : "";
+  const notesHtml = item.notes ? `<div class="notes"><strong>Note:</strong> ${escapeHtml(item.notes)}</div>` : "";
+  const headerNote = note ? `<div class="notes" style="margin-bottom:16px"><strong>Heads up:</strong> ${escapeHtml(note)}</div>` : "";
+  root.innerHTML = `
+    ${headerNote}
+    <article class="today-card">
+      ${eventPill}
+      <div class="label">${isToday ? "Today's session" : "Upcoming session"}</div>
+      <h2>${escapeHtml(item.title)}</h2>
+      <div class="meta">${fmtDate(date)} · Focus: ${escapeHtml(item.focus)}</div>
+      <div style="margin-bottom:18px">
+        <span class="duration">${item.duration} min</span>
+        <span class="modes">${modeTags}</span>
+      </div>
+      <ul class="actions">${renderActionListHtml(item, 'ck')}</ul>
+      ${notesHtml}
+    </article>
+  `;
+  updateProgress();
+}
+
+function renderPlan() {
+  const root = document.getElementById("plan");
+  const today = todayISO();
+  const sortedDates = SCHEDULE.dates.slice().sort();
+  if (!sortedDates.length) { root.innerHTML = ""; return; }
+  const weeks = [];
+  let cursor = 0;
+  while (cursor < sortedDates.length) {
+    weeks.push(sortedDates.slice(cursor, cursor + 7));
+    cursor += 7;
+  }
+  root.innerHTML = weeks.map((dates, wi) => {
+    const label = `Week ${wi + 1} · ${fmtDate(dates[0])} – ${fmtDate(dates[dates.length-1])}`;
+    const cards = dates.map(d => {
+      const item = SCHEDULE.schedule[d];
+      if (!item) return "";
+      const doneMap = state.done[item.pid] || {};
+      const totalActions = item.actions.length;
+      const doneCount = Object.values(doneMap).filter(Boolean).length;
+      const allDone = totalActions > 0 && doneCount === totalActions;
+      const classes = ["day"];
+      if (d === today) classes.push("today");
+      if (allDone) classes.push("done");
+      if (item.kind !== "study") classes.push("event");
+      const eventPill = item.kind !== "study" ? `<div class="event-pill">${item.kind.toUpperCase()}</div>` : "";
+      return `<div class="${classes.join(' ')}" onclick="showDayModal('${d}')">
+        <div class="day-date">${fmtDate(d).split(",")[0]}</div>
+        ${eventPill}
+        <div class="day-topic">${escapeHtml(item.title)}</div>
+        <div class="day-meta">${item.duration} min · ${item.modes[0]}</div>
+        ${doneCount > 0 ? `<div class="day-check">${doneCount}/${totalActions} ✓</div>` : ""}
+      </div>`;
+    }).join("");
+    return `<div class="week"><h3>${escapeHtml(label)}</h3><div class="days">${cards}</div></div>`;
+  }).join("");
+}
+
+function renderAbout() {
+  const root = document.getElementById("about");
+  root.innerHTML = `
+    <article class="about-card">
+      <h2>About this study plan</h2>
+      <p class="lead">A 30-day study companion for the UTS Graduate Certificate of Pharmacist Prescribing — Advanced Clinical Skills 1 (96136) + Prescribing Skills 1 (96138) — built around OSCE 1.</p>
+      <h3>What's inside</h3>
+      <p>The plan walks you through OSCE-priority content in 30–60 min daily sessions. Each action item has a "Learn more" link that expands into detailed clinical content: FPE narration scripts, condition management algorithms with doses, sample OSCE cases, and procedural narrations. Your progress saves to your browser only.</p>
+      <ul>
+        <li><strong>Today</strong> — current session with tickable actions and expandable detail</li>
+        <li><strong>Full Plan</strong> — calendar view; click any day to expand</li>
+        <li><strong>OSCE Stations</strong> — checklists + pitfalls for all 7 stations</li>
+        <li><strong>Flashcards</strong> — 40 high-yield cards; filter by topic, click to flip</li>
+        <li><strong>Quick Reference</strong> — vitals, red flags, antibiotic doses, mnemonics</li>
+      </ul>
+      <h3>Set your own dates</h3>
+      <p>Click <strong>⚙ My dates</strong> in the top right to enter your OSCE date and any tutorship or residential allocation days. The plan rebuilds around your schedule.</p>
+      <ol>
+        <li>Enter your OSCE date (required)</li>
+        <li>Enter your tutorship day(s) — 0, 1, or 2 dates</li>
+        <li>Enter your residential day(s) — 0, 1, or 2 dates</li>
+        <li>Hit save — the calendar rebuilds</li>
+      </ol>
+      <h3>How to use it</h3>
+      <ol>
+        <li>Open the <strong>Today</strong> tab each morning. 30–60 min. Tick as you go.</li>
+        <li>Click <strong>"Learn more"</strong> under each action for detailed content (scripts, doses, algorithms).</li>
+        <li>Use the <strong>OSCE Stations</strong> tab for marking-rubric-style structure.</li>
+        <li>Drill <strong>Flashcards</strong> on commutes — built for active recall.</li>
+        <li>Glance at <strong>Quick Reference</strong> before any mock OSCE.</li>
+      </ol>
+      <div class="disclaimer">
+        <strong>Important — please read.</strong> This is an unofficial study companion, not a substitute for the UTS course materials or for current clinical guidelines.
+        <ul style="margin-top:8px">
+          <li><strong>Always verify drug doses, indications, and red flags against current eTG complete, NSW Pharmacy Scope of Practice authorities, and the Australian Immunisation Handbook</strong> before clinical or exam use.</li>
+          <li>Guidelines and NSW protocols change — content here is a starting point for revision, not definitive practice guidance.</li>
+          <li>This plan does not constitute medical or legal advice. Use clinical judgement, your subject coordinator's guidance, and approved protocols at all times.</li>
+          <li>Educational use only. Last content review: 21 May 2026.</li>
+        </ul>
+      </div>
+      <h3>Stay in the loop</h3>
+      <p>This plan is free and always will be. I'm also building AI tools for pharmacies — if you want early access when they launch, <a href="#" onclick="event.preventDefault(); showSignup()" style="color:#c2410c;font-weight:500">drop your details here</a>. 3 fields, 20 seconds.</p>
+      <p class="muted" style="margin-top:20px;font-size:13px">Built by a UTS GCPP student for fellow students. Share freely.</p>
+    </article>
+  `;
+}
+
+function renderStations() {
+  const root = document.getElementById("stations");
+  root.innerHTML = `
+    <div class="notes" style="margin-bottom:18px">
+      <strong>OSCE 1 structure:</strong> 7 stations × 10 min each · in-person · <strong>50% of final mark for both ACS1 and PS1.</strong>
+    </div>
+    ${STATIONS.map(s => `
+      <article class="station">
+        <div class="station-hdr">
+          <h3><span class="num">${s.num}</span>${escapeHtml(s.title)}</h3>
+          <span class="timing">10 min</span>
+        </div>
+        <p style="margin:0 0 14px;color:#6b6356;font-size:14px"><em>${escapeHtml(s.aim)}</em></p>
+        <div class="station-row">
+          <div><h4>Structure / checklist</h4><ul>${s.structure.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul></div>
+          <div><h4>Common pitfalls</h4><ul>${s.pitfalls.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul></div>
+        </div>
+      </article>
+    `).join("")}
+  `;
+}
+
+function renderFlashcards() {
+  const root = document.getElementById("flash");
+  const topics = ["All", ...new Set(CARDS.map(c => c.topic))];
+  root.innerHTML = `
+    <div class="fc-filters" id="fcFilters">
+      ${topics.map(t => `<button class="fc-filter ${t==="All"?"active":""}" data-topic="${t}">${t}</button>`).join("")}
+    </div>
+    <div class="fc-grid" id="fcGrid"></div>
+    <p class="muted" style="margin-top:16px;font-size:13px">Tap a card to reveal the answer. Try to answer aloud before flipping.</p>
+  `;
+  document.getElementById("fcFilters").addEventListener("click", e => {
+    if (!e.target.matches(".fc-filter")) return;
+    document.querySelectorAll(".fc-filter").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    renderFCGrid(e.target.dataset.topic);
+  });
+  renderFCGrid("All");
+}
+
+function renderFCGrid(topic) {
+  const grid = document.getElementById("fcGrid");
+  const cards = topic === "All" ? CARDS : CARDS.filter(c => c.topic === topic);
+  grid.innerHTML = cards.map((c, i) => `
+    <div class="fc" data-i="${i}">
+      <div>
+        <span class="topic-tag">${escapeHtml(c.topic)}</span>
+        <div class="q fc-front">${escapeHtml(c.q)}</div>
+        <div class="a fc-back" style="display:none">${escapeHtml(c.a)}</div>
+      </div>
+    </div>
+  `).join("");
+  grid.querySelectorAll(".fc").forEach(card => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("flipped");
+      const flipped = card.classList.contains("flipped");
+      card.querySelector(".fc-front").style.display = flipped ? "none" : "block";
+      card.querySelector(".fc-back").style.display = flipped ? "block" : "none";
+    });
+  });
+}
+
+function renderReference() {
+  const root = document.getElementById("ref");
+  root.innerHTML = `
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h3>Vital sign reference (adult)</h3>
+        <table>
+          <tr><th>Vital</th><th>Normal</th><th>Concern</th></tr>
+          <tr><td>BP</td><td>&lt;120/80</td><td>≥140/90 HTN; &lt;90 SBP shock</td></tr>
+          <tr><td>HR</td><td>60–100</td><td>&lt;50 or &gt;100; irregular</td></tr>
+          <tr><td>RR</td><td>12–20</td><td>&lt;10 or ≥22 (sepsis flag)</td></tr>
+          <tr><td>SpO2</td><td>≥95%</td><td>&lt;92% (or &lt;88% COPD)</td></tr>
+          <tr><td>Temp</td><td>36.5–37.5°C</td><td>≥38°C fever; &lt;35°C hypothermia</td></tr>
+          <tr><td>BGL fasting</td><td>4.0–6.0</td><td>≥7.0 diabetes</td></tr>
+          <tr><td>BGL random</td><td>&lt;7.8</td><td>≥11.1 diabetes</td></tr>
+        </table>
+      </div>
+      <div class="ref-card">
+        <h3>Red flags by system</h3>
+        <table>
+          <tr><th>System</th><th>Red flags</th></tr>
+          <tr><td>CVS</td><td>Chest pain + radiation, syncope, severe dyspnoea, new murmur</td></tr>
+          <tr><td>Resp</td><td>RR ≥22, SpO2 &lt;92%, haemoptysis, stridor, accessory muscles</td></tr>
+          <tr><td>Neuro</td><td>FAST+, GCS drop, focal deficit, severe headache, seizure</td></tr>
+          <tr><td>Abdo</td><td>Rigid abdomen, guarding/rebound, hypotension, melaena, haematemesis</td></tr>
+          <tr><td>Back/MSK</td><td>Saddle anaesthesia, incontinence, wt loss, fever, night pain, age &lt;20/&gt;50</td></tr>
+          <tr><td>Skin</td><td>ABCDE melanoma, rapidly spreading erythema, systemic symptoms</td></tr>
+          <tr><td>UTI</td><td>Loin pain, fever, vomiting (pyelo); pregnancy, male, child, recurrent</td></tr>
+          <tr><td>Ear</td><td>Facial nerve palsy, severe pain, vertigo, mastoid tenderness</td></tr>
+        </table>
+      </div>
+      <div class="ref-card">
+        <h3>Empirical antibiotic quick ref</h3>
+        <table>
+          <tr><th>Condition</th><th>First-line</th></tr>
+          <tr><td>Uncomplicated UTI</td><td>Trimethoprim 300mg nocte × 3d OR nitrofurantoin 100mg q6h × 5d</td></tr>
+          <tr><td>Localised impetigo</td><td>Mupirocin 2% topical TDS × 5d</td></tr>
+          <tr><td>Widespread impetigo</td><td>Cefalexin OR di/flucloxacillin × 7d</td></tr>
+          <tr><td>Shingles (within 72h)</td><td>Famciclovir 500mg TDS × 7d OR valaciclovir 1g TDS × 7d</td></tr>
+          <tr><td>AOE</td><td>Topical ciprofloxacin ± hydrocortisone drops</td></tr>
+          <tr><td>AOM (when abx indicated)</td><td>Amoxicillin (per eTG dosing)</td></tr>
+        </table>
+        <p class="muted" style="font-size:12px;margin-top:8px">Always verify against current eTG and NSW Pharmacy Scope protocols.</p>
+      </div>
+      <div class="ref-card">
+        <h3>Mnemonics cheat sheet</h3>
+        <table>
+          <tr><th>Mnemonic</th><th>Use</th></tr>
+          <tr><td>SOCRATES</td><td>Pain hx: Site, Onset, Character, Radiation, Associations, Time, Exacerb/relieving, Severity</td></tr>
+          <tr><td>SOAP</td><td>Documentation: Subjective, Objective, Assessment, Plan</td></tr>
+          <tr><td>TIME</td><td>Wound: Tissue, Infection, Moisture, Edge</td></tr>
+          <tr><td>SCAM</td><td>Skin lesion: Site, Configuration, Arrangement, Morphology</td></tr>
+          <tr><td>ABCDE</td><td>Melanoma: Asymmetry, Border, Colour, Diameter, Evolution</td></tr>
+          <tr><td>5As</td><td>Smoking: Ask, Assess, Advise, Assist, Arrange</td></tr>
+          <tr><td>ICE</td><td>End of hx: Ideas, Concerns, Expectations</td></tr>
+        </table>
+      </div>
+      <div class="ref-card">
+        <h3>Cranial nerves quick screen</h3>
+        <table>
+          <tr><th>CN</th><th>Test</th></tr>
+          <tr><td>I Olfactory</td><td>Smell (often deferred)</td></tr>
+          <tr><td>II Optic</td><td>Acuity, fields, fundi, pupillary light</td></tr>
+          <tr><td>III, IV, VI</td><td>EOM (H pattern), pupils, ptosis</td></tr>
+          <tr><td>V Trigeminal</td><td>Facial sensation, jaw clench, corneal reflex</td></tr>
+          <tr><td>VII Facial</td><td>Eyebrows, eye close, smile, puff cheeks</td></tr>
+          <tr><td>VIII Vestibulocochlear</td><td>Whisper, Rinne, Weber</td></tr>
+          <tr><td>IX, X</td><td>Palate ('ahh'), gag reflex</td></tr>
+          <tr><td>XI Accessory</td><td>Shoulder shrug, head turn</td></tr>
+          <tr><td>XII Hypoglossal</td><td>Tongue protrusion (deviates to lesion)</td></tr>
+        </table>
+      </div>
+      <div class="ref-card">
+        <h3>Key resources</h3>
+        <ul>
+          <li>eTG complete — via UTS Library</li>
+          <li>UpToDate — clinical decision support</li>
+          <li>Anatomy.tv — 3D anatomy</li>
+          <li>NSW Pharmacy Scope of Practice authorities</li>
+          <li>Australian Immunisation Handbook (AIH)</li>
+          <li>Geeky Medics — OSCE technique videos</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+// =========================
+// SIGNUP CAPTURE
+// =========================
+function countTickedActions() {
+  let n = 0;
+  Object.values(state.done || {}).forEach(m => {
+    n += Object.values(m).filter(Boolean).length;
+  });
+  return n;
+}
+
+function checkSignupTrigger() {
+  const sig = state.signup || {};
+  // Never show again if they've signed up or explicitly declined
+  if (sig.status === 'submitted' || sig.status === 'skipped') return hideBanner();
+  // Show banner once user has engaged enough — and keep it shown
+  if (countTickedActions() >= SIGNUP_TRIGGER_AT_TICKS) {
+    showBanner();
+  }
+}
+
+function showBanner() {
+  const b = document.getElementById('signupBanner');
+  if (!b) return;
+  if (!b.classList.contains('visible')) {
+    b.classList.add('visible');
+    document.body.classList.add('banner-shown');
+  }
+}
+
+function hideBanner() {
+  const b = document.getElementById('signupBanner');
+  if (!b) return;
+  b.classList.remove('visible');
+  document.body.classList.remove('banner-shown');
+}
+
+function dismissBanner() {
+  state.signup = { ...(state.signup || {}), status: 'skipped', skipDate: todayISO() };
+  saveState();
+  hideBanner();
+}
+
+function showSignup() {
+  // Reset modal state in case user submitted then re-opened (edge case)
+  const form = document.getElementById('signupForm');
+  const success = document.getElementById('signupSuccess');
+  if (form && success && state.signup && state.signup.status !== 'submitted') {
+    form.style.display = '';
+    success.style.display = 'none';
+  }
+  document.getElementById('signupBg').classList.add('open');
+  // Focus first field for keyboard users
+  setTimeout(() => {
+    const el = document.getElementById('suFirst');
+    if (el && document.getElementById('signupForm').style.display !== 'none') el.focus();
+  }, 100);
+}
+
+function closeSignupModal() {
+  // Closes the modal but leaves the banner visible
+  document.getElementById('signupBg').classList.remove('open');
+}
+
+function dismissSignup(reason) {
+  // Called from "Not interested" button — closes modal AND permanently hides banner
+  if (reason === 'decline') {
+    state.signup = { ...(state.signup || {}), status: 'skipped', declinedDate: todayISO() };
+    saveState();
+    hideBanner();
+  }
+  document.getElementById('signupBg').classList.remove('open');
+}
+
+function closeSignup() {
+  // Called from success "Back to studying" — clean close after submit
+  document.getElementById('signupBg').classList.remove('open');
+  hideBanner();
+}
+
+function submitSignup(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = {
+    firstName: form.firstName.value.trim(),
+    email: form.email.value.trim(),
+    ownerStatus: form.ownerStatus.value,
+    marketingConsent: form.querySelector('#suConsent').checked ? 'Yes' : 'No',
+    timestamp: new Date().toISOString(),
+    userAgent: (navigator.userAgent || '').slice(0, 200),
+    referrer: (document.referrer || '').slice(0, 200)
+  };
+
+  // Submit to Google Apps Script (fire-and-forget — Apps Script doesn't handle CORS preflight)
+  if (SIGNUP_ENDPOINT && !SIGNUP_ENDPOINT.includes('PASTE_YOUR')) {
+    const body = new URLSearchParams(data);
+    fetch(SIGNUP_ENDPOINT, { method: 'POST', mode: 'no-cors', body: body }).catch(() => {});
+  }
+
+  // Always save locally as backup (and to prevent re-prompting)
+  state.signup = { status: 'submitted', data: data, submittedAt: new Date().toISOString() };
+  saveState();
+
+  // Swap form for success message; banner disappears immediately
+  form.style.display = 'none';
+  document.getElementById('signupSuccess').style.display = 'block';
+  hideBanner();
+}
+
+// =========================
+// SETTINGS UI
+// =========================
+function openSettings() {
+  document.getElementById("setOsce").value = getOsceDate();
+  const tut = getTutDates();
+  document.getElementById("setTut1").value = tut[0] || "";
+  document.getElementById("setTut2").value = tut[1] || "";
+  const res = getResDates();
+  document.getElementById("setRes1").value = res[0] || "";
+  document.getElementById("setRes2").value = res[1] || "";
+  document.getElementById("settingsBg").classList.add("open");
+}
+function closeSettings() { document.getElementById("settingsBg").classList.remove("open"); }
+function saveSettings() {
+  const osce = document.getElementById("setOsce").value;
+  if (!osce) { alert("Please set an OSCE date."); return; }
+  const t1 = document.getElementById("setTut1").value;
+  const t2 = document.getElementById("setTut2").value;
+  const r1 = document.getElementById("setRes1").value;
+  const r2 = document.getElementById("setRes2").value;
+  state.settings = {
+    osce: osce,
+    tutorship: [t1, t2].filter(Boolean),
+    residential: [r1, r2].filter(Boolean)
+  };
+  saveState();
+  SCHEDULE = buildSchedule();
+  renderAll();
+  closeSettings();
+}
+function resetSettings() {
+  if (!confirm("Reset to defaults? Your tick-off progress will be preserved.")) return;
+  state.settings = {};
+  saveState();
+  SCHEDULE = buildSchedule();
+  renderAll();
+  closeSettings();
+}
+
+// =========================
+// INTERACTIONS
+// =========================
+function toggleAction(pid, idx) {
+  if (!state.done[pid]) state.done[pid] = {};
+  state.done[pid][idx] = !state.done[pid][idx];
+  saveState();
+  // Update any matching checkbox + parent <li>
+  document.querySelectorAll(`input[id$="_${pid}_${idx}"]`).forEach(ck => {
+    ck.checked = !!state.done[pid][idx];
+    const li = ck.closest("li");
+    if (li) li.classList.toggle("done", !!state.done[pid][idx]);
+  });
+  updateProgress();
+  renderPlan();
+  checkSignupTrigger();
+}
+
+function toggleDetail(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle("open");
+  btn.classList.toggle("open");
+}
+
+function updateProgress() {
+  let total = 0, done = 0;
+  PLAN.forEach(item => {
+    total += item.actions.length;
+    const m = state.done[item.pid] || {};
+    done += Object.values(m).filter(Boolean).length;
+  });
+  const pct = total ? (done / total * 100) : 0;
+  document.getElementById("progFill").style.width = pct + "%";
+  document.getElementById("progText").textContent = `${done} of ${total} actions complete (${Math.round(pct)}%)`;
+}
+
+function showDayModal(date) {
+  const item = SCHEDULE.schedule[date];
+  if (!item) return;
+  const modeTags = item.modes.map(m => `<span class="mode-tag">${escapeHtml(m)}</span>`).join("");
+  const notesHtml = item.notes ? `<div class="notes"><strong>Note:</strong> ${escapeHtml(item.notes)}</div>` : "";
+  const eventPill = item.kind !== "study" ? `<div class="event-pill">${item.kind.toUpperCase()}</div>` : "";
+  document.getElementById("modalContent").innerHTML = `
+    ${eventPill}
+    <div class="label" style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:#c2410c;font-weight:600;margin-bottom:6px">${fmtDate(date)}</div>
+    <h2>${escapeHtml(item.title)}</h2>
+    <div class="meta" style="color:#6b6356;font-size:13px;margin-bottom:16px">Focus: ${escapeHtml(item.focus)}</div>
+    <div style="margin-bottom:18px">
+      <span class="duration">${item.duration} min</span>
+      <span>${modeTags}</span>
+    </div>
+    <ul class="actions">${renderActionListHtml(item, 'mck')}</ul>
+    ${notesHtml}
+  `;
+  document.getElementById("modalBg").classList.add("open");
+}
+
+function closeModal() { document.getElementById("modalBg").classList.remove("open"); }
+
+document.getElementById("modalBg").addEventListener("click", e => {
+  if (e.target.id === "modalBg") closeModal();
+});
+document.getElementById("settingsBg").addEventListener("click", e => {
+  if (e.target.id === "settingsBg") closeSettings();
+});
+document.getElementById("signupBg").addEventListener("click", e => {
+  // Click outside modal closes it but leaves the banner visible — no progress lost
+  if (e.target.id === "signupBg") closeSignupModal();
+});
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+document.querySelectorAll(".tab").forEach(t => {
+  t.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    document.getElementById(t.dataset.tab).classList.add("active");
+  });
+});
+
+function updateCountdown() {
+  const today = todayISO();
+  const days = dayDiff(today, getOsceDate());
+  const el = document.getElementById("cdDays");
+  const lbl = document.getElementById("cdLabel");
+  if (days > 0) { el.textContent = days; lbl.textContent = "days to OSCE"; }
+  else if (days === 0) { el.textContent = "TODAY"; lbl.textContent = "OSCE day"; }
+  else { el.textContent = Math.abs(days); lbl.textContent = "days since OSCE"; }
+}
+
+function renderAll() {
+  updateCountdown();
+  renderAbout();
+  renderToday();
+  renderPlan();
+  renderStations();
+  renderFlashcards();
+  renderReference();
+}
+
+renderAll();
+// Also check on page load — returning users past the threshold see the banner immediately
+checkSignupTrigger();
+</script>
+</body>
+</html>

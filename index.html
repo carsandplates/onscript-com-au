@@ -204,11 +204,68 @@ body.banner-shown { padding-bottom: 80px; }
 .progress-fill { background: #c2410c; height: 100%; transition: width 0.3s; }
 
 @media (max-width: 720px) {
-  .days { grid-template-columns: repeat(2, 1fr); }
+  /* Layout container — tighter horizontal padding */
+  .wrap { padding: 18px 14px 80px; }
+
+  /* Header reflow */
+  .hdr { gap: 12px; padding-bottom: 14px; margin-bottom: 18px; }
   .hdr h1 { font-size: 22px; }
-  .countdown { width: 100%; }
+  .hdr p { font-size: 13px; }
+  .hdr-right { width: 100%; justify-content: space-between; }
+  .countdown { flex: 1; min-width: 0; padding: 10px 14px; }
+  .countdown .big { font-size: 22px; }
+  .settings-btn { padding: 10px 12px; font-size: 12px; }
+
+  /* Tabs — allow horizontal scroll so all 6 fit without breaking */
+  .tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-left: -14px; margin-right: -14px; padding: 0 14px; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { white-space: nowrap; padding: 10px 12px; font-size: 13px; flex-shrink: 0; }
+
+  /* Cards — reduce padding */
+  .about-card, .today-card, .station, .ref-card { padding: 18px; border-radius: 12px; }
+  .about-card h2, .today-card h2 { font-size: 19px; }
+
+  /* Calendar — 2 columns on phone */
+  .days { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .day { min-height: 96px; padding: 10px; }
+
+  /* Flashcards & references — single column with tighter min-height */
+  .fc-grid { grid-template-columns: 1fr; gap: 10px; }
+  .fc { min-height: 110px; padding: 16px; }
+  .ref-grid { grid-template-columns: 1fr; gap: 10px; }
+
+  /* Stations */
+  .station-row { gap: 14px; }
+  .station-row > div { min-width: 0; flex: 1 1 100%; }
+
+  /* Action items — give details room */
+  .actions > li { padding: 12px 0; }
+  .detail { margin-left: 8px; padding: 12px 14px; font-size: 13px; }
+  /* Tables scroll horizontally if too wide */
+  .detail table, .ref-card table { display: block; overflow-x: auto; white-space: nowrap; }
+  .detail th, .detail td, .ref-card th, .ref-card td { white-space: normal; }
+
+  /* Modals — full-width feel, easier to scroll */
+  .modal-bg { padding: 12px; }
+  .modal { padding: 22px 18px; border-radius: 12px; max-height: calc(100vh - 24px); overflow-y: auto; }
+  .modal .x { top: 10px; right: 12px; font-size: 26px; padding: 4px 10px; }
   .field-row { grid-template-columns: 1fr; }
-  .detail { margin-left: 8px; }
+  .btn-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn-row .btn-primary, .btn-row .btn-secondary { width: 100%; margin-right: 0; text-align: center; }
+  .btn-row .btn-link { padding: 6px 0; text-align: center; }
+
+  /* Signup banner already had mobile rules — refine */
+  .signup-banner { padding: 12px 14px; }
+  .signup-banner-text { font-size: 13px; }
+  .banner-cta { padding: 10px 16px; }
+}
+
+@media (max-width: 400px) {
+  /* Very small phones — drop calendar to 1 col, even tighter spacing */
+  .days { grid-template-columns: 1fr; }
+  .hdr h1 { font-size: 20px; }
+  .wrap { padding: 14px 12px 90px; }
+  .about-card, .today-card, .station, .ref-card { padding: 16px; }
 }
 </style>
 </head>
@@ -353,7 +410,7 @@ body.banner-shown { padding-bottom: 80px; }
 // =========================
 // Deploy the .gs script (see apps_script.gs file + README), then paste the URL below.
 // Leave as placeholder during testing — submissions will be skipped server-side, still saved locally.
-const SIGNUP_ENDPOINT = "https://script.google.com/macros/s/PASTE_YOUR_DEPLOYED_APPS_SCRIPT_URL_HERE/exec";
+const SIGNUP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuZLMz9PueZKZhd2dHzizsA2qkKsjbWwgBgwICXJWe7MLt9FMC_FiAZnKrtiGz5ktF/exec";
 const SIGNUP_TRIGGER_AT_TICKS = 3;          // show banner once user has ticked this many actions
 // Banner persists indefinitely until user submits or clicks "Not interested" in the modal.
 
@@ -1300,7 +1357,123 @@ const CARDS = [
   { topic: "Reasoning", q: "Anchoring bias + mitigation", a: "Sticking to initial dx despite contradicting evidence. Mitigate: explicit differentials, 'what else could this be?'" },
   { topic: "Reasoning", q: "Premature closure", a: "Accepting dx before fully verified. Mitigate: pause, review, ensure findings explain ALL symptoms" },
   { topic: "Neuro", q: "GCS components & max scores", a: "Eyes 4 / Verbal 5 / Motor 6. Max 15, min 3. ≤8 = severe (airway concern)" },
-  { topic: "Throat", q: "Centor criteria for strep throat", a: "1pt each: exudate, tender LN, fever, no cough. +1 age 3–14, −1 age ≥45. ≥4 = consider abx" }
+  { topic: "Throat", q: "Centor criteria for strep throat", a: "1pt each: exudate, tender LN, fever, no cough. +1 age 3–14, −1 age ≥45. ≥4 = consider abx" },
+
+  // === Additional 70+ cards ===
+  // UTI deep dive
+  { topic: "UTI", q: "Why avoid nitrofurantoin if eGFR <45?", a: "Reduced renal concentration → subtherapeutic in urine + risk of peripheral neuropathy / pulmonary toxicity accumulation" },
+  { topic: "UTI", q: "Trimethoprim + which drugs raise K+?", a: "ACEi, ARB, spironolactone, eplerenone → hyperkalaemia risk. Check K+ if on combination." },
+  { topic: "UTI", q: "Asymptomatic bacteriuria — when to treat?", a: "Pregnancy + pre-urological procedure ONLY. Otherwise no treatment (incl. catheter, elderly)." },
+  { topic: "UTI", q: "Recurrent UTI definition", a: "≥2 in 6 months OR ≥3 in 12 months — refer GP for investigation + prophylaxis discussion" },
+  { topic: "UTI", q: "Pyelonephritis presentation", a: "Loin/flank pain, fever ≥38°C, vomiting, rigors, systemic upset — admit for IV antibiotics (gentamicin + amoxicillin OR ceftriaxone)" },
+
+  // Contraception deep dive
+  { topic: "Contraception", q: "UKMEC category 4 examples", a: "Migraine + aura + COC; <6 wks postpartum + COC; smoking ≥15/d + age ≥35 + COC; current breast Ca; severe cirrhosis" },
+  { topic: "Contraception", q: "Ulipristal vs Levonorgestrel EC", a: "UPA 30mg ≤120h (more effective 72–120h, better in BMI>26); LNG 1.5mg ≤72h (most effective <24h)" },
+  { topic: "Contraception", q: "Enzyme inducers reducing COC efficacy", a: "Rifampicin/rifabutin, carbamazepine, phenytoin, phenobarbital, modafinil, St John's wort" },
+  { topic: "Contraception", q: "ACHES warning signs on COC", a: "Abdominal pain · Chest pain · Headache severe/aura · Eye changes · Severe leg pain — STOP pill, refer urgently" },
+  { topic: "Contraception", q: "Drospirenone POP missed window", a: "Slinda + Cerazette: 12h window. Standard POP (norethisterone): 3h window." },
+  { topic: "Contraception", q: "When COC restart postpartum?", a: "≥6 weeks if not breastfeeding (VTE risk); ≥6 months if breastfeeding (lactation impact); POP/implant OK earlier." },
+
+  // Shingles deep dive
+  { topic: "Shingles", q: "Hutchinson sign + implication", a: "Vesicles on tip of nose = nasociliary nerve (V1) involvement → ophthalmic zoster → urgent ophthalmology referral" },
+  { topic: "Shingles", q: "Ramsay Hunt syndrome triad", a: "Ipsilateral facial nerve palsy + ear/auditory canal vesicles + auditory symptoms (vertigo, hearing loss) → urgent ENT" },
+  { topic: "Shingles", q: "Shingrix vs Zostavax", a: "Shingrix: 2-dose subunit, recombinant, very effective, can use in immunocompromised; Zostavax: live attenuated, contraindicated in immunocompromised. Use Shingrix." },
+  { topic: "Shingles", q: "Post-herpetic neuralgia incidence + risk", a: "10–18% overall; rises with age (>50% if >80yo). Early antivirals + Shingrix vaccine reduce risk." },
+
+  // Impetigo deep dive
+  { topic: "Impetigo", q: "Most common causative organisms", a: "S. aureus (most common, esp. bullous via exfoliative toxin) ± S. pyogenes (group A strep)" },
+  { topic: "Impetigo", q: "Impetigo + post-strep complications", a: "Post-streptococcal glomerulonephritis — concern especially in Aboriginal/Torres Strait Islander children. Treat systemically." },
+
+  // Acne deep dive
+  { topic: "Acne", q: "Acne severity → treatment escalation", a: "Comedonal: retinoid±BPO. Mild–mod inflammatory: + topical abx. Moderate: + oral abx 3-4mo. Severe/nodulocystic: refer isotretinoin." },
+  { topic: "Acne", q: "Topical antibiotic rule for acne", a: "NEVER monotherapy — always combine with BPO or retinoid (reduces resistance). Max 12 weeks." },
+  { topic: "Acne", q: "Doxycycline counsel points", a: "Take with water, avoid lying flat 30 min, photosensitivity, separate from dairy/iron/antacids 2h, avoid in pregnancy + <8yo" },
+  { topic: "Acne", q: "Isotretinoin pregnancy + monitoring", a: "Category X — teratogenic. iPLEDGE-like program: 2 contraceptive methods, monthly pregnancy tests, LFTs, lipids" },
+
+  // Rhinitis deep dive
+  { topic: "Rhinitis", q: "INCS technique counsel", a: "Aim spray AWAY from septum (toward outer wall) to reduce epistaxis + septal damage; prime spray; head slightly forward" },
+  { topic: "Rhinitis", q: "INCS time to max effect", a: "Days to onset; max effect at 2 weeks — counsel patience, use consistently not PRN" },
+  { topic: "Rhinitis", q: "Why avoid 1st-gen antihistamine for daily use?", a: "Sedation, anticholinergic burden (dry mouth, constipation, urinary retention, cognitive impairment, falls risk in elderly)" },
+  { topic: "Rhinitis", q: "Montelukast black-box warning", a: "Neuropsychiatric: depression, suicidality, mood/behaviour changes — counsel patient + family, monitor closely" },
+
+  // Eye / conjunctivitis deep
+  { topic: "Eye", q: "Chloramphenicol drops S3 supply criteria", a: "Bacterial conjunctivitis features (purulent discharge, sticky lids), age ≥2 (verify current), no red flags, no contact lens" },
+  { topic: "Eye", q: "Red eye in contact lens wearer", a: "Assume keratitis (esp. Pseudomonas) until proven otherwise — sight-threatening — refer urgent ophthalmology, don't supply OTC" },
+  { topic: "Eye", q: "Acute angle-closure glaucoma sx", a: "Severe eye pain + headache + N&V + halos around lights + cloudy cornea + mid-dilated unreactive pupil → EMERGENCY" },
+  { topic: "Eye", q: "Chemical eye injury — first action", a: "IRRIGATE COPIOUSLY with saline/water for ≥20 min BEFORE referring; alkali = worst (deep penetration)" },
+  { topic: "Eye", q: "Eye drop technique key step", a: "After instilling: close eye + apply gentle pressure on inner corner (nasolacrimal duct) for 1 min → reduces systemic absorption, improves retention" },
+
+  // Ear deep
+  { topic: "Ear", q: "Pinna pull direction (otoscopy)", a: "Adult: UP + BACK. Child <3: DOWN + BACK (straightens canal due to angled tympanic membrane)" },
+  { topic: "Ear", q: "Malignant otitis externa", a: "Necrotising OE in diabetic/immunocompromised — extends to skull base; severe pain, otorrhoea, may have CN palsy — admit, IV antibiotics" },
+  { topic: "Ear", q: "Mastoiditis sign", a: "Post-auricular swelling/tenderness/erythema + protruding pinna + AOM hx — urgent referral, IV antibiotics, possible surgery" },
+
+  // MSK deep
+  { topic: "MSK", q: "Cauda equina symptoms", a: "Saddle anaesthesia, urinary retention/incontinence, faecal incontinence, bilateral sciatica, progressive neuro deficit → EMERGENCY MRI" },
+  { topic: "MSK", q: "Yellow flags (back pain)", a: "Psychosocial: fear of movement, catastrophising, low mood, work issues, passive coping → predict chronicity" },
+  { topic: "MSK", q: "Triple whammy", a: "NSAID + ACEi/ARB + diuretic → AKI risk. Caution + monitor renal function." },
+  { topic: "MSK", q: "When to image acute back pain?", a: "Red flag present (cancer hx, trauma, fever, neuro deficit, age <20/>50 new). NOT for routine non-specific back pain in first 4–6 weeks." },
+
+  // GORD deep
+  { topic: "GORD", q: "Why PPI 30 min before breakfast?", a: "Proton pumps activated by food; PPI must be absorbed + circulating before pumps active to inhibit them — 50% loss of efficacy if taken with food" },
+  { topic: "GORD", q: "Long-term PPI risks", a: "B12/Mg/iron deficiency, fracture risk, C. diff, kidney disease (CIN/CKD), rebound on stopping — step down, lowest effective dose" },
+  { topic: "GORD", q: "H. pylori triple therapy (AU)", a: "Esomeprazole 20mg BD + amoxicillin 1g BD + clarithromycin 500mg BD × 7 days. Pen-allergic: metronidazole 400mg BD." },
+  { topic: "GORD", q: "PPI rebound prevention", a: "Taper over 2–4 weeks if on >8 weeks. Switch to H2RA temporarily can help bridge." },
+
+  // Vaccinations deep
+  { topic: "Vaccines", q: "Anaphylaxis IM adrenaline dose", a: "0.01 mg/kg (max 0.5 mg) IM mid-anterolateral thigh. EpiPen 300 mcg adult; EpiPen Jr 150 mcg child <20 kg." },
+  { topic: "Vaccines", q: "Anaphylaxis recognition (≥2 systems)", a: "Skin (urticaria, angioedema, flush) + Resp (stridor, wheeze, SOB) + CV (hypotension, collapse) + GI (vomit, cramps)" },
+  { topic: "Vaccines", q: "Vaccine in pregnancy — dTpa timing", a: "20–32 weeks gestation EACH pregnancy. Passive antibody protects neonate from pertussis until first dose." },
+  { topic: "Vaccines", q: "Live vaccines + pregnancy", a: "Contraindicated: MMR, MMRV, varicella, zoster Zostavax, yellow fever, BCG, oral typhoid, rotavirus. Avoid pregnancy 28 days after live." },
+  { topic: "Vaccines", q: "Interval between live vaccines", a: "If not given same day, separate by ≥4 weeks (else immune response to 2nd may be blunted)" },
+  { topic: "Vaccines", q: "Cold chain monitoring", a: "Vaccines 2–8°C; log temp twice daily; excursion → quarantine + consult manufacturer; don't use freezer-thawed live vaccines" },
+  { topic: "Vaccines", q: "AIR reporting timeframe", a: "All vaccines reported to Australian Immunisation Register within 10 days (mandatory)" },
+
+  // Smoking deep
+  { topic: "Smoking", q: "Time-to-first-cigarette (FTND)", a: "Surrogate for nicotine dependence — <5 min = very high (need high-dose patch + combination NRT); <30 min = high; >60 min = low" },
+  { topic: "Smoking", q: "Clozapine + smoking cessation risk", a: "Cessation reduces CYP1A2 induction → clozapine levels rise → toxicity (seizure, sedation). Psychiatrist must reduce dose 30–50% over 1–2 weeks." },
+  { topic: "Smoking", q: "Varenicline mood warning", a: "Mood changes, suicidal ideation (rare) — counsel + monitor, esp. in pre-existing mental illness. Patient + family aware." },
+  { topic: "Smoking", q: "Bupropion seizure threshold", a: "Lowers threshold — avoid if hx seizure, eating disorder, abrupt alcohol/benzo withdrawal, head trauma" },
+
+  // N&V deep
+  { topic: "N+V", q: "Acute dystonia (metoclopramide) sx + tx", a: "Tongue protrusion, oculogyric crisis, torticollis (esp. young women). Tx: benztropine 1–2 mg IM/IV or diphenhydramine." },
+  { topic: "N+V", q: "Pregnancy nausea first-line", a: "Doxylamine 12.5 mg + pyridoxine (B6) 25 mg TDS. Ginger 250 mg QID. Lifestyle: small frequent meals, dry carbs before rising." },
+  { topic: "N+V", q: "Hyperemesis gravidarum criteria", a: "Persistent vomiting + dehydration + ketonuria + >5% weight loss → REFER for IV fluids + ondansetron" },
+  { topic: "N+V", q: "Bilious vomiting (green) — significance", a: "Bowel obstruction until proven otherwise → REFER URGENTLY (esp. infants — malrotation/volvulus)" },
+
+  // Mental health deep
+  { topic: "MH", q: "Suicide risk — direct questioning safe?", a: "YES — strong evidence asking about suicide does NOT plant the idea. Reduces risk by opening conversation." },
+  { topic: "MH", q: "High-risk suicide indicators", a: "Active plan + means + intent; recent attempt; command hallucinations; severe agitation; sudden calm after distress → 000 / ED" },
+  { topic: "MH", q: "Antidepressant activation window", a: "First 2–4 weeks of SSRI — energy improves before mood; paradoxical suicide risk window, esp. <25yo. Monitor closely." },
+  { topic: "MH", q: "Lifeline number", a: "13 11 14 (24/7 crisis). Suicide Call Back: 1300 659 467. Beyond Blue: 1300 22 4636. NSW MH Line: 1800 011 511. 13YARN: 13 92 76." },
+  { topic: "MH", q: "Serotonin syndrome triad", a: "Mental change + autonomic instability + neuromuscular (tremor, hyperreflexia, clonus). Caused by combo serotonergic drugs (SSRI+tramadol/MAOI/triptan). Refer." },
+  { topic: "MH", q: "Lithium toxicity signs", a: "Tremor, ataxia, confusion, vomiting (>1.2 mmol/L toxic). Triggers: dehydration, NSAIDs, ACEi, diuretics. Refer." },
+
+  // Documentation + reasoning
+  { topic: "Documentation", q: "Mini-CEX criteria areas", a: "History-taking, examination, communication, clinical judgement, professionalism, organisation, overall. Score 1–9 across criteria." },
+  { topic: "Reasoning", q: "ICE framework", a: "Ideas (patient's understanding), Concerns (worries), Expectations (what they want from this consult). Mark in OSCE rubrics." },
+  { topic: "Reasoning", q: "Confirmation bias mitigation", a: "Actively seek disconfirming evidence — 'What would make me think this is NOT [my diagnosis]?'" },
+  { topic: "Reasoning", q: "Availability heuristic", a: "Diagnosing based on what comes to mind easily (recent cases). Mitigate: structured differential, base rates." },
+
+  // Pharmacology high-yield
+  { topic: "Pharm", q: "QT-prolonging drugs to flag", a: "Ondansetron, antipsychotics (haloperidol, quetiapine), macrolides (azithromycin), fluoroquinolones, methadone, antiemetics (domperidone), some antidepressants (citalopram >20mg in elderly)" },
+  { topic: "Pharm", q: "Pregnancy category D drugs (caution)", a: "ACE inhibitors, ARBs (T2-3), warfarin, lithium, methotrexate, isotretinoin, sodium valproate, phenytoin, carbamazepine" },
+  { topic: "Pharm", q: "Drugs causing rhabdomyolysis", a: "Statins (esp. simvastatin/atorvastatin high-dose), fibrates + statin combination, daptomycin, colchicine. Monitor CK, renal function." },
+  { topic: "Pharm", q: "Warfarin INR target — AF, mech valve", a: "AF: 2.0–3.0. Mechanical valve: 2.5–3.5 (mitral) or 2.0–3.0 (aortic). Monitor weekly initially." },
+  { topic: "Pharm", q: "DOACs reversal agents", a: "Dabigatran → idarucizumab (Praxbind). Factor Xa (rivaroxaban, apixaban) → andexanet alfa OR PCC if unavailable." },
+
+  // Vital sign cutoffs deep
+  { topic: "Vitals", q: "BP measurement key technique", a: "Cuff 80% upper arm circumference, arm at heart level, no talking, 5 min rest, 2 readings 1 min apart averaged. Both arms first visit." },
+  { topic: "Vitals", q: "Postural BP drop definition", a: "Drop ≥20 mmHg systolic OR ≥10 mmHg diastolic within 3 min of standing → orthostatic hypotension" },
+
+  // Cranial nerves quick
+  { topic: "Neuro", q: "CN III lesion sign", a: '"Down + out" eye (lateral rectus + superior oblique unopposed) + ptosis + dilated pupil (parasympathetic loss)' },
+  { topic: "Neuro", q: "CN VII vs CN V facial weakness", a: "CN VII (Bell's): whole side of face. Stroke (UMN): forehead SPARED (bilateral cortical innervation). Refer if stroke pattern." },
+  { topic: "Neuro", q: "Stroke recognition — FAST", a: "Face droop, Arm weakness, Speech difficulty, Time — call 000. Add: visual changes, sudden severe headache, ataxia (BE-FAST)" },
+
+  // Resuscitation
+  { topic: "Resus", q: "DRSABCD", a: "Danger, Response, Send for help, Airway, Breathing, CPR (30:2), Defibrillation. Compress 5–6 cm depth, 100–120/min." }
 ];
 
 // =========================

@@ -134,6 +134,25 @@ body {
 /* References */
 .ref-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
 .ref-card { background: #fff; border: 1px solid #e9e3d8; border-radius: 12px; padding: 20px; }
+/* Reference Library */
+.lib-intro { background: #fff; border: 1px solid #e9e3d8; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.lib-intro h2 { font-size: 24px; margin-bottom: 10px; }
+.lib-section-title { font-size: 18px; font-weight: 600; color: #2c3e50; margin: 24px 0 12px; padding: 12px 16px; background: linear-gradient(135deg, #2980b9, #2c3e50); color: #fff; border-radius: 8px; }
+.lib-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.lib-card { background: #fff; border: 1px solid #e9e3d8; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; position: relative; transition: box-shadow 0.15s, transform 0.15s; }
+.lib-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.lib-num { position: absolute; top: 12px; right: 14px; font-size: 11px; font-weight: 600; color: #999; letter-spacing: 0.05em; }
+.lib-card h3 { font-size: 16px; font-weight: 600; margin: 0 0 6px; color: #2c3e50; padding-right: 30px; }
+.lib-desc { font-size: 13px; color: #555; margin: 0 0 14px; flex: 1; line-height: 1.45; }
+.lib-actions { display: flex; gap: 8px; }
+.lib-btn { flex: 1; text-align: center; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: background 0.15s; }
+.lib-btn-primary { background: #2980b9; color: #fff; }
+.lib-btn-primary:hover { background: #1e6391; }
+.lib-btn-secondary { background: #ecf0f1; color: #2c3e50; border: 1px solid #d5d5d5; }
+.lib-btn-secondary:hover { background: #d5dbdc; }
+@media (max-width: 700px) {
+  .lib-grid { grid-template-columns: 1fr; }
+}
 .ref-card h3 { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
 .ref-card table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .ref-card th, .ref-card td { text-align: left; padding: 6px 4px; border-bottom: 1px solid #f0ebe0; vertical-align: top; }
@@ -295,6 +314,7 @@ body.banner-shown { padding-bottom: 80px; }
   <button class="tab" data-tab="stations">OSCE Stations</button>
   <button class="tab" data-tab="flash">Flashcards</button>
   <button class="tab" data-tab="ref">Quick Reference</button>
+  <button class="tab" data-tab="library">Reference Library</button>
 </nav>
 
 <section class="panel" id="about"></section>
@@ -303,6 +323,7 @@ body.banner-shown { padding-bottom: 80px; }
 <section class="panel" id="stations"></section>
 <section class="panel" id="flash"></section>
 <section class="panel" id="ref"></section>
+<section class="panel" id="library"></section>
 
 </div>
 
@@ -510,45 +531,59 @@ const D = {
     <p><strong>Reversibility:</strong> &gt;12% AND &gt;200 mL improvement in FEV1 post-bronchodilator suggests asthma (vs fixed COPD).</p>
     <p><strong>COPD severity (post-BD FEV1 % predicted):</strong> Mild ≥80 · Moderate 50–79 · Severe 30–49 · Very severe &lt;30</p>`,
 
-  utiFull: `<h4>Uncomplicated UTI — pharmacist prescribing pathway (NSW)</h4>
+  utiFull: `<h4>Uncomplicated UTI — pharmacist prescribing pathway (NSW PATH-UTI permanent)</h4>
     <h4>Eligibility (must meet ALL)</h4>
-    <ul><li>Adult female 18–65 (check current NSW criteria — was 18–65 at trial; may have expanded)</li><li>Not pregnant or breastfeeding</li><li>Typical symptoms: dysuria + frequency + urgency</li><li>No red flag features (see below)</li><li>No UTI in past month / no recent antibiotic course (resistance risk)</li></ul>
-    <div class="flag"><strong>Red flags — refer (do NOT prescribe):</strong>
-      <ul><li>Pregnancy, breastfeeding</li><li>Male, child, &gt;65</li><li>Pyelonephritis: loin pain, fever ≥38°C, vomiting, rigors, systemic upset</li><li>Haematuria persisting beyond UTI</li><li>Vaginal discharge (consider STI/candidiasis)</li><li>Recurrent UTI (≥2 in 6 months or ≥3 in 12 months)</li><li>Immunocompromised, diabetes with complications, structural urinary abnormality, catheter, recent urological procedure</li></ul>
+    <ul><li>Female, <strong>18–65 years</strong>, physically present, informed consent</li><li>≥2 of: dysuria, urinary frequency, urinary urgency, suprapubic pain/discomfort (1 symptom = insufficient → conservative care only)</li><li>No exclusion criteria (see below)</li></ul>
+    <div class="flag"><strong>RED — pyelonephritis / sepsis → ED immediately:</strong> fever &gt;38°C, chills, N/V, malaise, flank/loin pain; SOB, tachycardia, hypotension, mental confusion, cold extremities</div>
+    <div class="flag"><strong>ORANGE — refer GP (no pharmacist antibiotic; conservative care only):</strong>
+      <ul><li>Pregnancy or 4–6 wk postpartum</li><li>Recurrent UTI (≥2 in 6 mo OR ≥3 in 12 mo)</li><li>Symptoms persisting 48–72 h after appropriate antibiotic / recurrence within 2 wk of finishing antibiotic</li><li>Visible haematuria / pyuria</li><li>Renal disease/stones, catheter, previous pyelonephritis</li><li>Immunocompromised (azathioprine, ciclosporin, cyclophosphamide, methotrexate even low-dose)</li><li>Blood disorder/porphyria, spinal cord injury, diabetes</li><li>IUD inserted in last 3 months; RACF resident; gender-affirming care affecting UT</li><li>Male / had gender reassignment surgery</li><li>Symptoms suggest other cause (e.g. vaginal discharge → STI/thrush)</li></ul>
     </div>
-    <h4>Empirical antibiotic therapy (per eTG / NSW protocol)</h4>
-    <table><tr><th>Agent</th><th>Dose</th><th>Duration</th><th>Notes</th></tr>
-    <tr><td>Trimethoprim</td><td>300 mg nocte</td><td>3 days</td><td>Avoid 1st trimester pregnancy; caution renal impairment</td></tr>
-    <tr><td>Nitrofurantoin</td><td>100 mg q6h</td><td>5 days</td><td>Avoid if eGFR &lt;45; G6PD deficiency; avoid late pregnancy (term)</td></tr>
-    <tr><td>Cefalexin</td><td>500 mg q12h</td><td>5 days</td><td>2nd-line; broader spectrum</td></tr></table>
+    <div class="flag"><strong>TREAT + concurrent GP review (MDR or STI risk):</strong> recent antibiotics (3 mo); recent hospitalisation / RACF; overseas travel last 3 mo (or 6 mo to South/SE Asia); STI risk (&lt;29, prior STI, unprotected sex, new partner &lt;60 d); SGLT2 inhibitor; IUD ≥3 mo in situ</div>
+    <h4>Empirical antibiotic therapy (NSW hierarchical order — 2026 update; must justify any deviation)</h4>
+    <table><tr><th>Step</th><th>Agent</th><th>Dose</th><th>Duration</th><th>Notes</th></tr>
+    <tr><td><strong>1st</strong></td><td><strong>Nitrofurantoin</strong></td><td>100 mg PO q6h (MR BD preferred if available)</td><td>5 days</td><td>Avoid eGFR &lt;45; avoid at term; needs adequate urine flow. Don't co-supply urinary alkalinisers</td></tr>
+    <tr><td><strong>2nd</strong></td><td><strong>Fosfomycin</strong></td><td>3 g PO single dose</td><td>once</td><td>Dissolve in water; empty stomach</td></tr>
+    <tr><td><strong>3rd</strong></td><td><strong>Trimethoprim</strong></td><td>300 mg PO nocte</td><td>3 nights</td><td>Avoid 1st trimester; ↑ K+ with ACEi/ARB/spironolactone; ↑ INR with warfarin</td></tr>
+    <tr><td><strong>4th</strong></td><td><strong>Cefalexin</strong></td><td>500 mg PO q12h</td><td>5 days</td><td>Only if 1st–3rd unavailable/inappropriate</td></tr></table>
+    <p><em>Note: April 2023 NSW Authority lists trimethoprim/nitrofurantoin/cefalexin only; fosfomycin added per updated NSW protocol (2026). Verify current Authority — Apr 2023 instrument scheduled to be cancelled 30 Apr 2024.</em></p>
+    <h4>Conservative / analgesia (consider first-line for early mild uUTI per updated eTG — NNT 3–6)</h4>
+    <ul><li>Paracetamol 1 g PO q4–6h prn (max 4 g/24 h)</li><li>Ibuprofen 200–400 mg PO q6–8h prn (Canvas Protocol max 2.4 g/24 h under pharmacist-prescriber scope; standard OTC ceiling 1200 mg)</li><li>Fluids 2–3 L/day</li></ul>
     <h4>Non-pharmacological advice</h4>
-    <ul><li>Increase fluids (2–3 L/day if appropriate)</li><li>Void frequently, after intercourse</li><li>Wipe front to back</li><li>Avoid douches and irritant soaps</li><li>Cranberry products — limited evidence; may help prevention not treatment</li></ul>
+    <ul><li>Void frequently, after intercourse</li><li>Wipe front to back</li><li>Avoid douches and irritant soaps</li><li>Cranberry products — prevention only, not treatment</li><li>Urine sample BEFORE first antibiotic dose; refrigerate; take to GP if no improvement at 48 h</li></ul>
     <h4>Safety-net</h4>
-    <p>Return / present to GP or ED if: fever ≥38°C, loin pain, vomiting, blood in urine, no improvement in 48h, or symptoms worsen.</p>
-    <p>Communicate to GP via SOAP letter within 48h. Document everything.</p>`,
+    <p>Symptoms should improve within <strong>48 h</strong>. Return / present to GP or ED if: fever ≥38°C, loin pain, vomiting, blood in urine, no improvement in 48h, or symptoms worsen.</p>
+    <p>Document in MedAdvisor; communicate to GP via SOAP within 48h; records kept ≥7 years. No GP available → HealthDirect 1800 022 222.</p>`,
 
-  acneFull: `<h4>Acne — classification + management</h4>
+  acneFull: `<h4>Acne — NSW pharmacist prescribing pathway</h4>
+    <h4>NSW Scope (Practice Standards for Acne — NSW Health Authority dated 5 August 2025)</h4>
+    <p><strong>Patient ≥12 years, MILD acne only</strong> (few comedones/pustules/papules; no scarring; often T-zone). Pharmacists may supply up to <strong>6 weeks therapy per consultation</strong> with 6-week review; topical clindamycin max 3 months total. Records ≥7 years (or to age 25 if patient &lt;18).</p>
+    <h4>NSW Approved Medicines (5 Aug 2025) — topical only</h4>
+    <ul><li><strong>Adapalene 0.1–0.3%</strong> (retinoid)</li><li><strong>Tretinoin 0.025%</strong> (retinoid)</li><li><strong>Trifarotene 0.005%</strong> (newer selective retinoid)</li><li><strong>Clindamycin 1%</strong> topical (NEVER as monotherapy; max 3 months)</li></ul>
+    <p><strong>NOT permitted under NSW Standard:</strong> oral antibiotics, spironolactone, OCP, oral isotretinoin (specialist only).</p>
     <h4>Classification</h4>
     <table><tr><th>Severity</th><th>Features</th><th>First-line</th></tr>
-    <tr><td>Mild comedonal</td><td>Open + closed comedones, few inflamed lesions</td><td>Topical retinoid (adapalene 0.1% nocte) ± BPO</td></tr>
-    <tr><td>Mild–moderate inflammatory</td><td>Papules, pustules, comedones</td><td>Topical retinoid + BPO + topical antibiotic (clindamycin/erythromycin) — NEVER topical abx as monotherapy</td></tr>
-    <tr><td>Moderate</td><td>Widespread papules + pustules, mild scarring risk</td><td>Add oral antibiotic (doxycycline 50–100 mg daily, 3–4 months) + topicals</td></tr>
-    <tr><td>Severe / nodulocystic</td><td>Nodules, cysts, scarring</td><td>REFER to dermatologist (isotretinoin)</td></tr></table>
+    <tr><td><strong>Mild (in scope)</strong></td><td>Few comedones, pustules, papules; no scarring; often T-section</td><td>Topical retinoid (adapalene 0.1% nocte) ± BPO ± topical clindamycin (combo only)</td></tr>
+    <tr><td>Moderate–severe (REFER)</td><td>Numerous comedones, pustules, papules ± nodules; extensive face ± trunk</td><td>Refer GP for oral antibiotic (doxycycline) ± hormonal</td></tr>
+    <tr><td>Severe / nodulocystic (REFER)</td><td>Nodules, cysts, scarring</td><td>REFER dermatologist (isotretinoin — specialist only)</td></tr></table>
     <h4>Pharmacist OSCE approach</h4>
-    <ul><li>Assess: distribution (face/trunk), lesion types (comedonal vs inflammatory vs nodular), severity, scarring, psychological impact, current/past tx</li><li>Screen for endocrine causes if signs (hirsutism, irregular menses) — refer</li><li>Counsel: 6–8 weeks before effect; retinoid causes initial flare + photosensitivity; BPO bleaches fabrics; combine to reduce resistance</li></ul>
-    <div class="flag"><strong>Refer:</strong> nodulocystic/scarring, treatment failure after 3 months, severe psychological impact, suspected endocrine cause</div>`,
+    <ul><li>Confirm age ≥12 + mild only</li><li>Lesion morphology (comedonal vs inflammatory vs nodular)</li><li>Endocrine red flag screen in adult women (PCOS, hirsutism, irregular menses) → refer</li><li>Pregnancy / contraception screen — teratogenic agents need effective contraception</li><li>Counsel: 6–8 weeks before effect; retinoid initial flare + photosensitivity; BPO bleaches fabrics; combine to reduce resistance</li><li>Topical clindamycin NEVER alone — always with BPO or retinoid</li></ul>
+    <div class="flag"><strong>RED — refer immediately:</strong> psychological distress (low self-esteem, depression, suicidal ideation); acne fulminans; serious adverse effects. <strong>ORANGE — refer GP:</strong> patient &lt;12 yo; moderate-severe/cystic/scarring; pregnant/planning; PCOS or androgenisation signs; medications causing/aggravating acne; worsening on therapy; no improvement after 3 months total. Report adverse events to TGA (aems.tga.gov.au) + notify GP.</div>`,
 
-  impetigoFull: `<h4>Impetigo — assessment + management</h4>
+  impetigoFull: `<h4>Impetigo — assessment + management (NSW PATH-DERM permanent)</h4>
+    <h4>NSW Scope</h4>
+    <p><strong>Adults: localised (≤2 sores) AND extensive (&gt;2 sores) — both in pharmacist scope.</strong> Paediatric oral antibiotic = refer. ≥65 yo = treat AND mandatory simultaneous GP referral. Severe + widespread = REFER (not just extensive — that's still in scope).</p>
     <h4>Recognise</h4>
     <ul><li><strong>Non-bullous</strong> (most common, ~70%): honey-coloured crusted lesions, around mouth/nose. Cause: S. aureus ± S. pyogenes</li><li><strong>Bullous</strong>: flaccid blisters → crusts, larger lesions. Cause: S. aureus toxin</li><li>Highly contagious — exclude from school/childcare until 24h after starting antibiotic OR lesions crusted over</li></ul>
-    <h4>Management (per eTG)</h4>
-    <table><tr><th>Extent</th><th>Treatment</th></tr>
-    <tr><td>Localised (≤2 lesions, small area)</td><td><strong>Mupirocin 2% topical</strong>, apply TDS × 5 days. Remove crusts gently with saline first.</td></tr>
-    <tr><td>Widespread / multiple sites / systemic</td><td><strong>Cefalexin</strong> 500 mg q6h × 7d (adult) OR <strong>di/flucloxacillin</strong> 500 mg q6h × 7d</td></tr>
-    <tr><td>Severe penicillin allergy</td><td>Trimethoprim/sulfamethoxazole 160/800 mg BD × 7d OR clindamycin</td></tr></table>
+    <h4>Management — narrow spectrum first (per Canvas / eTG)</h4>
+    <table><tr><th>Step</th><th>Extent / context</th><th>Drug + dose</th><th>Duration</th></tr>
+    <tr><td>1st topical</td><td>Localised (≤2 sores)</td><td><strong>Mupirocin 2% topical</strong> TDS</td><td>5 days (remove crusts gently with saline first)</td></tr>
+    <tr><td>1st oral</td><td>Adult extensive (&gt;2 sores) / recurrent / bullous</td><td><strong>Dicloxacillin 500 mg PO q6h</strong> OR <strong>Flucloxacillin 500 mg PO q6h</strong> (child 12.5 mg/kg up to 500 mg)</td><td>5 days (stop at 3 d if resolved)</td></tr>
+    <tr><td>3rd oral</td><td>Non-severe pen allergy OR paeds palatability</td><td><strong>Cefalexin 1 g PO q12h</strong> (child 25 mg/kg up to 1 g)</td><td>5 days</td></tr>
+    <tr><td>Severe pen allergy</td><td>—</td><td><strong>TMP-SMX 160+800 mg PO q12h</strong> (child ≥1 mo 4+20 mg/kg up to 160+800 mg)</td><td>5 days</td></tr></table>
+    <p><strong>Narrow spectrum first (AMS):</strong> don't default to cefalexin — diclox/flucloxacillin gives less resistance pressure on S. aureus.</p>
     <h4>Non-pharm</h4>
     <ul><li>Wash skin daily with soap/water</li><li>Keep lesions covered if possible</li><li>Don't share towels/clothing</li><li>Hand hygiene critical</li></ul>
-    <div class="flag"><strong>Refer if:</strong> systemic symptoms (fever, lymphadenopathy), facial/orbital involvement, failure to improve after 7 days, recurrent infection, immunocompromised</div>`,
+    <div class="flag"><strong>RED — refer (do NOT treat):</strong> severe AND widespread rash (systemic features + extensive); non-blanching purple rash; generalised erythema ≥90% BSA; sepsis signs (fever, tachy, hypotension, confusion); blistering + mucosal involvement (SJS/TEN); ecthyma; cellulitis/gangrene/bacteraemia. <strong>ORANGE — refer:</strong> lymphadenopathy; chronic ulcers; immunocompromised; paediatric needing oral antibiotic. <strong>≥65 yo:</strong> TREAT + mandatory simultaneous GP referral.</div>`,
 
   shinglesFull: `<h4>Herpes zoster (Shingles) — full pathway</h4>
     <h4>Recognise</h4>
@@ -567,7 +602,11 @@ const D = {
     <h4>Post-zoster vaccine</h4>
     <p>Shingrix recommended ≥6–12 months after acute episode in eligible patients (≥50yo, immunocompetent; ≥18 immunocompromised). 2 doses, 2–6 months apart.</p>`,
 
-  rhinitisFull: `<h4>Allergic + non-allergic rhinitis — management</h4>
+  rhinitisFull: `<h4>Allergic + non-allergic rhinitis — NSW pharmacist prescribing pathway</h4>
+    <h4>NSW Scope</h4>
+    <p><strong>Patient ≥6 years.</strong> Pharmacist may supply up to <strong>4 weeks of therapy</strong> before GP referral. NSW Health Authority approved medicines list dated 25 February 2026.</p>
+    <h4>NSW Approved Medicines (25 Feb 2026)</h4>
+    <ul><li><strong>Fluticasone furoate</strong> intranasal</li><li><strong>Olopatadine with mometasone</strong> intranasal combination</li><li><strong>Olopatadine 0.1%</strong> eye drops (allergic conjunctivitis)</li></ul>
     <h4>Distinguish</h4>
     <table><tr><th>Feature</th><th>Allergic</th><th>Non-allergic</th></tr>
     <tr><td>Triggers</td><td>Pollen, dust mite, pet dander, mould</td><td>Cold air, fumes, hormones, foods, drugs</td></tr>
@@ -575,7 +614,7 @@ const D = {
     <tr><td>Eye symptoms</td><td>Often (conjunctivitis)</td><td>Rare</td></tr>
     <tr><td>Family hx atopy</td><td>Common</td><td>Less common</td></tr></table>
     <h4>Stepwise management</h4>
-    <ol><li><strong>Avoidance + saline irrigation</strong> (best evidence for non-pharm)</li><li><strong>Intranasal corticosteroid (INCS) — first-line preventive therapy</strong>: fluticasone furoate 27.5 mcg/spray, 2 sprays each nostril daily; or mometasone, budesonide, fluticasone propionate. Onset days; max effect at 2 weeks. Counsel: aim spray away from septum.</li><li><strong>Oral 2nd-gen antihistamines</strong> PRN for breakthrough: loratadine 10 mg daily, cetirizine 10 mg daily, fexofenadine 120–180 mg daily. (Avoid 1st-gen for daily use — sedation, anticholinergic)</li><li><strong>Combination INCS + intranasal antihistamine</strong> (azelastine/fluticasone, e.g. Dymista) for moderate–severe</li><li>Add leukotriene antagonist (montelukast) only if asthma + AR — black box warning for mood/behaviour</li><li>Refer for allergen immunotherapy if persistent despite optimal pharmacotherapy</li></ol>
+    <ol><li><strong>Avoidance + saline irrigation</strong> (best evidence for non-pharm)</li><li><strong>Intranasal corticosteroid (INCS) — first-line preventive therapy</strong>: fluticasone furoate 27.5 mcg/spray, 2 sprays each nostril daily; or mometasone, budesonide, fluticasone propionate. Onset days; max effect at 2 weeks. Counsel: aim spray away from septum.</li><li><strong>Oral 2nd-gen antihistamines</strong> PRN for breakthrough: loratadine 10 mg daily, cetirizine 10 mg daily, <strong>fexofenadine 120 mg daily for AR</strong> (180 mg = chronic urticaria), desloratadine 5 mg daily. (Avoid 1st-gen for daily use — sedation, anticholinergic)</li><li><strong>Combination INCS + intranasal antihistamine</strong> (azelastine/fluticasone, e.g. Dymista) for moderate–severe</li><li>Add leukotriene antagonist (montelukast) only if asthma + AR — black box warning for mood/behaviour</li><li>Refer for allergen immunotherapy if persistent despite optimal pharmacotherapy</li></ol>
     <h4>Decongestants — careful!</h4>
     <p><strong>Topical (oxymetazoline, xylometazoline):</strong> max 5–7 days (rhinitis medicamentosa risk). <strong>Systemic (pseudoephedrine):</strong> contraindicated in HTN, IHD, glaucoma, BPH; pharmacist-only schedule.</p>
     <div class="flag"><strong>Refer:</strong> unilateral nasal symptoms, unilateral discharge, epistaxis, anosmia, facial pain (sinusitis), nasal obstruction not responding, suspected polyps, paediatric chronic symptoms</div>`,
@@ -585,7 +624,7 @@ const D = {
     <p>Most viral; antibiotics often unnecessary. Bulging red TM ± otorrhoea (if perforated) ± fever.</p>
     <h4>AOM — when to give antibiotics (per eTG)</h4>
     <ul><li>&lt;6 months: always</li><li>6 months–2 years: bilateral AOM</li><li>Severe symptoms (high fever, severe pain) at any age</li><li>Perforation with discharge</li><li>Failure to improve after 48–72h watchful waiting</li><li>Indigenous children or other high-risk populations</li></ul>
-    <p><strong>First-line:</strong> Amoxicillin 15 mg/kg (max 500 mg) TDS × 5–7 days. Pen-allergic: cefuroxime or trimethoprim/sulfamethoxazole.</p>
+    <p><strong>NSW scope (planned/pilot service):</strong> patient ≥2 yo; otoscopy required; if TM not visible, pharmacists must NOT prescribe. <strong>First-line:</strong> Amoxicillin 15 mg/kg (max 500 mg) TDS × 5 days OR 30 mg/kg (max 1 g) BD × 5 days. Non-severe pen allergy: cefuroxime 15 mg/kg (max 500 mg) q12h × 5 days. Severe pen allergy: TMP-SMX 4+20 mg/kg q12h × 5 days. Cefuroxime preferred over cefalexin/cefaclor — superior S. pneumoniae activity.</p>
     <h4>AOE (outer ear / "swimmer's ear")</h4>
     <p>Painful tragus on touch, swollen canal, discharge. Predisposing: water exposure, trauma, eczema.</p>
     <table><tr><th>Treatment</th><th>Detail</th></tr>
@@ -607,7 +646,7 @@ const D = {
 
     <h4>GORD — management</h4>
     <div class="flag"><strong>GORD alarm symptoms (REFER):</strong> dysphagia, odynophagia, weight loss, anaemia, GI bleed (melaena, haematemesis), persistent vomiting, age &gt;50 with new symptoms, FHx upper GI cancer</div>
-    <ol><li><strong>Lifestyle</strong>: weight loss, elevate head of bed, avoid lying within 3h post-meal, smaller meals, trigger avoidance (alcohol, caffeine, fatty/spicy), smoking cessation</li><li><strong>Antacids/alginates</strong> PRN (Gaviscon)</li><li><strong>H2RA</strong> (famotidine 20 mg BD) for mild intermittent</li><li><strong>PPI</strong> first-line for typical GORD: esomeprazole 20 mg or omeprazole 20 mg daily, 4–8 weeks. Review and step down.</li><li>Long-term PPI: counsel re B12, Mg, fracture risk, C. diff — use lowest effective dose</li></ol>
+    <ol><li><strong>Lifestyle</strong>: weight loss, elevate head of bed, avoid lying within 3h post-meal, smaller meals, trigger avoidance (alcohol, caffeine, fatty/spicy), smoking cessation</li><li><strong>Antacids/alginates</strong> PRN (Gaviscon)</li><li><strong>H2RA</strong> (famotidine 20 mg BD) for mild intermittent</li><li><strong>PPI</strong> first-line for typical GORD: esomeprazole 20 mg, omeprazole 20 mg, pantoprazole 20 mg, rabeprazole 20 mg, or lansoprazole 30 mg daily — 30 min before breakfast — 4–8 weeks. Review and step down. <strong>NSW approved meds (25 Feb 2026):</strong> famotidine, nizatidine, esomeprazole, lansoprazole, omeprazole, pantoprazole, rabeprazole. Eligibility: ≥18 AND ≤50 yo; max 4 weeks supply. <strong>Clopidogrel users: AVOID omeprazole/esomeprazole — use rabeprazole</strong> (lowest CYP2C19 interaction).</li><li>Long-term PPI: counsel re B12, Mg, fracture risk, C. diff — use lowest effective dose; taper if &gt;8 weeks (rebound)</li></ol>
 
     <h4>Nausea & vomiting — selection</h4>
     <table><tr><th>Cause / scenario</th><th>1st-line antiemetic</th><th>Notes / cautions</th></tr>
@@ -653,7 +692,7 @@ const D = {
     <ol><li>Position patient seated, expose site, support arm relaxed</li><li>Clean site with alcohol swab, allow to air-dry (don't blow on it)</li><li>Stretch skin taut; insert needle <strong>90°</strong>, full depth in one swift motion (25 mm needle typical adult)</li><li><strong>No aspiration</strong> (per AIH — vaccines don't enter major blood vessels at recommended sites; aspiration ↑ pain, no safety benefit)</li><li>Inject smoothly over 1–2 seconds</li><li>Withdraw needle, apply gentle pressure (no rubbing)</li><li>Dispose of sharps immediately into sharps bin — do NOT recap</li></ol>
     <h4>Post-vaccination</h4>
     <ol><li>Observe patient for 15 minutes minimum (longer if hx anaphylaxis, anxiety, asthma)</li><li>Provide written information; advise on post-vaccine symptom management</li><li>Document in AIR (Australian Immunisation Register): vaccine name, brand, batch number, expiry, dose number, route, site, date, time, your provider number</li><li>Provide receipt / record to patient</li></ol>
-    <div class="flag"><strong>Recognise anaphylaxis (within 15 min observation):</strong> sudden skin (urticaria, angioedema), respiratory (wheeze, stridor, dyspnoea), CV (hypotension, collapse), GI (vomiting). <strong>Action:</strong> adrenaline 1:1000 IM 0.5 mL adult (0.01 mg/kg child) anterolateral thigh; call 000; lie patient flat; second dose at 5 min if no improvement.</div>`,
+    <div class="flag"><strong>Recognise anaphylaxis (within 15 min observation):</strong> sudden skin (urticaria, angioedema), respiratory (wheeze, stridor, dyspnoea), CV (hypotension, collapse), GI (vomiting). <strong>Action:</strong> adrenaline 1:1000 IM 0.01 mg/kg (max 0.5 mg adult / 0.3 mg child &lt;50 kg) anterolateral thigh — EpiPen 300 mcg ≥25 kg; EpiPen Jr 150 mcg child 7.5–25 kg. Lay patient flat (legs up; recovery position if vomiting). Call 000. High-flow O₂. Repeat adrenaline q5 min if no improvement. <strong>Antihistamines + steroids = no role in acute anaphylaxis per current ASCIA (don't treat hypotension/airway).</strong></div>`,
 
   cultSafety: `<h4>Cultural safety — opening lines for OSCE Station 1</h4>
     <p>Cultural safety is often explicitly marked. Practise these phrases until natural:</p>
@@ -674,7 +713,7 @@ const D = {
     <h4>Your tasks (10 min)</h4>
     <ol><li>Take focused history (5 min)</li><li>Identify red flags or referral triggers</li><li>Outline management plan with rationale</li><li>Counsel patient + safety-net</li></ol>
     <h4>Expected approach</h4>
-    <ul><li>Confirm typical Sx (dysuria/frequency/urgency)</li><li>Screen red flags: fever, loin pain, vomiting, haematuria, vaginal discharge, pregnancy possibility</li><li>Verify eligibility: non-pregnant, non-recurrent, age, no recent abx</li><li>Treatment: trimethoprim 300 mg nocte × 3 days OR nitrofurantoin 100 mg q6h × 5 days</li><li>Counsel: increase fluids, void post-intercourse, expected improvement 48h</li><li>Safety-net: return if fever, loin pain, vomiting, blood in urine, no improvement at 48h</li><li>Document SOAP; communicate to GP</li></ul>`,
+    <ul><li>Confirm typical Sx (≥2 of dysuria/frequency/urgency/suprapubic pain)</li><li>Screen RED flags: fever ≥38°C, loin pain, vomiting, rigors, mental confusion → ED</li><li>Screen ORANGE flags: pregnancy, recurrent, haematuria, vaginal discharge, immunocompromise, diabetes, IUD &lt;3mo, RACF, male/post-gender-reassignment → refer GP</li><li>Treatment (NSW 2026 order): <strong>nitrofurantoin 100 mg q6h × 5 days</strong> first-line → fosfomycin 3 g single → trimethoprim 300 mg nocte × 3 d → cefalexin 500 mg q12h × 5 d</li><li>Counsel: increase fluids, void post-intercourse, expected improvement 48h</li><li>Safety-net: return if fever, loin pain, vomiting, blood in urine, no improvement at 48h</li><li>Document SOAP in MedAdvisor; communicate to GP within 48h</li></ul>`,
 
   case_shingles: `<h4>Sample OSCE case — shingles</h4>
     <p><strong>Stem:</strong> Brian, 62yo male, presents with a painful rash on his right chest for 3 days. Says it started as tingling 2 days before the rash appeared. Vesicles in a band on right side, not crossing midline. Otherwise well. PMH HTN, T2DM (HbA1c 6.8%), on perindopril + metformin. No allergies.</p>
@@ -870,7 +909,7 @@ const D = {
     <strong>S:</strong> Sarah, 28F, presented [date] requesting management of urinary symptoms. 2 days of dysuria, frequency, urgency. No fever, loin pain, vomiting, haematuria. LMP 2 weeks ago, COC user. No PMH or allergies. First UTI.<br><br>
     <strong>O:</strong> Vitals: BP 118/76, HR 78, T 36.7°C, RR 14, SpO2 99%. Appears well, no flank tenderness on history.<br><br>
     <strong>A:</strong> Uncomplicated cystitis — meets NSW pharmacist UTI eligibility criteria.<br><br>
-    <strong>P:</strong> Trimethoprim 300 mg PO nocte × 3 days dispensed. Counselled on technique, fluids, voiding habits. Safety-net advice: return / present to GP or ED if fever, loin pain, vomiting, blood in urine, or no improvement at 48h. No follow-up booked with pharmacy. Please review if symptoms persist or recur.<br><br>
+    <strong>P:</strong> Nitrofurantoin 100 mg PO q6h × 5 days dispensed (NSW 2026 first-line; counselled to take with food, ensure adequate urine flow, separate from any urinary alkaliniser). Counselled on technique, fluids, voiding habits. Safety-net advice: return / present to GP or ED if fever, loin pain, vomiting, blood in urine, or no improvement at 48h. No follow-up booked with pharmacy. Please review if symptoms persist or recur.<br><br>
     Kind regards, [Your name], Pharmacist Prescriber</div>
     <h4>ED handover (suspected pyelonephritis — ISBAR + SOAP)</h4>
     <div class="script" style="font-style:normal"><strong>I</strong>dentify: Pharmacist [name] from [pharmacy] calling re: 35F patient Jane Doe DOB 12/05/91 presenting now.<br>
@@ -1318,16 +1357,21 @@ const STATIONS = [
 // =========================
 const CARDS = [
   { topic: "Vitals", q: "Normal adult BP, HR, RR, SpO2, Temp", a: "BP <120/80 (HTN ≥140/90); HR 60–100; RR 12–20; SpO2 ≥95%; Temp 36.5–37.5°C" },
-  { topic: "Vitals", q: "Fasting BGL normal vs diabetic threshold", a: "Normal 4.0–6.0 mmol/L; impaired 6.1–6.9; diabetes ≥7.0 fasting or ≥11.1 random/2h OGTT" },
+  { topic: "Vitals", q: "Fasting BGL normal vs diabetic threshold", a: "Normal 4.0–6.0 mmol/L; impaired 6.1–6.9; diabetes ≥7.0 fasting or ≥11.1 random/2h OGTT. HbA1c ≥6.5% diagnostic (RACGP ≥48 mmol/mol)." },
+  { topic: "Vitals", q: "BGL targets — non-pregnant T1/T2 (ADA 2025)", a: "4.4–7.2 mmol/L before meals; &lt;10 mmol/L peak postprandial. RACGP T2: 4–7 fasting, 5–10 postprandial." },
+  { topic: "Vitals", q: "BGL targets — pregnancy with diabetes", a: "ADA 2025 (T1/T2/GDM): &lt;5.3 fasting, &lt;7.8 1h pp, &lt;6.7 2h pp. ADIPS GDM (2014): ≤5.0 fasting, ≤7.4 1h pp, ≤6.7 2h pp. Tighter targets ↓ macrosomia/neonatal hypo/pre-eclampsia." },
+  { topic: "Vitals", q: "Hypoglycaemia management — Rule of 15", a: "Conscious + BGL &lt;4: give 15g fast carb (3 tsp sugar, 5–7 jellybeans, 150 mL juice, glucose tabs) → wait 15 min → recheck → repeat if still &lt;4 → complex carb to prevent recurrence. Unconscious: IM glucagon 1mg + call 000; recovery position." },
+  { topic: "Vitals", q: "SGLT2 inhibitor + unwell — key pharmacist red flag", a: "Euglycaemic DKA possible — BGL may be normal but patient in DKA. Features: N/V, abdo pain, fruity breath, Kussmaul, altered MS. Refer ED. Sick day rule: withhold SGLT2 during acute illness/vomiting/dehydration/surgery/fasting." },
   { topic: "Vitals", q: "Sepsis red flag vitals (qSOFA)", a: "RR ≥22, SBP ≤100, altered mental status (qSOFA ≥2 = high risk)" },
   { topic: "Vitals", q: "Abnormal pulse oximetry threshold", a: "SpO2 <92% (or <88% in COPD) — investigate; <90% = urgent" },
   { topic: "UTI", q: "NSW pharmacist UTI eligibility criteria", a: "Non-pregnant female, 18–65, typical symptoms, no red flags, no recent UTI/antibiotics" },
   { topic: "UTI", q: "UTI red flags requiring referral", a: "Pregnancy, male, child, recurrent, immunocompromised, loin pain/fever/vomiting (pyelo), haematuria" },
-  { topic: "UTI", q: "Empirical UTI antibiotic (first-line)", a: "Trimethoprim 300mg nocte × 3 days OR Nitrofurantoin 100mg q6h × 5 days (check eGFR)" },
+  { topic: "UTI", q: "Empirical UTI antibiotic — NSW 2026 hierarchical order", a: "1st: Nitrofurantoin 100mg q6h × 5d (check eGFR ≥45). 2nd: Fosfomycin 3g single dose. 3rd: Trimethoprim 300mg nocte × 3d. 4th: Cefalexin 500mg q12h × 5d. Must justify any deviation from 1st-line." },
   { topic: "Acne", q: "Mild acne first-line", a: "Topical retinoid (adapalene/tretinoin) + benzoyl peroxide; ± topical antibiotic if inflammatory" },
   { topic: "Acne", q: "When to refer acne", a: "Nodulocystic, scarring, treatment-resistant, severe psychological impact, suspected endocrine cause" },
-  { topic: "Impetigo", q: "Localised impetigo first-line", a: "Mupirocin 2% topical TDS × 5 days; remove crusts gently first" },
-  { topic: "Impetigo", q: "Widespread / severe impetigo", a: "Oral cefalexin OR di/flucloxacillin × 7 days (per eTG)" },
+  { topic: "Impetigo", q: "Localised impetigo first-line (≤2 sores)", a: "Mupirocin 2% topical TDS × 5 days; remove crusts gently first" },
+  { topic: "Impetigo", q: "Extensive impetigo first-line (adult, &gt;2 sores) — in pharmacist scope", a: "Dicloxacillin OR Flucloxacillin 500mg PO q6h × 5 days (narrow spectrum first per Canvas/AMS). Cefalexin 1g q12h is 3rd-line (non-severe pen allergy or paeds palatability)." },
+  { topic: "Impetigo", q: "When to REFER impetigo (not just treat)", a: "Severe AND widespread (systemic features), non-blanching purpura, ≥90% BSA erythema, sepsis signs, mucosal blistering, bullous/ecthyma, cellulitis. Paeds requiring oral antibiotic = refer. ≥65 yo = treat + mandatory simultaneous referral." },
   { topic: "Shingles", q: "Shingles antiviral window + options", a: "Within 72h: famciclovir 500mg TDS × 7d OR valaciclovir 1g TDS × 7d OR aciclovir 800mg 5×/day × 7d" },
   { topic: "Shingles", q: "Shingles red flags = refer", a: "Ophthalmic (V1, Hutchinson sign), Ramsay Hunt, disseminated, immunocompromised, pregnancy" },
   { topic: "Rhinitis", q: "Allergic rhinitis first-line", a: "Intranasal corticosteroid (fluticasone, mometasone); add PRN antihistamine" },
@@ -1337,7 +1381,7 @@ const CARDS = [
   { topic: "MSK", q: "Back pain red flags (TUNAFISH+)", a: "Trauma, Unexplained wt loss, Neuro deficit, Age <20/>50, Fever, IVDU, Steroid use, Hx cancer + saddle anaesthesia/incontinence" },
   { topic: "MSK", q: "NSAID with lowest CV risk at OTC dose", a: "Ibuprofen ≤1200mg/day; naproxen also low. Diclofenac highest CV risk." },
   { topic: "GORD", q: "GORD alarm symptoms (refer)", a: "Dysphagia, odynophagia, wt loss, anaemia, GI bleed, persistent vomiting, age >50 new, FHx upper GI cancer" },
-  { topic: "GORD", q: "GORD pharmacological first-line", a: "PPI (esomeprazole 20mg, omeprazole 20mg) daily × 4–8 weeks; review and step down" },
+  { topic: "GORD", q: "GORD pharmacological first-line (NSW, ≥18 ≤50 yo, max 4 wk supply)", a: "PPI 30 min before breakfast × 4–8 weeks. NSW approved: famotidine, nizatidine, esomeprazole, lansoprazole, omeprazole, pantoprazole, rabeprazole. Clopidogrel co-Rx → use rabeprazole (avoid omeprazole/esomeprazole — CYP2C19 interaction reduces clopidogrel active metabolite). &gt;50 yo with new symptoms = REFER (red flag for malignancy)." },
   { topic: "N+V", q: "Ondansetron caution", a: "QT prolongation — avoid with other QT-prolonging drugs; max single dose 16mg IV" },
   { topic: "N+V", q: "Metoclopramide adverse effects", a: "Extrapyramidal symptoms (esp. <30yo women), prolactin ↑; avoid >5 days, max 30mg/day" },
   { topic: "Wound", q: "TIME framework", a: "Tissue (debridement) · Infection/Inflammation · Moisture balance · Edge (epithelialisation)" },
@@ -1372,7 +1416,7 @@ const CARDS = [
   { topic: "Contraception", q: "Ulipristal vs Levonorgestrel EC", a: "UPA 30mg ≤120h (more effective 72–120h, better in BMI>26); LNG 1.5mg ≤72h (most effective <24h)" },
   { topic: "Contraception", q: "Enzyme inducers reducing COC efficacy", a: "Rifampicin/rifabutin, carbamazepine, phenytoin, phenobarbital, modafinil, St John's wort" },
   { topic: "Contraception", q: "ACHES warning signs on COC", a: "Abdominal pain · Chest pain · Headache severe/aura · Eye changes · Severe leg pain — STOP pill, refer urgently" },
-  { topic: "Contraception", q: "Drospirenone POP missed window", a: "Slinda + Cerazette: 12h window. Standard POP (norethisterone): 3h window." },
+  { topic: "Contraception", q: "Drospirenone / desogestrel POP missed window", a: "Drospirenone (Slinda): 24h window (manufacturer label — accounts for 4-day hormone-free interval); if &gt;24h late = take ASAP + condoms 7 days. Desogestrel (Cerazette): 12h window. Standard POP (norethisterone): 3h window." },
   { topic: "Contraception", q: "When COC restart postpartum?", a: "≥6 weeks if not breastfeeding (VTE risk); ≥6 months if breastfeeding (lactation impact); POP/implant OK earlier." },
 
   // Shingles deep dive
@@ -1422,7 +1466,7 @@ const CARDS = [
   { topic: "GORD", q: "PPI rebound prevention", a: "Taper over 2–4 weeks if on >8 weeks. Switch to H2RA temporarily can help bridge." },
 
   // Vaccinations deep
-  { topic: "Vaccines", q: "Anaphylaxis IM adrenaline dose", a: "0.01 mg/kg (max 0.5 mg) IM mid-anterolateral thigh. EpiPen 300 mcg adult; EpiPen Jr 150 mcg child <20 kg." },
+  { topic: "Vaccines", q: "Anaphylaxis IM adrenaline dose", a: "0.01 mg/kg (max 0.5 mg adult / 0.3 mg child &lt;50 kg via syringe) IM mid-anterolateral thigh. EpiPen 300 mcg ≥25 kg; EpiPen Jr 150 mcg child 7.5–25 kg. Repeat q5 min if no improvement. Antihistamines + steroids have no role in acute anaphylaxis per current ASCIA." },
   { topic: "Vaccines", q: "Anaphylaxis recognition (≥2 systems)", a: "Skin (urticaria, angioedema, flush) + Resp (stridor, wheeze, SOB) + CV (hypotension, collapse) + GI (vomit, cramps)" },
   { topic: "Vaccines", q: "Vaccine in pregnancy — dTpa timing", a: "20–32 weeks gestation EACH pregnancy. Passive antibody protects neonate from pertussis until first dose." },
   { topic: "Vaccines", q: "Live vaccines + pregnancy", a: "Contraindicated: MMR, MMRV, varicella, zoster Zostavax, yellow fever, BCG, oral typhoid, rotavirus. Avoid pregnancy 28 days after live." },
@@ -1772,9 +1816,25 @@ function renderReference() {
           <tr><td>RR</td><td>12–20</td><td>&lt;10 or ≥22 (sepsis flag)</td></tr>
           <tr><td>SpO2</td><td>≥95%</td><td>&lt;92% (or &lt;88% COPD)</td></tr>
           <tr><td>Temp</td><td>36.5–37.5°C</td><td>≥38°C fever; &lt;35°C hypothermia</td></tr>
-          <tr><td>BGL fasting</td><td>4.0–6.0</td><td>≥7.0 diabetes</td></tr>
-          <tr><td>BGL random</td><td>&lt;7.8</td><td>≥11.1 diabetes</td></tr>
+          <tr><td>BGL fasting</td><td>4.0–6.0</td><td>≥7.0 diabetes; &lt;3.0 severe hypo</td></tr>
+          <tr><td>BGL random</td><td>&lt;7.8</td><td>≥11.1 diabetes; &gt;25 + sx = hyperglycaemic crisis</td></tr>
         </table>
+        <p class="muted" style="font-size:12px;margin-top:8px">See BGL targets card for population-specific (diabetes / pregnancy / paediatric) targets.</p>
+      </div>
+      <div class="ref-card">
+        <h3>BGL targets by population (quick ref)</h3>
+        <table>
+          <tr><th>Guideline</th><th>Population</th><th>Target</th></tr>
+          <tr><td>ADA 2025</td><td>T1/T2 adult</td><td>4.4–7.2 pre-meal · &lt;10 peak postprandial</td></tr>
+          <tr><td>ISPAD 2024</td><td>Children + adolescents</td><td>4–8 pre-meal · 4–10 postprandial · 4–8 bedtime</td></tr>
+          <tr><td>ADA 2025</td><td>Pregnant T1/T2/GDM</td><td>&lt;5.3 fasting · &lt;7.8 1h pp · &lt;6.7 2h pp</td></tr>
+          <tr><td>ADIPS 2020</td><td>Pregnant + existing DM</td><td>4.0–5.3 fasting · 5.5–7.8 1h pp · 5.0–6.7 2h pp</td></tr>
+          <tr><td>ADIPS 2014</td><td>GDM</td><td>≤5.0 fasting · ≤7.4 1h pp · ≤6.7 2h pp</td></tr>
+          <tr><td>RACGP</td><td>T2 adult AU</td><td>4–7 fasting · 5–10 postprandial</td></tr>
+          <tr><td><strong>Normal</strong></td><td>Non-pregnant adult</td><td>Fasting ~4–6 · 2h pp &lt;7.8–8</td></tr>
+        </table>
+        <p class="muted" style="font-size:12px;margin-top:8px">All in mmol/L. Pregnancy targets tighter than non-pregnant (↓ macrosomia, neonatal hypo, pre-eclampsia).</p>
+        <div class="flag" style="margin-top:10px"><strong>RED → ED:</strong> BGL &lt;3.0 symptomatic; BGL &gt;25 + sx; DKA features (N/V + abdo pain + fruity breath + Kussmaul + altered MS); <strong>SGLT2 + unwell + N/V = euglycaemic DKA possible (BGL may be normal)</strong>; hypo + cannot swallow → IM glucagon + 000. <br><br><strong>Rule of 15 (conscious hypo &lt;4.0):</strong> 15g fast carb → wait 15 min → recheck → repeat if still &lt;4 → complex carb. <br><br><strong>Sick day rules:</strong> withhold SGLT2 (DKA risk) + metformin (lactic acidosis); don't stop insulin in T1DM; check ketones if BGL persistently &gt;15.</div>
       </div>
       <div class="ref-card">
         <h3>Red flags by system</h3>
@@ -1794,9 +1854,9 @@ function renderReference() {
         <h3>Empirical antibiotic quick ref</h3>
         <table>
           <tr><th>Condition</th><th>First-line</th></tr>
-          <tr><td>Uncomplicated UTI</td><td>Trimethoprim 300mg nocte × 3d OR nitrofurantoin 100mg q6h × 5d</td></tr>
-          <tr><td>Localised impetigo</td><td>Mupirocin 2% topical TDS × 5d</td></tr>
-          <tr><td>Widespread impetigo</td><td>Cefalexin OR di/flucloxacillin × 7d</td></tr>
+          <tr><td>Uncomplicated UTI (NSW 2026)</td><td>1st: Nitrofurantoin 100mg q6h × 5d → Fosfomycin 3g single → Trimethoprim 300mg nocte × 3d → Cefalexin 500mg q12h × 5d</td></tr>
+          <tr><td>Localised impetigo (≤2 sores)</td><td>Mupirocin 2% topical TDS × 5d</td></tr>
+          <tr><td>Extensive impetigo (&gt;2 sores, adult)</td><td><strong>Dicloxacillin OR Flucloxacillin 500mg PO q6h × 5d</strong> (narrow spectrum first); cefalexin 1g q12h × 5d only for non-severe pen-allergy or paeds palatability</td></tr>
           <tr><td>Shingles (within 72h)</td><td>Famciclovir 500mg TDS × 7d OR valaciclovir 1g TDS × 7d</td></tr>
           <tr><td>AOE</td><td>Topical ciprofloxacin ± hydrocortisone drops</td></tr>
           <tr><td>AOM (when abx indicated)</td><td>Amoxicillin (per eTG dosing)</td></tr>
@@ -2089,6 +2149,78 @@ function updateCountdown() {
   else { el.textContent = Math.abs(days); lbl.textContent = "days since OSCE"; }
 }
 
+// ------------------- REFERENCE LIBRARY -------------------
+const LIBRARY_TOPICS = {
+  treat: [
+    { num: "01", file: "01-uti.html", title: "Uncomplicated UTI", desc: "Non-pregnant female 18–65 yo · NSW PATH-UTI permanent service" },
+    { num: "02", file: "02-oral-contraception.html", title: "Oral Contraception (Resupply)", desc: "PATH-OC permanent · Resupply of existing stable OCP" },
+    { num: "03", file: "03-shingles.html", title: "Herpes Zoster (Shingles)", desc: "PATH-DERM · Adult dermatomal rash · Antiviral within 72h" },
+    { num: "04", file: "04-impetigo.html", title: "Impetigo", desc: "PATH-DERM · Adult localised + extensive in scope · Paeds oral = refer" },
+    { num: "05", file: "05-acne.html", title: "Acne Vulgaris", desc: "NSW Practice Standards (5 Aug 2025) · ≥12 yo · Mild only · Topical only" },
+    { num: "06", file: "06-allergic-rhinitis.html", title: "Allergic + Non-Allergic Rhinitis", desc: "Permanent · ≥6 yo · 4 wk supply · INCS first-line for mod-severe" },
+    { num: "07", file: "07-otitis-media-externa.html", title: "Otitis Media + Externa", desc: "Planned/pilot · ≥2 yo · Otoscopy required · NO oral abx for AOE" },
+    { num: "08", file: "08-msk-pain.html", title: "Acute MSK Pain", desc: "Permanent · ≥18 yo · Mild mechanical · 9 NSW-approved NSAIDs" },
+    { num: "09", file: "09-gord.html", title: "GORD / Dyspepsia", desc: "Permanent · 18–50 yo · 4 wk supply · Rabeprazole if on clopidogrel" },
+    { num: "10", file: "10-vaccinations.html", title: "Pharmacist Vaccinations", desc: "NIPVIP permanent · Per AIH + NSW Health authorisation" },
+    { num: "11", file: "11-smoking-cessation.html", title: "Smoking Cessation", desc: "Planned · NRT + S4 varenicline/bupropion · 5 A's framework" },
+    { num: "12", file: "12-nausea-vomiting.html", title: "Nausea + Vomiting", desc: "Permanent · ≥18 yo · Max 24h supply · Ondansetron + metoclopramide" },
+    { num: "13", file: "13-conjunctivitis.html", title: "Conjunctivitis", desc: "S3 chloramphenicol · ≥2 yo · Refer all contact-lens red eye" },
+    { num: "15", file: "15-skin-fungal-and-eczema.html", title: "Skin: Fungal + Eczema", desc: "Atopic dermatitis PATH-DERM · Tinea + candidiasis OTC" },
+    { num: "16", file: "16-constipation-diarrhoea.html", title: "Constipation + Diarrhoea", desc: "OTC + pharmacist-only · Refer alarm features · Loperamide caveats" },
+    { num: "17", file: "17-wound-management.html", title: "Minor Wound Management", desc: "Planned/pilot · Minor wounds · Mandatory tetanus assessment" },
+  ],
+  reference: [
+    { num: "00", file: "00-FLAGS-MASTER.html", title: "🚩 Flags Master", desc: "Cross-topic RED + ORANGE flag reference · OSCE cramming sheet" },
+    { num: "14", file: "14-mental-health-red-flags.html", title: "Mental Health Red Flags", desc: "Recognise + escalate · Asking about suicide does NOT increase risk" },
+    { num: "18", file: "18-headache-sah.html", title: "Headache + Ottawa SAH Rule", desc: "Recognise red flags · Refer ED for thunderclap or any SNNOOP10" },
+    { num: "19", file: "19-eye-assessment.html", title: "Eye Assessment Framework", desc: "Structural red eye triage · Visual acuity first · Refer all sight-threatening" },
+    { num: "20", file: "20-when-not-to-prescribe.html", title: "When NOT to Prescribe", desc: "Active evidence-based decision · Document with same rigour as prescribing" },
+    { num: "21", file: "21-derm-basics.html", title: "Dermatology Basics", desc: "Morphology + assessment · Pattern recognition · Description framework" },
+    { num: "22", file: "22-abdominal-pain.html", title: "Abdominal Pain", desc: "Surgical + medical emergencies · Older patient atypical presentations" },
+    { num: "23", file: "23-cv-resp-examination.html", title: "CV + Resp Examination", desc: "Vital signs · Heart sounds · Breath sounds · BP categories" },
+    { num: "24", file: "24-history-taking.html", title: "History Taking + Clinical Measurements", desc: "SOAP · SOCRATES · 7 elements · Documentation per NSW Authority" },
+    { num: "25", file: "25-bgl-targets.html", title: "BGL Targets (ADA / ISPAD / ADIPS / RACGP)", desc: "Population-by-guideline targets · Rule of 15 · Sick day rules · SGLT2 euglycaemic DKA" },
+  ],
+};
+
+function libCard(t) {
+  return `<div class="lib-card">
+    <div class="lib-num">${t.num}</div>
+    <h3>${escapeHtml(t.title)}</h3>
+    <p class="lib-desc">${escapeHtml(t.desc)}</p>
+    <div class="lib-actions">
+      <a class="lib-btn lib-btn-primary" href="topics/${t.file}" target="_blank" rel="noopener">View</a>
+      <a class="lib-btn lib-btn-secondary" href="topics/${t.file}" download="${t.file}">Download</a>
+    </div>
+  </div>`;
+}
+
+function renderLibrary() {
+  const root = document.getElementById("library");
+  root.innerHTML = `
+    <div class="lib-intro">
+      <h2 style="margin-top:0">Reference Library</h2>
+      <p class="muted">Colour-coded quick-reference pages for every NSW PATH service + assessment framework. Click <strong>View</strong> to open in a new tab, or <strong>Download</strong> to save the standalone HTML file. Each page is printable to PDF from your browser (Ctrl/Cmd+P).</p>
+    </div>
+
+    <h3 class="lib-section-title">🩺 Treat Topics — NSW Pharmacist Prescribing Services</h3>
+    <p class="muted" style="font-size:13px;margin:-4px 0 14px">Conditions where a pharmacist can supply medicine under a NSW Health Authority or Practice Standard.</p>
+    <div class="lib-grid">
+      ${LIBRARY_TOPICS.treat.map(libCard).join("")}
+    </div>
+
+    <h3 class="lib-section-title" style="margin-top:30px">📋 Assessment & Reference</h3>
+    <p class="muted" style="font-size:13px;margin:-4px 0 14px">Frameworks, red flag recognition, and cross-topic references that support all the prescribing services.</p>
+    <div class="lib-grid">
+      ${LIBRARY_TOPICS.reference.map(libCard).join("")}
+    </div>
+
+    <div class="lib-intro" style="margin-top:30px;font-size:13px">
+      <strong>Format note:</strong> Treat topics use colour-coded drug tables (🟩 first-line · 🟨 second-line · 🟧 third-line · 🟥 refer) with blue notes, red warnings, orange treat-and-refer boxes, and green OSCE-pearl boxes. Assessment topics use the same visual language adapted for non-prescribing frameworks.
+    </div>
+  `;
+}
+
 function renderAll() {
   updateCountdown();
   renderAbout();
@@ -2097,6 +2229,7 @@ function renderAll() {
   renderStations();
   renderFlashcards();
   renderReference();
+  renderLibrary();
 }
 
 renderAll();

@@ -2152,23 +2152,24 @@ function updateCountdown() {
 // ------------------- REFERENCE LIBRARY -------------------
 const LIBRARY_TOPICS = {
   treat: [
-    { num: "01", file: "01-uti.html", title: "Uncomplicated UTI", desc: "Non-pregnant female 18–65 yo · NSW PATH-UTI permanent service" },
-    { num: "02", file: "02-oral-contraception.html", title: "Oral Contraception (Resupply)", desc: "Hormonal contraception continuation (25 Feb 2026) · OCP, DMPA injection + vaginal ring · ≤35µg EE · Up to 12 months" },
-    { num: "2b", file: "02b-contraception-initiation.html", title: "Contraception Initiation", desc: "New-start consult · OSCE Station 1 + 4 · Method selection, UKMEC, quick-start, coercive-control screen" },
-    { num: "03", file: "03-shingles.html", title: "Herpes Zoster (Shingles)", desc: "PATH-DERM (29 Aug 2025) · ≥18 yo · Antiviral within 72h · Up to 10 days" },
-    { num: "04", file: "04-impetigo.html", title: "Impetigo", desc: "PATH-DERM · Adult localised + extensive in scope · Paeds oral = refer" },
-    { num: "05", file: "05-acne.html", title: "Acne Vulgaris", desc: "NSW Practice Standards (5 Aug 2025) · ≥12 yo · Mild only · Topical only" },
-    { num: "06", file: "06-allergic-rhinitis.html", title: "Allergic + Non-Allergic Rhinitis", desc: "Permanent · ≥6 yo · 4 wk supply · INCS first-line for mod-severe" },
-    { num: "07", file: "07-otitis-media-externa.html", title: "Otitis Media + Externa", desc: "Planned/pilot · ≥2 yo · Otoscopy required · NO oral abx for AOE" },
-    { num: "08", file: "08-msk-pain.html", title: "Acute MSK Pain", desc: "Permanent · ≥18 yo · Mild mechanical · 9 NSW-approved NSAIDs" },
-    { num: "09", file: "09-gord.html", title: "GORD / Dyspepsia", desc: "Permanent · 18–50 yo · 4 wk supply · Rabeprazole if on clopidogrel" },
+    { num: "01", file: "01-uti.html", title: "Uncomplicated UTI", desc: "Non-pregnant female 18–65 yo · NSW PATH-UTI permanent service", nsw: "https://www.health.nsw.gov.au/pharmaceutical/pharmacists/Documents/practice-standards-uti.pdf" },
+    { num: "02", file: "02-oral-contraception.html", title: "Oral Contraception (Resupply)", desc: "Hormonal contraception continuation (25 Feb 2026) · OCP, DMPA injection + vaginal ring · ≤35µg EE · Up to 12 months", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-hormonal-contraception.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0021/1304391/hormonal-contraception-guideline.pdf" },
+    { num: "2b", file: "02b-contraception-initiation.html", title: "Contraception Initiation", desc: "New-start consult · OSCE Station 1 + 4 · Method selection, UKMEC, quick-start, coercive-control screen", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0021/1304391/hormonal-contraception-guideline.pdf" },
+    { num: "03", file: "03-shingles.html", title: "Herpes Zoster (Shingles)", desc: "PATH-DERM (29 Aug 2025) · ≥18 yo · Antiviral within 72h · Up to 10 days", nsw: "https://www.health.nsw.gov.au/pharmaceutical/pharmacists/Documents/practice-standards-herpes-zoster.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0022/1304392/herpes-zoster-shingles-guideline.pdf" },
+    { num: "04", file: "04-impetigo.html", title: "Impetigo", desc: "PATH-DERM · Adult localised + extensive in scope · Paeds oral = refer", nsw: "https://www.health.nsw.gov.au/pharmaceutical/pharmacists/Documents/practice-standards-impetigo.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0020/1304246/impetigo-guideline.pdf" },
+    { num: "05", file: "05-acne.html", title: "Acne Vulgaris", desc: "NSW Practice Standards (5 Aug 2025) · ≥12 yo · Mild only · Topical only", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-acne.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0017/1304243/acne-guideline.pdf" },
+    { num: "06", file: "06-allergic-rhinitis.html", title: "Allergic + Non-Allergic Rhinitis", desc: "Permanent · ≥6 yo · 4 wk supply · INCS first-line for mod-severe", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-allergic-rhinitis.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0022/1304248/rhinitis-guideline.pdf" },
+    { num: "07", file: "07-otitis-media-externa.html", title: "Otitis Media + Externa", desc: "Planned/pilot · ≥2 yo · Otoscopy required · NO oral abx for AOE", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0023/1304393/otitis-media-guideline.pdf" },
+    { num: "08", file: "08-msk-pain.html", title: "Acute MSK Pain", desc: "Permanent · ≥18 yo · Mild mechanical · 9 NSW-approved NSAIDs", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-musculoskeletal-pain.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0021/1304247/musculoskeletal-pain-guideline.pdf" },
+    { num: "09", file: "09-gord.html", title: "GORD / Dyspepsia", desc: "Permanent · 18–50 yo · 4 wk supply · Rabeprazole if on clopidogrel", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-gastro-reflux.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0019/1304245/gastro-oesophageal-guideline.pdf" },
     { num: "10", file: "10-vaccinations.html", title: "Pharmacist Vaccinations", desc: "NIPVIP permanent · Per AIH + NSW Health authorisation" },
-    { num: "11", file: "11-smoking-cessation.html", title: "Smoking Cessation", desc: "Planned · NRT + S4 varenicline/bupropion · 5 A's framework" },
-    { num: "12", file: "12-nausea-vomiting.html", title: "Nausea + Vomiting", desc: "Permanent · ≥18 yo · Max 24h supply · Ondansetron + metoclopramide" },
+    { num: "11", file: "11-smoking-cessation.html", title: "Smoking Cessation", desc: "Planned · NRT + S4 varenicline/bupropion · 5 A's framework", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0023/1304249/smoking-cessation-guideline.pdf" },
+    { num: "12", file: "12-nausea-vomiting.html", title: "Nausea + Vomiting", desc: "Permanent · ≥18 yo · Max 24h supply · Ondansetron + metoclopramide", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-nausea-vomiting.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0025/1304395/nausea-vomiting-guideline.pdf" },
     { num: "13", file: "13-conjunctivitis.html", title: "Conjunctivitis", desc: "S3 chloramphenicol · ≥2 yo · Refer all contact-lens red eye" },
-    { num: "15", file: "15-skin-fungal-and-eczema.html", title: "Skin: Eczema, Psoriasis + Fungal", desc: "Atopic dermatitis + mild plaque psoriasis PATH-DERM (29 Aug 2025) · Tinea + candidiasis OTC" },
+    { num: "15", file: "15-skin-fungal-and-eczema.html", title: "Skin: Eczema, Psoriasis + Fungal", desc: "Atopic dermatitis + mild plaque psoriasis PATH-DERM (29 Aug 2025) · Tinea + candidiasis OTC", nsw: "https://www.health.nsw.gov.au/pharmaceutical/pharmacists/Documents/practice-standards-atopic-dermatitis.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0018/1304244/dermatitis-guideline.pdf" },
     { num: "16", file: "16-constipation-diarrhoea.html", title: "Constipation + Diarrhoea", desc: "OTC + pharmacist-only · Refer alarm features · Loperamide caveats" },
-    { num: "17", file: "17-wound-management.html", title: "Minor Wound Management", desc: "Planned/pilot · Minor wounds · Mandatory tetanus assessment" },
+    { num: "17", file: "17-wound-management.html", title: "Minor Wound Management", desc: "Planned/pilot · OSCE Station 5 · 5 wound scenarios · Tetanus decision table", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0026/1304396/wound-management-guideline.pdf" },
+    { num: "26", file: "26-im-injection.html", title: "IM Injection (Procedures)", desc: "OSCE Station 6 · Sites + technique · Depo, benzathine penicillin, cabotegravir, ceftriaxone, B12 · Anaphylaxis + documentation" },
   ],
   reference: [
     { num: "00", file: "00-FLAGS-MASTER.html", title: "🚩 Flags Master", desc: "Cross-topic RED + ORANGE flag reference · OSCE cramming sheet" },
@@ -2179,12 +2180,20 @@ const LIBRARY_TOPICS = {
     { num: "21", file: "21-derm-basics.html", title: "Dermatology Basics", desc: "Morphology + assessment · Pattern recognition · Description framework" },
     { num: "22", file: "22-abdominal-pain.html", title: "Abdominal Pain", desc: "Surgical + medical emergencies · Older patient atypical presentations" },
     { num: "23", file: "23-cv-resp-examination.html", title: "CV + Resp Examination", desc: "Vital signs · Heart sounds · Breath sounds · BP categories" },
+    { num: "27", file: "27-neck-thyroid-msk-exam.html", title: "Neck, Thyroid & MSK ROM Exam", desc: "OSCE Stations 2/3 · Thyroid swallow test · Carotid · Lymph nodes · Neck + back ROM" },
     { num: "24", file: "24-history-taking.html", title: "History Taking + Clinical Measurements", desc: "SOAP · SOCRATES · 7 elements · Documentation per NSW Authority" },
     { num: "25", file: "25-bgl-targets.html", title: "BGL Targets (ADA / ISPAD / ADIPS / RACGP)", desc: "Population-by-guideline targets · Rule of 15 · Sick day rules · SGLT2 euglycaemic DKA" },
   ],
 };
 
 function libCard(t) {
+  const guides = (t.nsw || t.qld)
+    ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;align-items:center">
+        <span style="color:#888">Official guide:</span>
+        ${t.nsw ? `<a href="${t.nsw}" target="_blank" rel="noopener" style="color:#2980b9;text-decoration:none;font-weight:600">📄 NSW ↗</a>` : ''}
+        ${t.qld ? `<a href="${t.qld}" target="_blank" rel="noopener" style="color:#7d3c98;text-decoration:none;font-weight:600">📄 QLD ↗</a>` : ''}
+      </div>`
+    : '';
   return `<div class="lib-card">
     <div class="lib-num">${t.num}</div>
     <h3>${escapeHtml(t.title)}</h3>
@@ -2193,6 +2202,7 @@ function libCard(t) {
       <a class="lib-btn lib-btn-primary" href="topics/${t.file}" target="_blank" rel="noopener">View</a>
       <a class="lib-btn lib-btn-secondary" href="topics/${t.file}" download="${t.file}">Download</a>
     </div>
+    ${guides}
   </div>`;
 }
 
@@ -2201,7 +2211,7 @@ function renderLibrary() {
   root.innerHTML = `
     <div class="lib-intro">
       <h2 style="margin-top:0">Reference Library</h2>
-      <p class="muted">Colour-coded quick-reference pages for every NSW PATH service + assessment framework. Click <strong>View</strong> to open in a new tab, or <strong>Download</strong> to save the standalone HTML file. Each page is printable to PDF from your browser (Ctrl/Cmd+P).</p>
+      <p class="muted">Colour-coded quick-reference pages for every NSW PATH service + assessment framework. Click <strong>View</strong> to open in a new tab, or <strong>Download</strong> to save the standalone HTML file. Each page is printable to PDF from your browser (Ctrl/Cmd+P). Where available, each card links the <strong>official NSW Practice Standard</strong> and <strong>QLD clinical guideline</strong> PDF.</p>
     </div>
 
     <h3 class="lib-section-title">🩺 Treat Topics — NSW Pharmacist Prescribing Services</h3>

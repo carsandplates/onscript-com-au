@@ -2191,8 +2191,8 @@ function libCard(t) {
     ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;align-items:center">
         <span style="color:#888">Official guide:</span>
         ${t.nsw ? `<a href="${t.nsw}" target="_blank" rel="noopener" style="color:#2980b9;text-decoration:none;font-weight:600">📄 NSW ↗</a>` : ''}
-        ${t.qld ? `<a href="${t.qld}" target="_blank" rel="noopener" style="color:#7d3c98;text-decoration:none;font-weight:600">📄 QLD ↗</a>` : ''}
-      ${t.qld2 ? `<a href="${t.qld2}" target="_blank" rel="noopener" style="color:#7d3c98;text-decoration:none;font-weight:600">📄 QLD (externa) ↗</a>` : ''}
+        ${t.qld ? `<a href="${t.qld}" target="_blank" rel="noopener" style="color:#7d3c98;text-decoration:none;font-weight:600">📄 QLD${t.qld2 ? ' (media)' : ''} ↗</a>` : ''}
+        ${t.qld2 ? `<a href="${t.qld2}" target="_blank" rel="noopener" style="color:#7d3c98;text-decoration:none;font-weight:600">📄 QLD (externa) ↗</a>` : ''}
       </div>`
     : '';
   return `<div class="lib-card">

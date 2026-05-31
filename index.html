@@ -279,31 +279,6 @@ body.banner-shown { padding-bottom: 80px; }
   .banner-cta { padding: 10px 16px; }
 }
 
-
-/* ===== Self-assessment / confidence UI ===== */
-.conf-step { display: none; }
-.conf-step.active { display: block; }
-.conf-step-header { margin: 0 0 4px; font-size: 17px; font-weight: 600; }
-.conf-step-lead { color: #6b6356; font-size: 13px; margin: 0 0 20px; }
-.conf-area { margin-bottom: 14px; }
-.conf-area-label { font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #1a1a1a; }
-.conf-area-label span { font-size: 11px; color: #6b6356; font-weight: 400; margin-left: 6px; }
-.conf-btns { display: flex; gap: 6px; }
-.conf-btn { flex: 1; padding: 8px 4px; border: 1px solid #e9e3d8; border-radius: 8px; background: #fff; font: inherit; font-size: 12px; cursor: pointer; color: #6b6356; text-align: center; transition: all 0.15s; }
-.conf-btn:hover { border-color: #c2410c; color: #1a1a1a; }
-.conf-btn.selected-shaky { background: #fef0ee; border-color: #c2410c; color: #8a2c0a; font-weight: 600; }
-.conf-btn.selected-ok { background: #fef9ec; border-color: #d4a017; color: #6b4c0a; font-weight: 600; }
-.conf-btn.selected-comfortable { background: #f0f9f4; border-color: #16a34a; color: #14532d; font-weight: 600; }
-.conf-divider { height: 1px; background: #e9e3d8; margin: 20px 0; }
-.priority-badge { display: inline-block; background: #fef0ee; color: #c2410c; font-size: 9px; padding: 1px 6px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-top: 4px; }
-.day.has-priority { border-color: #f5c8a8; }
-.focus-tip { background: #fef3ea; border: 1px solid #f5c8a8; border-radius: 12px; padding: 16px 18px; margin-bottom: 18px; }
-.focus-tip .ft-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #c2410c; font-weight: 600; margin-bottom: 4px; }
-.focus-tip .ft-body { font-size: 13.5px; color: #1a1a1a; line-height: 1.5; }
-.focus-tip .ft-areas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.focus-tip .ft-area-tag { background: #fff; border: 1px solid #f5c8a8; border-radius: 999px; padding: 3px 10px; font-size: 12px; color: #8a2c0a; font-weight: 500; }
-.conf-link { color: #6b6356; font-size: 12px; text-decoration: underline; cursor: pointer; background: none; border: 0; padding: 0; font: inherit; }
-.conf-link:hover { color: #c2410c; }
 @media (max-width: 400px) {
   /* Very small phones — drop calendar to 1 col, even tighter spacing */
   .days { grid-template-columns: 1fr; }
@@ -383,18 +358,6 @@ body.banner-shown { padding-bottom: 80px; }
       <button class="btn-primary" onclick="saveSettings()">Save & rebuild plan</button>
       <button class="btn-secondary" onclick="closeSettings()">Cancel</button>
       <button class="btn-link" onclick="resetSettings()">Reset to defaults</button>
-    </div>
-
-    <!-- Step 2: Self-assessment -->
-    <div id="confStep" class="conf-step">
-      <div class="conf-divider"></div>
-      <p class="conf-step-header">How confident are you? <span style="font-size:12px;color:#6b6356;font-weight:400">(optional · 30 sec)</span></p>
-      <p class="conf-step-lead">Rate yourself in each OSCE area. Weak areas get flagged in your plan so you know where to focus.</p>
-      <div id="confAreas"></div>
-      <div class="btn-row" style="margin-top:16px">
-        <button class="btn-primary" onclick="saveConfidence()">Save personalisation</button>
-        <button class="btn-link" onclick="skipConfidence()">Skip for now</button>
-      </div>
     </div>
   </div>
 </div>
@@ -1022,7 +985,7 @@ const PLAN = [
     ],
     notes: "Day 1 — orient and commit. Real study begins tomorrow." },
 
-  { pid: "d02", kind: "study", title: "Vital signs mastery", duration: 60, modes: ["Active recall", "Reference drill"], focus: "Physical exam foundations", topics: ["physExam"],
+  { pid: "d02", kind: "study", title: "Vital signs mastery", duration: 60, modes: ["Active recall", "Reference drill"], focus: "Physical exam foundations",
     actions: [
       { text: "Memorise normal adult ranges: BP, HR, RR, SpO2, Temp, BGL, pain", detail: D.vitalsRef },
       { text: "Practise BP technique narration aloud", detail: D.bpScript },
@@ -1038,7 +1001,7 @@ const PLAN = [
       "Flashcards: Vitals deck (15 cards) — see Flashcards tab"
     ] },
 
-  { pid: "d03", kind: "study", title: "Preventive services I — Smoking, Weight, Contraception", duration: 50, modes: ["Active recall"], focus: "Quiz 2 prep + OSCE management content", topics: ["management"],
+  { pid: "d03", kind: "study", title: "Preventive services I — Smoking, Weight, Contraception", duration: 50, modes: ["Active recall"], focus: "Quiz 2 prep + OSCE management content",
     actions: [
       { text: "Smoking: 5As, dependence assessment, NRT options + doses, varenicline/bupropion contraindications", detail: D.smokingDetail },
       { text: "Weight: BMI/waist cutoffs, lifestyle interventions, pharmacotherapy thresholds",
@@ -1052,7 +1015,7 @@ const PLAN = [
       "Flashcards: Preventive deck"
     ] },
 
-  { pid: "d04", kind: "study", title: "Preventive II + sit Quiz 2", duration: 60, modes: ["Quiz", "Active recall"], focus: "Travel + Oral + Quiz 2", topics: ["management"],
+  { pid: "d04", kind: "study", title: "Preventive II + sit Quiz 2", duration: 60, modes: ["Quiz", "Active recall"], focus: "Travel + Oral + Quiz 2",
     actions: [
       { text: "Travel health: risk assessment, vaccines, malaria chemoprophylaxis", detail: D.travelOral },
       { text: "NSW pharmacist-administered vaccine list",
@@ -1067,7 +1030,7 @@ const PLAN = [
     ],
     notes: "Quiz 2 is 5% but its content is the foundation of Station 4 management answers — treat it as free OSCE prep." },
 
-  { pid: "d05", kind: "study", title: "Tutorship case — Day 1: dissect", duration: 60, modes: ["Case work"], focus: "Tutorship preparation", topics: ["history"],
+  { pid: "d05", kind: "study", title: "Tutorship case — Day 1: dissect", duration: 60, modes: ["Case work"], focus: "Tutorship preparation",
     actions: [
       "Download your individual tutorship case (released ~1 week before your slot)",
       { text: "Read twice. Identify presenting complaint, demographic factors, red flags",
@@ -1082,7 +1045,7 @@ const PLAN = [
     ],
     notes: "Tutorship is 35% of PS1. If you don't have a tutorship in this period, use this as buffer/review." },
 
-  { pid: "d06", kind: "study", title: "Tutorship case — Day 2: SOAP + management", duration: 60, modes: ["Case work", "SOAP"], focus: "Tutorship preparation", topics: ["history", "documentation"],
+  { pid: "d06", kind: "study", title: "Tutorship case — Day 2: SOAP + management", duration: 60, modes: ["Case work", "SOAP"], focus: "Tutorship preparation",
     actions: [
       { text: "Write full SOAP for your case", detail: D.soap },
       "Justify your working diagnosis with clinical reasoning",
@@ -1095,7 +1058,7 @@ const PLAN = [
       "Identify red flags / referral criteria explicitly"
     ] },
 
-  { pid: "d07", kind: "study", title: "Tutorship rehearse + start CVS history", duration: 60, modes: ["Case work", "Mock station"], focus: "Tutorship + CVS", topics: ["history", "physExam"],
+  { pid: "d07", kind: "study", title: "Tutorship rehearse + start CVS history", duration: 60, modes: ["Case work", "Mock station"], focus: "Tutorship + CVS",
     actions: [
       "Rehearse 15-min case presentation aloud — time yourself",
       "Anticipate 3 tutor questions",
@@ -1110,7 +1073,7 @@ const PLAN = [
           <li><strong>Risk factors</strong>: HTN, dyslipidaemia, DM, smoking, FHx (esp. premature), obesity, sedentary</li></ul>` }
     ] },
 
-  { pid: "d08", kind: "study", title: "Tutorship final rehearsal + record", duration: 60, modes: ["Case work"], focus: "Tutorship preparation", topics: ["history"],
+  { pid: "d08", kind: "study", title: "Tutorship final rehearsal + record", duration: 60, modes: ["Case work"], focus: "Tutorship preparation",
     actions: [
       "Record yourself doing the 15-min case presentation",
       { text: "Play back — review pace, filler words, structure, eye contact",
@@ -1125,7 +1088,7 @@ const PLAN = [
       "Prep written notes (1 page) you can glance at if allowed"
     ] },
 
-  { pid: "d09", kind: "study", title: "CVS focused physical exam", duration: 60, modes: ["Mock station", "Active recall"], focus: "CVS FPE", topics: ["physExam"],
+  { pid: "d09", kind: "study", title: "CVS focused physical exam", duration: 60, modes: ["Mock station", "Active recall"], focus: "CVS FPE",
     actions: [
       { text: "Run CVS FPE narration aloud: inspection → palpation → percussion → auscultation", detail: D.cvsFpe },
       { text: "Inspection: hands, face, chest scars, peripheral oedema, JVP",
@@ -1153,14 +1116,14 @@ const PLAN = [
     ],
     notes: "OSCE stations 2&3 are FPE on manikin — practise narrating every action. Examiners mark what you SAY." },
 
-  { pid: "d10", kind: "study", title: "Respiratory FPE + Quiz 3 prep", duration: 60, modes: ["Mock station", "Quiz prep"], focus: "Resp FPE + Documentation", topics: ["physExam", "documentation"],
+  { pid: "d10", kind: "study", title: "Respiratory FPE + Quiz 3 prep", duration: 60, modes: ["Mock station", "Quiz prep"], focus: "Resp FPE + Documentation",
     actions: [
       { text: "Resp FPE: inspection → palpation → percussion → auscultation", detail: D.respFpe },
       { text: "Spirometry interpretation basics", detail: D.spirometry },
       { text: "Quiz 3 prep: SOAP for GP letter vs ED handover", detail: D.soapTemplates }
     ] },
 
-  { pid: "d11", kind: "study", title: "Tutorship polish + sit Quiz 3", duration: 60, modes: ["Quiz", "Case work"], focus: "Tutorship + Quiz 3", topics: ["history", "management"],
+  { pid: "d11", kind: "study", title: "Tutorship polish + sit Quiz 3", duration: 60, modes: ["Quiz", "Case work"], focus: "Tutorship + Quiz 3",
     actions: [
       "Final tutorship rehearsal",
       "Lay out tomorrow: outfit/Zoom setup, notes printed, water, quiet room booked",
@@ -1182,7 +1145,7 @@ const PLAN = [
       "Tonight: rest. Tomorrow we pivot fully to OSCE."
     ] },
 
-  { pid: "d12", kind: "study", title: "Derm + Simplified Neuro FPE", duration: 60, modes: ["Mock station", "Active recall"], focus: "Derm + Neuro FPE", topics: ["physExam"],
+  { pid: "d12", kind: "study", title: "Derm + Simplified Neuro FPE", duration: 60, modes: ["Mock station", "Active recall"], focus: "Derm + Neuro FPE",
     actions: [
       { text: "Derm: SCAM mnemonic, lesion types, ABCDE for melanoma", detail: D.dermNeuro },
       "Lesion types: macule/papule/plaque/vesicle/pustule/wheal/nodule/ulcer",
@@ -1190,7 +1153,7 @@ const PLAN = [
       "Practise CN exam narration aloud"
     ] },
 
-  { pid: "d13", kind: "study", title: "GI / Abdominal FPE", duration: 60, modes: ["Mock station"], focus: "Abdominal FPE", topics: ["physExam"],
+  { pid: "d13", kind: "study", title: "GI / Abdominal FPE", duration: 60, modes: ["Mock station"], focus: "Abdominal FPE",
     actions: [
       { text: "Inspection: scars, distension, masses, peristalsis, hernias", detail: D.abdFpe },
       { text: "Palpation: light → deep, 9 regions; check guarding/rebound/rigidity", detail: D.abdFpe },
@@ -1198,7 +1161,7 @@ const PLAN = [
       "Red flags in abdo pain"
     ] },
 
-  { pid: "d14", kind: "study", title: "MSK FPE — ROM & functional", duration: 60, modes: ["Mock station"], focus: "MSK FPE", topics: ["physExam"],
+  { pid: "d14", kind: "study", title: "MSK FPE — ROM & functional", duration: 60, modes: ["Mock station"], focus: "MSK FPE",
     actions: [
       { text: "Look–Feel–Move structure for any joint", detail: D.mskFpe },
       { text: "ROM: shoulder, knee, spine — normal values", detail: D.mskFpe },
@@ -1206,7 +1169,7 @@ const PLAN = [
       "MSK red flags"
     ] },
 
-  { pid: "d15", kind: "study", title: "HEENT FPE", duration: 60, modes: ["Mock station"], focus: "HEENT FPE", topics: ["physExam"],
+  { pid: "d15", kind: "study", title: "HEENT FPE", duration: 60, modes: ["Mock station"], focus: "HEENT FPE",
     actions: [
       { text: "Otoscopy: technique + findings (AOM, AOE, OME, perforation)", detail: D.heentFpe },
       { text: "Throat exam + Centor criteria", detail: D.heentFpe },
@@ -1214,28 +1177,28 @@ const PLAN = [
       { text: "Eye: focused exam basics", detail: D.heentFpe }
     ] },
 
-  { pid: "d16", kind: "study", title: "Acute: UTI + Acne", duration: 60, modes: ["Active recall", "SOAP", "Flashcards"], focus: "UTI + Acne", topics: ["management"],
+  { pid: "d16", kind: "study", title: "Acute: UTI + Acne", duration: 60, modes: ["Active recall", "SOAP", "Flashcards"], focus: "UTI + Acne",
     actions: [
       { text: "UTI: NSW eligibility, red flags, empirical therapy", detail: D.utiFull },
       { text: "Acne classification + stepwise management", detail: D.acneFull },
       { text: "Practise sample case — UTI", detail: D.case_uti }
     ] },
 
-  { pid: "d17", kind: "study", title: "Acute: Impetigo + Shingles", duration: 60, modes: ["Active recall", "SOAP", "Flashcards"], focus: "Impetigo + HZ", topics: ["management"],
+  { pid: "d17", kind: "study", title: "Acute: Impetigo + Shingles", duration: 60, modes: ["Active recall", "SOAP", "Flashcards"], focus: "Impetigo + HZ",
     actions: [
       { text: "Impetigo: localised vs widespread management", detail: D.impetigoFull },
       { text: "Shingles: 72h antiviral window + red flags", detail: D.shinglesFull },
       { text: "Practise sample case — shingles", detail: D.case_shingles }
     ] },
 
-  { pid: "d18", kind: "study", title: "Acute: Rhinitis + AOM + AOE", duration: 60, modes: ["Active recall", "Flashcards"], focus: "Upper respiratory + ENT", topics: ["management"],
+  { pid: "d18", kind: "study", title: "Acute: Rhinitis + AOM + AOE", duration: 60, modes: ["Active recall", "Flashcards"], focus: "Upper respiratory + ENT",
     actions: [
       { text: "Allergic / non-allergic rhinitis — INCS first-line", detail: D.rhinitisFull },
       { text: "AOM antibiotic indications + AOE topical management", detail: D.aomAoeFull },
       { text: "Practise sample case — allergic rhinitis", detail: D.case_uri }
     ] },
 
-  { pid: "d19", kind: "study", title: "Acute: MSK pain + GORD + N+V", duration: 60, modes: ["Active recall", "SOAP"], focus: "MSK + GI", topics: ["management"],
+  { pid: "d19", kind: "study", title: "Acute: MSK pain + GORD + N+V", duration: 60, modes: ["Active recall", "SOAP"], focus: "MSK + GI",
     actions: [
       { text: "Acute MSK pain — red flag screen, NSAID comparison", detail: D.mskGordNvFull },
       { text: "GORD — alarm symptoms, PPI dosing", detail: D.mskGordNvFull },
@@ -1243,7 +1206,7 @@ const PLAN = [
       { text: "Practise sample case — acute back pain", detail: D.case_msk }
     ] },
 
-  { pid: "d20", kind: "study", title: "Wound care procedure (Station 5)", duration: 60, modes: ["Mock station", "Procedure"], focus: "Wound care", topics: ["procedures"],
+  { pid: "d20", kind: "study", title: "Wound care procedure (Station 5)", duration: 60, modes: ["Mock station", "Procedure"], focus: "Wound care",
     actions: [
       { text: "TIME framework + dressing selection table", detail: D.woundFull },
       "SAFE WOUND process: walk through end-to-end aloud",
@@ -1251,7 +1214,7 @@ const PLAN = [
       "Red flags + tetanus consideration"
     ] },
 
-  { pid: "d21", kind: "study", title: "IM injection procedure + Cultural safety", duration: 60, modes: ["Mock station", "Procedure"], focus: "IM/SC + Station 1 prep", topics: ["procedures", "history"],
+  { pid: "d21", kind: "study", title: "IM injection procedure + Cultural safety", duration: 60, modes: ["Mock station", "Procedure"], focus: "IM/SC + Station 1 prep",
     actions: [
       { text: "Full IM injection procedural narration", detail: D.imInjFull },
       { text: "Site selection: deltoid vs ventrogluteal vs vastus lateralis", detail: D.imInjFull },
@@ -1259,7 +1222,7 @@ const PLAN = [
       { text: "Cultural safety opening lines — Station 1", detail: D.cultSafety }
     ] },
 
-  { pid: "d22", kind: "study", title: "Mock Station 1 (History) + Station 4 (DDx)", duration: 60, modes: ["Mock station", "Timed"], focus: "Mock OSCE rehearsal", topics: ["history", "management"],
+  { pid: "d22", kind: "study", title: "Mock Station 1 (History) + Station 4 (DDx)", duration: 60, modes: ["Mock station", "Timed"], focus: "Mock OSCE rehearsal",
     actions: [
       { text: "Timer 10 min — Station 1: history + cultural safety on sample case", detail: D.fpeMockScript },
       { text: "Sample stem to use: UTI case (Sarah, 28F)", detail: D.case_uti },
@@ -1268,7 +1231,7 @@ const PLAN = [
     ],
     notes: "Today is the gear-shift: stop learning new content, start performing it under time pressure." },
 
-  { pid: "d23", kind: "study", title: "Mock Stations 2&3 (FPE) + Station 7 (Documentation)", duration: 60, modes: ["Mock station", "Timed"], focus: "Mock OSCE rehearsal", topics: ["physExam", "documentation"],
+  { pid: "d23", kind: "study", title: "Mock Stations 2&3 (FPE) + Station 7 (Documentation)", duration: 60, modes: ["Mock station", "Timed"], focus: "Mock OSCE rehearsal",
     actions: [
       { text: "Timer 10 min × 2: pick CVS+Resp; HEENT+MSK — FPE narration aloud", detail: D.fpeMockScript },
       "Mark on what you SAID, not just what you DID",
@@ -1291,7 +1254,7 @@ const PLAN = [
       "Tonight: brief journal — top 3 things to drill in the final stretch"
     ] },
 
-  { pid: "d24", kind: "study", title: "Full mock OSCE run 1 (all 7 stations)", duration: 75, modes: ["Mock OSCE"], focus: "Integration", topics: ["history", "physExam", "management", "procedures", "documentation"],
+  { pid: "d24", kind: "study", title: "Full mock OSCE run 1 (all 7 stations)", duration: 75, modes: ["Mock OSCE"], focus: "Integration",
     actions: [
       { text: "Run all 7 stations back-to-back with 10-min timer + 2-min rest", detail: D.fpeMockScript },
       { text: "Use cases from the OSCE case bank — pick 7 fresh ones", detail: D.caseBank },
@@ -1300,7 +1263,7 @@ const PLAN = [
     ],
     notes: "First end-to-end test. Expect it to feel rough — that's the point." },
 
-  { pid: "d25", kind: "study", title: "Drill weakest stations + procedures", duration: 60, modes: ["Mock station", "Procedure"], focus: "Targeted drilling", topics: ["procedures", "physExam"],
+  { pid: "d25", kind: "study", title: "Drill weakest stations + procedures", duration: 60, modes: ["Mock station", "Procedure"], focus: "Targeted drilling",
     actions: [
       "Pick your 2 weakest stations — drill each 2× with new cases",
       { text: "Re-run wound care procedure narration", detail: D.woundFull },
@@ -1308,28 +1271,28 @@ const PLAN = [
       "Flashcard sprint: red flags + empirical antibiotic doses + vaccine schedules"
     ] },
 
-  { pid: "d26", kind: "study", title: "Full mock OSCE run 2", duration: 75, modes: ["Mock OSCE"], focus: "Integration", topics: ["history", "physExam", "management", "procedures", "documentation"],
+  { pid: "d26", kind: "study", title: "Full mock OSCE run 2", duration: 75, modes: ["Mock OSCE"], focus: "Integration",
     actions: [
       { text: "Second end-to-end run — different cases from Run 1", detail: D.caseBank },
       "Compare to Run 1: where did you improve? where still wobbly?",
       "Pick 1 station to drill tomorrow"
     ] },
 
-  { pid: "d27", kind: "study", title: "Targeted weak-station drill + reference review", duration: 60, modes: ["Mock station", "Reference drill"], focus: "Polish", topics: ["physExam", "management"],
+  { pid: "d27", kind: "study", title: "Targeted weak-station drill + reference review", duration: 60, modes: ["Mock station", "Reference drill"], focus: "Polish",
     actions: [
       "Run weakest station 3× with new cases — focus on the specific thing that wobbled",
       "Re-read Quick Reference tab — red flags, dose tables, vaccine schedules",
       "Check OSCE allocation: confirm time, room, building"
     ] },
 
-  { pid: "d28", kind: "study", title: "Full mock OSCE run 3 (final practice)", duration: 75, modes: ["Mock OSCE"], focus: "Final integration", topics: ["history", "physExam", "management", "procedures", "documentation"],
+  { pid: "d28", kind: "study", title: "Full mock OSCE run 3 (final practice)", duration: 75, modes: ["Mock OSCE"], focus: "Final integration",
     actions: [
       { text: "Final end-to-end run with new cases", detail: D.caseBank },
       "Time-check: are you using all 10 minutes? wasting any?",
       "Note any wording you want to polish tomorrow"
     ] },
 
-  { pid: "d29", kind: "study", title: "Light polish + rest", duration: 30, modes: ["Light review"], focus: "OSCE eve", topics: ["history", "physExam", "management", "procedures", "documentation"],
+  { pid: "d29", kind: "study", title: "Light polish + rest", duration: 30, modes: ["Light review"], focus: "OSCE eve",
     actions: [
       { text: "Light review only: red flags + vitals + opening lines", detail: D.vitalsRef },
       { text: "Pack equipment + ID for OSCE day", detail: D.oscePackList },
@@ -1570,7 +1533,7 @@ let state = loadState();
 function loadState() {
   try {
     const s = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    return { done: s.done || {}, settings: s.settings || {}, signup: s.signup || {}, confidence: s.confidence || {} };
+    return { done: s.done || {}, settings: s.settings || {}, signup: s.signup || {} };
   } catch { return { done: {}, settings: {}, signup: {} }; }
 }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
@@ -1675,23 +1638,8 @@ function renderToday() {
   const eventPill = item.kind !== "study" ? `<div class="event-pill">${item.kind.toUpperCase()}</div>` : "";
   const notesHtml = item.notes ? `<div class="notes"><strong>Note:</strong> ${escapeHtml(item.notes)}</div>` : "";
   const headerNote = note ? `<div class="notes" style="margin-bottom:16px"><strong>Heads up:</strong> ${escapeHtml(note)}</div>` : "";
-  const weakAreas = getWeakAreas();
-  const hasConf = state.confidence && Object.keys(state.confidence).length > 0;
-  let focusTip = "";
-  if (hasConf) {
-    if (weakAreas.length > 0) {
-      const tagHtml = weakAreas.map(k => `<span class="ft-area-tag">⚡ ${escapeHtml(getConfidenceLabel(k))}</span>`).join("");
-      focusTip = `<div class="focus-tip"><div class="ft-label">Your focus areas</div><div class="ft-body">Based on your self-assessment, these areas need the most work.</div><div class="ft-areas">${tagHtml}</div></div>`;
-    } else {
-      focusTip = `<div class="focus-tip" style="background:#f0f9f4;border-color:#86efac"><div class="ft-label" style="color:#16a34a">Looking strong 💪</div><div class="ft-body" style="color:#14532d">You rated yourself OK or comfortable across all areas. Keep drilling with mock stations.</div></div>`;
-    }
-    focusTip += `<p style="font-size:12px;color:#6b6356;margin:-10px 0 18px;text-align:right"><button class="conf-link" onclick="openSettings(); setTimeout(openConfidenceStep, 50)">Update confidence ratings →</button></p>`;
-  } else {
-    focusTip = `<div class="focus-tip"><div class="ft-label">Personalise your plan</div><div class="ft-body">Rate your confidence in each OSCE area — 30 seconds — and weak areas will be flagged. <button class="conf-link" style="font-size:13.5px;color:#c2410c" onclick="openSettings(); setTimeout(openConfidenceStep, 50)">Rate now →</button></div></div>`;
-  }
   root.innerHTML = `
     ${headerNote}
-    ${focusTip}
     <article class="today-card">
       ${eventPill}
       <div class="label">${isToday ? "Today's session" : "Upcoming session"}</div>
@@ -1733,17 +1681,11 @@ function renderPlan() {
       if (allDone) classes.push("done");
       if (item.kind !== "study") classes.push("event");
       const eventPill = item.kind !== "study" ? `<div class="event-pill">${item.kind.toUpperCase()}</div>` : "";
-      const weakAreas = getWeakAreas();
-      const itemTopics = item.topics || [];
-      const hasWeakMatch = weakAreas.some(k => itemTopics.includes(k));
-      if (hasWeakMatch && !allDone) classes.push("has-priority");
-      const priorityBadge = (hasWeakMatch && !allDone) ? `<div class="priority-badge">⚡ Priority</div>` : "";
       return `<div class="${classes.join(' ')}" onclick="showDayModal('${d}')">
         <div class="day-date">${fmtDate(d).split(",")[0]}</div>
         ${eventPill}
         <div class="day-topic">${escapeHtml(item.title)}</div>
         <div class="day-meta">${item.duration} min · ${item.modes[0]}</div>
-        ${priorityBadge}
         ${doneCount > 0 ? `<div class="day-check">${doneCount}/${totalActions} ✓</div>` : ""}
       </div>`;
     }).join("");
@@ -2086,10 +2028,7 @@ function openSettings() {
   document.getElementById("setRes2").value = res[1] || "";
   document.getElementById("settingsBg").classList.add("open");
 }
-function closeSettings() {
-  document.getElementById("settingsBg").classList.remove("open");
-  document.getElementById("confStep").classList.remove("active");
-}
+function closeSettings() { document.getElementById("settingsBg").classList.remove("open"); }
 function saveSettings() {
   const osce = document.getElementById("setOsce").value;
   if (!osce) { alert("Please set an OSCE date."); return; }
@@ -2105,8 +2044,7 @@ function saveSettings() {
   saveState();
   SCHEDULE = buildSchedule();
   renderAll();
-  const noConf = !state.confidence || Object.keys(state.confidence).length === 0;
-  if (noConf) { openConfidenceStep(); } else { closeSettings(); }
+  closeSettings();
 }
 function resetSettings() {
   if (!confirm("Reset to defaults? Your tick-off progress will be preserved.")) return;
@@ -2115,68 +2053,6 @@ function resetSettings() {
   SCHEDULE = buildSchedule();
   renderAll();
   closeSettings();
-}
-
-// =========================
-// SELF-ASSESSMENT / CONFIDENCE
-// =========================
-const CONF_AREAS = [
-  { key: "history",       label: "History taking & communication", hint: "Stations 1 — open Qs, SOCRATES, ICE, cultural safety" },
-  { key: "physExam",      label: "Physical examination",           hint: "Stations 2 & 3 — technique, narration, vitals" },
-  { key: "management",    label: "Clinical management & DDx",      hint: "Station 4 — differentials, prescribing, eTG citations" },
-  { key: "procedures",    label: "Procedures",                     hint: "Stations 5 & 6 — wound care + IM injection" },
-  { key: "documentation", label: "Documentation / SOAP",           hint: "Station 7 — structured clinical notes" },
-];
-const CONF_LABELS = { 1: "Shaky", 2: "OK", 3: "Comfortable" };
-const CONF_CLASSES = { 1: "selected-shaky", 2: "selected-ok", 3: "selected-comfortable" };
-
-function openConfidenceStep() {
-  const existing = state.confidence || {};
-  const html = CONF_AREAS.map(a => {
-    const current = existing[a.key] || 0;
-    const btns = [1, 2, 3].map(v => {
-      const cls = current === v ? " " + CONF_CLASSES[v] : "";
-      return "<button type=\"button\" class=\"conf-btn" + cls + "\" onclick=\"setConf('" + a.key + "', " + v + ", this, " + v + ")\">" + CONF_LABELS[v] + "</button>";
-    }).join("");
-    return "<div class=\"conf-area\"><div class=\"conf-area-label\">" + a.label + "<span>" + a.hint + "</span></div><div class=\"conf-btns\" id=\"confbtns_" + a.key + "\">" + btns + "</div></div>";
-  }).join("");
-  document.getElementById("confAreas").innerHTML = html;
-  document.getElementById("confStep").classList.add("active");
-  document.querySelector("#settingsBg .modal").scrollTop = 9999;
-}
-
-function setConf(key, val, btn, v) {
-  const group = document.getElementById("confbtns_" + key);
-  group.querySelectorAll(".conf-btn").forEach((b, i) => {
-    b.classList.remove("selected-shaky", "selected-ok", "selected-comfortable");
-    if (i + 1 === v) b.classList.add(CONF_CLASSES[v]);
-  });
-}
-
-function saveConfidence() {
-  const conf = {};
-  CONF_AREAS.forEach(a => {
-    const group = document.getElementById("confbtns_" + a.key);
-    if (!group) return;
-    [1, 2, 3].forEach(v => {
-      if (group.children[v - 1] && group.children[v - 1].classList.contains(CONF_CLASSES[v])) conf[a.key] = v;
-    });
-  });
-  state.confidence = conf;
-  saveState();
-  renderAll();
-  closeSettings();
-}
-
-function skipConfidence() { closeSettings(); }
-
-function getWeakAreas() {
-  const c = state.confidence || {};
-  return CONF_AREAS.filter(a => c[a.key] === 1).map(a => a.key);
-}
-
-function getConfidenceLabel(key) {
-  return (CONF_AREAS.find(a => a.key === key) || {}).label || key;
 }
 
 // =========================
@@ -2283,7 +2159,7 @@ const LIBRARY_TOPICS = {
     { num: "04", file: "04-impetigo.html", title: "Impetigo", desc: "PATH-DERM · Adult localised + extensive in scope · Paeds oral = refer", nsw: "https://www.health.nsw.gov.au/pharmaceutical/pharmacists/Documents/practice-standards-impetigo.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0020/1304246/impetigo-guideline.pdf" },
     { num: "05", file: "05-acne.html", title: "Acne Vulgaris", desc: "NSW Practice Standards (5 Aug 2025) · ≥12 yo · Mild only · Topical only", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-acne.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0017/1304243/acne-guideline.pdf" },
     { num: "06", file: "06-allergic-rhinitis.html", title: "Allergic + Non-Allergic Rhinitis", desc: "Permanent · ≥6 yo · 4 wk supply · INCS first-line for mod-severe", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-allergic-rhinitis.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0022/1304248/rhinitis-guideline.pdf" },
-    { num: "07", file: "07-otitis-media-externa.html", title: "Otitis Media + Externa", desc: "Planned/pilot · ≥2 yo · Otoscopy required · NO oral abx for AOE", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0023/1304393/otitis-media-guideline.pdf" },
+    { num: "07", file: "07-otitis-media-externa.html", title: "Otitis Media + Externa", desc: "Planned/pilot · ≥2 yo · Otoscopy required · NO oral abx for AOE", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0023/1304393/otitis-media-guideline.pdf", qld2: "https://www.health.qld.gov.au/__data/assets/pdf_file/0024/1304394/otitis-externa-guideline.pdf" },
     { num: "08", file: "08-msk-pain.html", title: "Acute MSK Pain", desc: "Permanent · ≥18 yo · Mild mechanical · 9 NSW-approved NSAIDs", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-musculoskeletal-pain.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0021/1304247/musculoskeletal-pain-guideline.pdf" },
     { num: "09", file: "09-gord.html", title: "GORD / Dyspepsia", desc: "Permanent · 18–50 yo · 4 wk supply · Rabeprazole if on clopidogrel", nsw: "https://www.health.nsw.gov.au/pharmaceutical/Documents/practice-standards-gastro-reflux.pdf", qld: "https://www.health.qld.gov.au/__data/assets/pdf_file/0019/1304245/gastro-oesophageal-guideline.pdf" },
     { num: "10", file: "10-vaccinations.html", title: "Pharmacist Vaccinations", desc: "NIPVIP permanent · Per AIH + NSW Health authorisation" },
@@ -2316,6 +2192,7 @@ function libCard(t) {
         <span style="color:#888">Official guide:</span>
         ${t.nsw ? `<a href="${t.nsw}" target="_blank" rel="noopener" style="color:#2980b9;text-decoration:none;font-weight:600">📄 NSW ↗</a>` : ''}
         ${t.qld ? `<a href="${t.qld}" target="_blank" rel="noopener" style="color:#7d3c98;text-decoration:none;font-weight:600">📄 QLD ↗</a>` : ''}
+      ${t.qld2 ? `<a href="${t.qld2}" target="_blank" rel="noopener" style="color:#7d3c98;text-decoration:none;font-weight:600">📄 QLD (externa) ↗</a>` : ''}
       </div>`
     : '';
   return `<div class="lib-card">

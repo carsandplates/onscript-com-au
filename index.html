@@ -1329,37 +1329,50 @@ const STATIONS = [
   { num: 1, title: "History taking + Cultural safety",
     aim: "Take a focused, patient-centred history with explicit cultural-safety elements.",
     structure: ["Introduce self + role + confirm patient identity","Gain consent + explain purpose","Presenting complaint (open question → SOCRATES)","Associated symptoms / systems review","PMH, medications, allergies, family hx","Social hx: occupation, smoking, alcohol, drugs, living situation","Cultural safety: preferred name/pronouns, cultural needs, interpreter? Aboriginal/Torres Strait Islander identification","ICE: Ideas, Concerns, Expectations","Summarise back to patient; ask if anything missed"],
-    pitfalls: ["Closed questions too early — let the patient talk","Forgetting cultural safety component","Skipping ICE — examiners often mark this explicitly","Running out of time on social hx tangent"]
+    pitfalls: ["Closed questions too early — let the patient talk","Forgetting cultural safety component","Skipping ICE — examiners often mark this explicitly","Running out of time on social hx tangent"],
+    topics: ["Contraception initiation","Impetigo","Acne","Smoking cessation"],
+    scripts: [
+      { label: "Privacy of the consult (address seriously)", line: "Before we start, I want to be clear about privacy — what we talk about today is confidential. Are you comfortable, and is this a private enough space for you?" },
+      { label: "Offer to pause at any time", line: "At any time, if you'd like me to stop the conversation, please just say so and we'll pause." },
+      { label: "Preferred form of address (e.g. Aboriginal & Torres Strait Islander patients)", line: "Would you like me to call you Uncle or Auntie?" },
+      { label: "Topics to avoid", line: "Is there anything you don't want to talk about today?" }
+    ]
   },
   { num: 2, title: "Focused Physical Exam + Vitals (1)",
     aim: "Perform a system-focused exam on manikin with narration of findings.",
     structure: ["Hand hygiene + PPE + introduce + consent + position","Vitals (BP/HR/RR/SpO2/Temp ± BGL) — state values aloud","Inspection: general → focused. State what you see.","Palpation / Percussion / Auscultation in correct order","Use correct anatomical landmarks; state them aloud","Conclude: thank patient, redrape, summary of findings"],
-    pitfalls: ["Silent exam — examiners can't read your mind","Forgetting hand hygiene or consent","Skipping symmetry comparison (L vs R)","Wrong order (e.g. palpating abdomen before auscultating)"]
+    pitfalls: ["Silent exam — examiners can't read your mind","Forgetting hand hygiene or consent","Skipping symmetry comparison (L vs R)","Wrong order (e.g. palpating abdomen before auscultating)"],
+    topics: ["Derm inspection + palpation","Nose + mouth + throat","Thyroid inspection/palpation + neck MSK ROM","Abdominal inspection + palpation","MSK palpation + lower back ROM","Ear exam (Otoscope)","CVD inspection + palpation (lower limbs)","Vitals: BP, HR, BMI/Waist circumference"]
   },
   { num: 3, title: "Focused Physical Exam + Vitals (2)",
     aim: "Same as Station 2, different system.",
     structure: ["Same structure as Station 2 — system likely complementary","Be ready for ALL systems: CVS · Resp · Derm · Neuro · GI · MSK · HEENT"],
-    pitfalls: ["Practising only your favourite system","Forgetting special tests","Missing system-specific red flags"]
+    pitfalls: ["Practising only your favourite system","Forgetting special tests","Missing system-specific red flags"],
+    topics: ["Derm inspection + palpation","Nose + mouth + throat","Thyroid inspection/palpation + neck MSK ROM","Abdominal inspection + palpation","MSK palpation + lower back ROM","Ear exam (Otoscope)","CVD inspection + palpation (lower limbs)","Vitals: BP, HR, BMI/Waist circumference"]
   },
   { num: 4, title: "Differential dx + Management",
     aim: "Interpret a short case, generate differentials, justify a management plan.",
     structure: ["State your problem representation (1-sentence summary)","List top 3 differentials with brief justification","Identify red flags / referral triggers","Outline non-pharmacological management","Outline pharmacological management with drug, dose, duration, citation","Safety-net + follow-up plan"],
-    pitfalls: ["Jumping to single diagnosis without differentials","Not citing evidence base (eTG, NSW protocol)","Forgetting safety-netting","Cognitive biases: anchoring, premature closure"]
+    pitfalls: ["Jumping to single diagnosis without differentials","Not citing evidence base (eTG, NSW protocol)","Forgetting safety-netting","Cognitive biases: anchoring, premature closure"],
+    topics: ["AOM/AOE","Contraception initiation","Acne","Shingles","Impetigo","Rhinitis","Nausea and vomiting","GORD"]
   },
   { num: 5, title: "Wound care procedure",
     aim: "Perform appropriate wound assessment + cleansing + dressing + closure on model.",
     structure: ["PPE + hand hygiene + consent + position","Assess: type, TIME framework","Decide referral need (red flags)","Cleanse: saline/water; debride if appropriate","Closure choice: steri-strips vs adhesive vs refer","Dressing: match exudate level","Document + advise + follow-up + safety-net"],
-    pitfalls: ["Skipping the referral assessment","Wrong dressing for exudate level","Forgetting tetanus status","Not documenting properly"]
+    pitfalls: ["Skipping the referral assessment","Wrong dressing for exudate level","Forgetting tetanus status","Not documenting properly"],
+    topics: ["Immersion wound","Infected wound","Contaminated wound","Animal bite","Traumatic wound + tetanus"]
   },
   { num: 6, title: "IM injection procedure",
     aim: "Administer an IM injection safely on model.",
     structure: ["Check 7 rights: patient, drug, dose, route, time, documentation, reason","PPE + hand hygiene + consent + screen contraindications","Identify site: deltoid (most adult) — landmark","Clean site, allow to dry","Insert needle 90°, full depth, no aspiration (AIH)","Inject smoothly, withdraw, apply pressure","Dispose sharps immediately","Observe 15 min for anaphylaxis","Document in AIR: vaccine, batch, expiry, site, time, route"],
-    pitfalls: ["Wrong landmark (too low → axillary nerve risk)","Forgetting AIR documentation","Skipping 15-min observation","Forgetting anaphylaxis preparedness statement"]
+    pitfalls: ["Wrong landmark (too low → axillary nerve risk)","Forgetting AIR documentation","Skipping 15-min observation","Forgetting anaphylaxis preparedness statement"],
+    topics: ["Depo","Benzylpenicillin","Cabotegravir","Ceftriaxone","Fenothiazyne","B12","Antibody 1","Antibody 2"]
   },
   { num: 7, title: "Documentation (computer room)",
     aim: "Type a SOAP-format clinical note for a presented case.",
     structure: ["Subjective: PC, history, PMH, meds, allergies, social","Objective: vitals, exam findings, investigations","Assessment: working diagnosis + differentials + reasoning","Plan: intervention, education, safety-net, follow-up, referrals, GP communication","Sign + date + designation"],
-    pitfalls: ["Disorganised (jumping between S/O/A/P)","Missing safety-net or follow-up","No reasoning shown in assessment","Forgetting GP communication / handover"]
+    pitfalls: ["Disorganised (jumping between S/O/A/P)","Missing safety-net or follow-up","No reasoning shown in assessment","Forgetting GP communication / handover"],
+    topics: ["Travel health 1","Travel health 2","OC resupply","UTI","MSK pain"]
   }
 ];
 
@@ -1769,6 +1782,14 @@ function renderStations() {
           <div><h4>Structure / checklist</h4><ul>${s.structure.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul></div>
           <div><h4>Common pitfalls</h4><ul>${s.pitfalls.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul></div>
         </div>
+        ${s.topics ? `<details class="station-topics" style="margin-top:14px;border:1px solid #e7e0d4;border-radius:8px;background:#fbf8f2;padding:0 14px">
+          <summary style="cursor:pointer;padding:11px 0;font-weight:600;color:#c2410c;font-size:14px;list-style:none">▸ Potential exam topics (${s.topics.length})</summary>
+          <ul style="margin:0 0 12px;padding-left:20px">${s.topics.map(x => `<li style="margin:3px 0">${escapeHtml(x)}</li>`).join("")}</ul>
+        </details>` : ""}
+        ${s.scripts ? `<details class="station-scripts" style="margin-top:10px;border:1px solid #e7e0d4;border-radius:8px;background:#fbf8f2;padding:0 14px">
+          <summary style="cursor:pointer;padding:11px 0;font-weight:600;color:#c2410c;font-size:14px;list-style:none">▸ Cultural-safety questions — lecturer recommended (${s.scripts.length})</summary>
+          <div style="margin:0 0 12px">${s.scripts.map(sc => `<div style="margin:8px 0"><div style="font-weight:600;color:#6b6356;font-size:13px;margin-bottom:3px">${escapeHtml(sc.label)}</div><div style="background:#fff;border:1px solid #e9e3d8;padding:9px 12px;border-radius:6px;font-style:italic;color:#1a1a1a;font-size:13px">“${escapeHtml(sc.line)}”</div></div>`).join("")}</div>
+        </details>` : ""}
       </article>
     `).join("")}
   `;

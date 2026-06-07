@@ -432,7 +432,8 @@ body.banner-shown { padding-bottom: 80px; }
 // Deploy the .gs script (see apps_script.gs file + README), then paste the URL below.
 // Leave as placeholder during testing — submissions will be skipped server-side, still saved locally.
 const SIGNUP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuZLMz9PueZKZhd2dHzizsA2qkKsjbWwgBgwICXJWe7MLt9FMC_FiAZnKrtiGz5ktF/exec";
-const SIGNUP_TRIGGER_AT_TICKS = 3;          // show banner once user has ticked this many actions
+const SIGNUP_TRIGGER_AT_CLICKS = 5;         // show banner once user has clicked anywhere this many times
+const SIGNUP_RETEST_AT_VISIT = 3;           // on this visit (distinct calendar day), re-prompt a user who dismissed without signing up
 // Banner persists indefinitely until user submits or clicks "Not interested" in the modal.
 
 // =========================
@@ -1942,21 +1943,45 @@ function renderReference() {
 // =========================
 // SIGNUP CAPTURE
 // =========================
-function countTickedActions() {
-  let n = 0;
-  Object.values(state.done || {}).forEach(m => {
-    n += Object.values(m).filter(Boolean).length;
-  });
-  return n;
+// Count any click anywhere on the page (clicks on the marketing prompt itself are ignored).
+function registerClick(e) {
+  if (e && e.target && e.target.closest && e.target.closest('#signupBanner, #signupBg')) return;
+  const sig = state.signup || {};
+  // No need to keep counting once they've signed up or dismissed
+  if (sig.status === 'submitted' || sig.status === 'skipped') return;
+  sig.clicks = (sig.clicks || 0) + 1;
+  state.signup = sig;
+  saveState();
+  checkSignupTrigger();
 }
 
 function checkSignupTrigger() {
   const sig = state.signup || {};
   // Never show again if they've signed up or explicitly declined
   if (sig.status === 'submitted' || sig.status === 'skipped') return hideBanner();
-  // Show banner once user has engaged enough — and keep it shown
-  if (countTickedActions() >= SIGNUP_TRIGGER_AT_TICKS) {
+  // Show banner once user has clicked around enough — and keep it shown
+  if ((sig.clicks || 0) >= SIGNUP_TRIGGER_AT_CLICKS) {
     showBanner();
+  }
+}
+
+// Count distinct calendar-day visits. On the configured visit, give a one-time
+// second chance to a user who dismissed the banner without signing up.
+function trackVisitAndMaybeRetest() {
+  const sig = state.signup || {};
+  const today = todayISO();
+  if (sig.lastVisitDay !== today) {
+    sig.visits = (sig.visits || 0) + 1;
+    sig.lastVisitDay = today;
+    state.signup = sig;
+    saveState();
+  }
+  if ((sig.visits || 0) >= SIGNUP_RETEST_AT_VISIT && sig.status === 'skipped' && !sig.retested) {
+    delete sig.status;     // re-arm the banner
+    sig.clicks = 0;        // require a fresh round of clicks
+    sig.retested = true;   // only retest once
+    state.signup = sig;
+    saveState();
   }
 }
 
@@ -2278,6 +2303,10 @@ function renderAll() {
 }
 
 renderAll();
+// Count every click on the page toward the signup trigger (capture phase = catches all clicks)
+document.addEventListener('click', registerClick, true);
+// Track this visit, and re-prompt on the 3rd visit if they dismissed without signing up
+trackVisitAndMaybeRetest();
 // Also check on page load — returning users past the threshold see the banner immediately
 checkSignupTrigger();
 </script>

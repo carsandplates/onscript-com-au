@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contraceptive Methods — OSCE Study Session</title>
+<style>
+  :root{
+    --primary:#2563eb; --primary-dark:#1d4ed8;
+    --success:#16a34a; --danger:#dc2626; --warning:#d97706;
+    --bg:#f8fafc; --card:#ffffff; --border:#e2e8f0; --text:#1e293b; --muted:#64748b;
+    /* method-type accents */
+    --combined:#7c3aed; --combined-bg:#f3e8ff;
+    --prog:#0d9488;    --prog-bg:#cffafe;
+    --local:#2563eb;   --local-bg:#dbeafe;
+    --copper:#c2570c;  --copper-bg:#ffedd5;
+    --radius:14px;
+    --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+    --shadow-lg:0 12px 28px -8px rgba(0,0,0,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.55;
+    -webkit-font-smoothing:antialiased;padding:0 0 60px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+  /* Header */
+  header{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb 60%,#3b82f6);
+    color:#fff;padding:34px 0 30px;box-shadow:var(--shadow-lg);
+  }
+  header h1{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+  header .sub{opacity:.92;font-size:.98rem;font-weight:400}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .legend .chip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25);padding:5px 11px;border-radius:999px;font-size:.82rem;font-weight:500}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+  /* Tabs */
+  .tab-nav{display:flex;gap:4px;flex-wrap:wrap;position:sticky;top:0;z-index:20;
+    background:rgba(248,250,252,.92);backdrop-filter:blur(8px);
+    padding:12px 0 10px;margin-bottom:8px;border-bottom:1px solid var(--border)}
+  .tab-btn{flex:1;min-width:130px;border:1px solid var(--border);background:var(--card);
+    color:var(--muted);font-size:.92rem;font-weight:600;padding:11px 10px;border-radius:10px;
+    cursor:pointer;transition:all .15s;font-family:inherit}
+  .tab-btn:hover{border-color:var(--primary);color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:var(--shadow)}
+  .panel{display:none;animation:fade .25s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  h2.section{font-size:1.15rem;margin:22px 0 12px;font-weight:700;letter-spacing:-.01em}
+  p.lead{color:var(--muted);font-size:.95rem;margin-bottom:14px;max-width:70ch}
+
+  /* Callouts */
+  .callout{border-radius:var(--radius);padding:13px 16px;margin:14px 0;font-size:.92rem;display:flex;gap:11px}
+  .callout .ico{flex:0 0 auto;font-weight:800;width:22px;height:22px;border-radius:50%;
+    display:grid;place-items:center;color:#fff;font-size:.8rem}
+  .callout.tip{background:#eff6ff;border:1px solid #bfdbfe}
+  .callout.tip .ico{background:var(--primary)}
+  .callout.key{background:#fefce8;border:1px solid #fde68a}
+  .callout.key .ico{background:var(--warning)}
+  .callout b{font-weight:700}
+
+  /* Spectrum map */
+  .spectrum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:10px 0 6px}
+  .band{border-radius:var(--radius);padding:14px;border:1px solid var(--border);background:var(--card);
+    box-shadow:var(--shadow);display:flex;flex-direction:column;border-top:4px solid var(--c)}
+  .band h3{font-size:.86rem;text-transform:uppercase;letter-spacing:.03em;color:var(--c);margin-bottom:3px}
+  .band .moa{font-size:.84rem;color:var(--muted);margin-bottom:10px;min-height:34px}
+  .band .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .chip-m{font-size:.8rem;font-weight:600;padding:4px 9px;border-radius:8px;cursor:pointer;
+    background:var(--cb);color:var(--c);border:1px solid transparent;transition:.15s}
+  .chip-m:hover{border-color:var(--c);transform:translateY(-1px)}
+  .arrow-row{display:flex;align-items:center;justify-content:space-between;color:var(--muted);
+    font-size:.78rem;font-weight:600;margin:2px 4px 0}
+
+  /* Effectiveness tiers */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+  .tier{border-radius:var(--radius);padding:14px 16px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow)}
+  .tier h4{font-size:.95rem;margin-bottom:3px;display:flex;align-items:center;gap:8px}
+  .tier .pct{font-size:.8rem;color:var(--muted);margin-bottom:9px}
+  .tier .mlist{display:flex;flex-wrap:wrap;gap:6px}
+  .badge{font-size:.78rem;font-weight:600;padding:3px 9px;border-radius:7px;background:#f1f5f9;color:var(--text)}
+  .tier.t1{border-left:4px solid var(--success)} .tier.t2{border-left:4px solid var(--warning)}
+
+  /* Method cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;margin-top:6px}
+  .mcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden;border-left:5px solid var(--c);transition:box-shadow .2s}
+  .mcard.flash{box-shadow:0 0 0 3px var(--c),var(--shadow-lg)}
+  .mhead{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+  .mhead:hover{background:#fafcff}
+  .micon{flex:0 0 auto;width:42px;height:42px;border-radius:11px;background:var(--cb);color:var(--c);
+    display:grid;place-items:center}
+  .micon svg{width:24px;height:24px}
+  .mtitle{flex:1;min-width:0}
+  .mtitle .nm{font-weight:700;font-size:1rem;letter-spacing:-.01em}
+  .mtitle .brand{font-size:.82rem;color:var(--muted)}
+  .scope{font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap;text-transform:uppercase;letter-spacing:.02em}
+  .scope.rx{background:#dcfce7;color:#15803d}
+  .scope.ref{background:#fef3c7;color:#b45309}
+  .chev{flex:0 0 auto;color:var(--muted);transition:transform .2s;font-size:1rem}
+  .mcard.open .chev{transform:rotate(180deg)}
+  .moa-line{padding:0 16px 13px 70px;margin-top:-4px;font-size:.9rem;color:var(--text)}
+  .mbody{max-height:0;overflow:hidden;transition:max-height .3s ease;border-top:1px solid transparent}
+  .mcard.open .mbody{max-height:760px;border-top-color:var(--border)}
+  .mbody-in{padding:14px 16px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}
+  .fact{background:var(--bg);border-radius:9px;padding:8px 11px}
+  .fact .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);font-weight:700}
+  .fact .v{font-size:.88rem;font-weight:500;margin-top:1px}
+  .fact.wide{grid-column:1 / -1}
+  .pearl{background:#eff6ff;border:1px solid #bfdbfe;border-radius:9px;padding:9px 12px;font-size:.86rem}
+  .pearl b{color:var(--primary-dark)}
+
+  /* Quiz / match */
+  .q{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:16px 18px;margin-bottom:13px}
+  .q .qnum{font-size:.74rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.04em}
+  .q .qtext{font-weight:600;font-size:.98rem;margin:3px 0 12px}
+  .q .scenario{font-weight:400;color:var(--text);background:var(--bg);border-left:3px solid var(--primary);
+    padding:8px 12px;border-radius:0 8px 8px 0;margin:6px 0 12px;font-size:.92rem}
+  .opts{display:flex;flex-direction:column;gap:8px}
+  .opt{text-align:left;border:1.5px solid var(--border);background:var(--card);color:var(--text);
+    padding:10px 13px;border-radius:9px;cursor:pointer;font-size:.9rem;font-family:inherit;transition:.13s;display:flex;align-items:center;gap:9px}
+  .opt:hover{border-color:var(--primary);background:#f8fbff}
+  .opt .mk{flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:#f1f5f9;display:grid;place-items:center;font-size:.78rem;font-weight:700;color:var(--muted)}
+  .q.done .opt{cursor:default}
+  .q.done .opt:hover{background:var(--card)}
+  .opt.correct{border-color:var(--success);background:#f0fdf4}
+  .opt.correct .mk{background:var(--success);color:#fff}
+  .opt.wrong{border-color:var(--danger);background:#fef2f2}
+  .opt.wrong .mk{background:var(--danger);color:#fff}
+  .fb{display:none;margin-top:11px;font-size:.88rem;background:var(--bg);border-radius:9px;padding:10px 13px;border-left:3px solid var(--primary)}
+  .q.done .fb{display:block}
+  .fb b{color:var(--primary-dark)}
+
+  .scorebar{position:sticky;top:64px;z-index:10;background:var(--card);border:1px solid var(--border);
+    box-shadow:var(--shadow);border-radius:12px;padding:11px 16px;margin-bottom:14px;display:flex;
+    align-items:center;justify-content:space-between;font-weight:600;font-size:.92rem}
+  .scorebar .val{color:var(--primary);font-weight:800;font-size:1.05rem}
+  .resetbtn{border:1px solid var(--border);background:var(--bg);border-radius:8px;padding:6px 12px;
+    font-size:.82rem;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+  .resetbtn:hover{border-color:var(--primary);color:var(--primary)}
+
+  footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+  footer a{color:var(--primary);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media(max-width:760px){
+    .spectrum{grid-template-columns:1fr 1fr}
+    .tiers{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr}
+    header h1{font-size:1.4rem}
+  }
+  @media(max-width:440px){ .spectrum{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Contraceptive Methods</h1>
+    <div class="sub">OSCE Study Session · FSOP / UTS GCPP · aligned to QLD CPG (Feb 2024) &amp; UKMEC</div>
+    <div class="legend">
+      <span class="chip"><span class="dot" style="background:#4ade80"></span> Prescribe — in QLD pharmacist scope</span>
+      <span class="chip"><span class="dot" style="background:#fbbf24"></span> Refer — discuss (LARC-first) &amp; refer</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="map">The Map</button>
+    <button class="tab-btn" data-tab="methods">Methods</button>
+    <button class="tab-btn" data-tab="match">Match the Patient</button>
+    <button class="tab-btn" data-tab="test">Self-Test</button>
+  </nav>
+
+  <!-- ================= MAP ================= -->
+  <section class="panel active" id="map">
+    <div class="callout key">
+      <span class="ico">!</span>
+      <div><b>One organising idea.</b> Every method is just a variation on <b>which hormone, delivered how, acting where.</b> Oestrogen methods suppress ovulation with clean cycle control but carry the VTE &amp; breastfeeding caveats. Progestogen-only methods either suppress ovulation (implant, DMPA) or act locally (hormonal IUD). Copper uses no hormones at all.</div>
+    </div>
+
+    <h2 class="section">The hormone &amp; mechanism spectrum</h2>
+    <div class="arrow-row"><span>← more oestrogen / cycle control</span><span>hormone-free →</span></div>
+    <div class="spectrum">
+      <div class="band" style="--c:var(--combined);--cb:var(--combined-bg)">
+        <h3>Combined (O + P)</h3>
+        <div class="moa">Suppress ovulation. Oestrogen = VTE risk &amp; avoid while breastfeeding.</div>
+        <div class="chips">
+          <span class="chip-m" style="--c:var(--combined);--cb:var(--combined-bg)" onclick="openMethod('cocp')">COC pill</span>
+          <span class="chip-m" style="--c:var(--combined);--cb:var(--combined-bg)" onclick="openMethod('ring')">Vaginal ring</span>
+        </div>
+      </div>
+      <div class="band" style="--c:var(--prog);--cb:var(--prog-bg)">
+        <h3>Progestogen — systemic</h3>
+        <div class="moa">Suppress ovulation (± mucus). Milk-safe, no VTE bar.</div>
+        <div class="chips">
+          <span class="chip-m" style="--c:var(--prog);--cb:var(--prog-bg)" onclick="openMethod('implant')">Implant</span>
+          <span class="chip-m" style="--c:var(--prog);--cb:var(--prog-bg)" onclick="openMethod('dmpa')">DMPA</span>
+          <span class="chip-m" style="--c:var(--prog);--cb:var(--prog-bg)" onclick="openMethod('pop')">POP</span>
+        </div>
+      </div>
+      <div class="band" style="--c:var(--local);--cb:var(--local-bg)">
+        <h3>Progestogen — local</h3>
+        <div class="moa">Acts in the uterus: thins lining, thickens mucus. Ovulation usually continues.</div>
+        <div class="chips">
+          <span class="chip-m" style="--c:var(--local);--cb:var(--local-bg)" onclick="openMethod('mirena')">Mirena</span>
+          <span class="chip-m" style="--c:var(--local);--cb:var(--local-bg)" onclick="openMethod('kyleena')">Kyleena</span>
+        </div>
+      </div>
+      <div class="band" style="--c:var(--copper);--cb:var(--copper-bg)">
+        <h3>Non-hormonal</h3>
+        <div class="moa">Copper is toxic to sperm + sterile inflammation → blocks fertilisation.</div>
+        <div class="chips">
+          <span class="chip-m" style="--c:var(--copper);--cb:var(--copper-bg)" onclick="openMethod('copper')">Copper IUD</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section">Effectiveness tiers — why LARC-first</h2>
+    <p class="lead">The tier-1 methods remove user error entirely — fit and forget. That's the whole argument for raising them first.</p>
+    <div class="tiers">
+      <div class="tier t1">
+        <h4>Tier 1 · Fit &amp; forget <span class="badge" style="background:#dcfce7;color:#15803d">&lt; 1% typical</span></h4>
+        <div class="pct">No daily action — failure rate barely moves between perfect &amp; typical use.</div>
+        <div class="mlist">
+          <span class="badge">Implant</span><span class="badge">Mirena</span><span class="badge">Kyleena</span><span class="badge">Copper IUD</span>
+        </div>
+      </div>
+      <div class="tier t2">
+        <h4>Tier 2 · Depends on you <span class="badge" style="background:#fef3c7;color:#b45309">~6–9% typical</span></h4>
+        <div class="pct">Effectiveness hinges on adherence (or returning on time for DMPA).</div>
+        <div class="mlist">
+          <span class="badge">COC pill</span><span class="badge">POP</span><span class="badge">Vaginal ring</span><span class="badge">DMPA (12-wkly)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <span class="ico">i</span>
+      <div><b>Breastfeeding lens.</b> The only thing the postpartum/breastfeeding question really turns on: <b>does it contain oestrogen?</b> COC &amp; ring → avoid early / not first-line. Everything progestogen-only (POP, implant, DMPA, hormonal IUD) and copper → milk-safe.</div>
+    </div>
+  </section>
+
+  <!-- ================= METHODS ================= -->
+  <section class="panel" id="methods">
+    <h2 class="section">Tap any method to expand</h2>
+    <p class="lead">Featured: the five you wanted to nail. COC &amp; POP sit at the end as revision.</p>
+    <div class="grid" id="mgrid">
+
+      <!-- RING -->
+      <div class="mcard" id="m-ring" style="--c:var(--combined);--cb:var(--combined-bg)">
+        <div class="mhead" onclick="toggleCard(this)">
+          <span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/></svg></span>
+          <span class="mtitle"><span class="nm">Vaginal ring</span><span class="brand">NuvaRing · etonogestrel + ethinylestradiol</span></span>
+          <span class="scope rx">Prescribe</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="moa-line"><i>The COC in a different wrapper</i> — combined hormones absorbed across the vaginal wall.</div>
+        <div class="mbody"><div class="mbody-in">
+          <div class="facts">
+            <div class="fact"><div class="k">Duration</div><div class="v">Monthly: 3 wks in / 1 wk out</div></div>
+            <div class="fact"><div class="k">MOA</div><div class="v">Ovulation suppression</div></div>
+            <div class="fact"><div class="k">Bleeding</div><div class="v">Regular, lighter (withdrawal bleed)</div></div>
+            <div class="fact"><div class="k">Fertility back</div><div class="v">Immediate</div></div>
+            <div class="fact wide"><div class="k">Key caveats</div><div class="v">Same UKMEC as COC — oestrogen → VTE risk &amp; avoid while breastfeeding. Wins: not daily, steadier levels, lower oestrogen, bypasses first-pass (vomiting/diarrhoea don't reduce absorption).</div></div>
+          </div>
+          <div class="pearl"><b>OSCE pearl:</b> ruled out the COC for someone? You've ruled out the ring. A non-starter the moment a patient prioritises breastfeeding.</div>
+        </div></div>
+      </div>
+
+      <!-- IMPLANT -->
+      <div class="mcard" id="m-implant" style="--c:var(--prog);--cb:var(--prog-bg)">
+        <div class="mhead" onclick="toggleCard(this)">
+          <span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="9.5" width="18" height="5" rx="2.5" transform="rotate(-20 12 12)"/></svg></span>
+          <span class="mtitle"><span class="nm">Implant</span><span class="brand">Implanon NXT · etonogestrel 68 mg</span></span>
+          <span class="scope ref">Refer</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="moa-line"><i>The POP with the volume turned up</i> — a dose high enough to reliably suppress ovulation.</div>
+        <div class="mbody"><div class="mbody-in">
+          <div class="facts">
+            <div class="fact"><div class="k">Duration</div><div class="v">3 years (arm, subdermal)</div></div>
+            <div class="fact"><div class="k">Effectiveness</div><div class="v">Most effective — &lt;1 in 1000/yr</div></div>
+            <div class="fact"><div class="k">Bleeding</div><div class="v">Unpredictable (#1 removal reason)</div></div>
+            <div class="fact"><div class="k">Fertility back</div><div class="v">Rapid after removal</div></div>
+            <div class="fact wide"><div class="k">Flags</div><div class="v">Milk-safe (UKMEC 1 from birth), no VTE bar. <b>Enzyme inducers reduce efficacy.</b> Counsel the bleeding pattern upfront.</div></div>
+          </div>
+          <div class="pearl"><b>OSCE pearl:</b> the best-fit answer for "oestrogen-free, not daily, not a uterine insertion, wants a few years' cover." Raise it &amp; refer — that's a scored action.</div>
+        </div></div>
+      </div>
+
+      <!-- DMPA -->
+      <div class="mcard" id="m-dmpa" style="--c:var(--prog);--cb:var(--prog-bg)">
+        <div class="mhead" onclick="toggleCard(this)">
+          <span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l3-3M8.5 8.5l7 7M14 5l5 5-7.5 7.5L6.5 12 14 5zM12.5 6.5l5 5"/></svg></span>
+          <span class="mtitle"><span class="nm">DMPA / Depo</span><span class="brand">Depo-Provera, Depo-Ralovera · MPA 150 mg IM</span></span>
+          <span class="scope rx">Prescribe + inject</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="moa-line"><i>Ovulation suppression by depot</i> — one injection every 12 weeks.</div>
+        <div class="mbody"><div class="mbody-in">
+          <div class="facts">
+            <div class="fact"><div class="k">Duration</div><div class="v">Every 12 weeks</div></div>
+            <div class="fact"><div class="k">Bleeding</div><div class="v">Irregular early → amenorrhoea ~50% at 1 yr</div></div>
+            <div class="fact"><div class="k">Fertility back</div><div class="v">Delayed — up to ~9–12 mo from last dose</div></div>
+            <div class="fact"><div class="k">Reversible?</div><div class="v">Yes, but slow tail</div></div>
+            <div class="fact wide"><div class="k">Signature trade-offs</div><div class="v"><b>Weight gain</b> (the one method with real evidence) · <b>reversible ↓ bone density</b> (UKMEC flags &lt;18 &amp; &gt;45) · <b>delayed fertility.</b> Milk-safe.</div></div>
+          </div>
+          <div class="pearl"><b>OSCE pearl:</b> in scope — you can prescribe <i>and</i> administer it. Wrong pick if pregnancy is wanted soon; the depot tail is your half-life thread writ large.</div>
+        </div></div>
+      </div>
+
+      <!-- MIRENA -->
+      <div class="mcard" id="m-mirena" style="--c:var(--local);--cb:var(--local-bg)">
+        <div class="mhead" onclick="toggleCard(this)">
+          <span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M7 5h10M9.5 9c0 3 2.5 4 2.5 7M14.5 9c0 3-2.5 4-2.5 7"/></svg></span>
+          <span class="mtitle"><span class="nm">Mirena</span><span class="brand">LNG-IUS · levonorgestrel 52 mg</span></span>
+          <span class="scope ref">Refer</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="moa-line"><i>Progestogen acting locally</i> — thins the lining, thickens mucus; ovulation usually continues.</div>
+        <div class="mbody"><div class="mbody-in">
+          <div class="facts">
+            <div class="fact"><div class="k">Duration</div><div class="v">8 years (extended from 5 in 2024)</div></div>
+            <div class="fact"><div class="k">Bleeding</div><div class="v">Much lighter / often none</div></div>
+            <div class="fact"><div class="k">Effectiveness</div><div class="v">&gt;99% (tier 1)</div></div>
+            <div class="fact"><div class="k">Fertility back</div><div class="v">Rapid</div></div>
+            <div class="fact wide"><div class="k">Bonus</div><div class="v">Also TGA-approved for <b>heavy menstrual bleeding</b> &amp; endometrial protection in HRT. To age 55 if inserted from 45. Expect 3–6 mo spotting before it settles.</div></div>
+          </div>
+          <div class="pearl"><b>OSCE pearl:</b> the method for "I want lighter or no periods" — the mirror image of copper.</div>
+        </div></div>
+      </div>
+
+      <!-- KYLEENA -->
+      <div class="mcard" id="m-kyleena" style="--c:var(--local);--cb:var(--local-bg)">
+        <div class="mhead" onclick="toggleCard(this)">
+          <span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M7 5h10M9.5 9c0 3 2.5 4 2.5 7M14.5 9c0 3-2.5 4-2.5 7"/></svg></span>
+          <span class="mtitle"><span class="nm">Kyleena</span><span class="brand">LNG-IUS · levonorgestrel 19.5 mg</span></span>
+          <span class="scope ref">Refer</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="moa-line">Mirena's smaller sibling — lower dose, slightly easier insertion.</div>
+        <div class="mbody"><div class="mbody-in">
+          <div class="facts">
+            <div class="fact"><div class="k">Duration</div><div class="v">5 years</div></div>
+            <div class="fact"><div class="k">Bleeding</div><div class="v">Lighter (less amenorrhoea than Mirena)</div></div>
+            <div class="fact"><div class="k">Effectiveness</div><div class="v">&gt;99% (tier 1)</div></div>
+            <div class="fact"><div class="k">Size</div><div class="v">Smaller — handy in nulliparous women</div></div>
+            <div class="fact wide"><div class="k">vs Mirena</div><div class="v">Lower LNG dose, shorter licence (no extended use beyond 5 yrs), a bit less likely to stop periods altogether.</div></div>
+          </div>
+          <div class="pearl"><b>OSCE pearl:</b> reach for Kyleena when a smaller device matters more than the longest possible duration.</div>
+        </div></div>
+      </div>
+
+      <!-- COPPER -->
+      <div class="mcard" id="m-copper" style="--c:var(--copper);--cb:var(--copper-bg)">
+        <div class="mhead" onclick="toggleCard(this)">
+          <span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M7 5h10M9.5 9c0 3 2.5 4 2.5 7M14.5 9c0 3-2.5 4-2.5 7"/></svg></span>
+          <span class="mtitle"><span class="nm">Copper IUD</span><span class="brand">TT380 Slimline · non-hormonal</span></span>
+          <span class="scope ref">Refer</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="moa-line"><i>The only hormone-free method</i> — copper kills sperm &amp; triggers sterile inflammation.</div>
+        <div class="mbody"><div class="mbody-in">
+          <div class="facts">
+            <div class="fact"><div class="k">Duration</div><div class="v">Up to 10 yrs (Multiload 375 = 5)</div></div>
+            <div class="fact"><div class="k">Bleeding</div><div class="v"><b>Heavier, longer, crampier</b></div></div>
+            <div class="fact"><div class="k">Effectiveness</div><div class="v">&gt;99% (tier 1)</div></div>
+            <div class="fact"><div class="k">Fertility back</div><div class="v">Immediate</div></div>
+            <div class="fact wide"><div class="k">Bonus</div><div class="v">Inserted within <b>5 days</b> it's the <b>most effective emergency contraception</b> there is. Natural cycle continues — no hormonal side effects.</div></div>
+          </div>
+          <div class="pearl"><b>OSCE pearl:</b> the pick for "I want to avoid hormones entirely." Don't say it leaves periods unchanged — it makes them heavier.</div>
+        </div></div>
+      </div>
+
+      <!-- COC (revision) -->
+      <div class="mcard" id="m-cocp" style="--c:var(--combined);--cb:var(--combined-bg)">
+        <div class="mhead" onclick="toggleCard(this)">
+          <span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M12 8v8"/></svg></span>
+          <span class="mtitle"><span class="nm">COC pill</span><span class="brand">Combined oral · revision</span></span>
+          <span class="scope rx">Prescribe</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="moa-line">Daily oestrogen + progestogen; ovulation suppression with clean cycle control.</div>
+        <div class="mbody"><div class="mbody-in">
+          <div class="facts">
+            <div class="fact"><div class="k">Quick-start backup</div><div class="v">7 days condoms</div></div>
+            <div class="fact"><div class="k">Hard stops</div><div class="v">Migraine w/ aura, &lt;6 wk postpartum BF, VTE — UKMEC 4</div></div>
+            <div class="fact wide"><div class="k">Remember</div><div class="v">Screen migraine-with-aura &amp; VTE <b>by name</b> — an open "any conditions?" misses undiagnosed aura.</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- POP (revision) -->
+      <div class="mcard" id="m-pop" style="--c:var(--prog);--cb:var(--prog-bg)">
+        <div class="mhead" onclick="toggleCard(this)">
+          <span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M12 8v8"/></svg></span>
+          <span class="mtitle"><span class="nm">POP</span><span class="brand">Progestogen-only pill · revision</span></span>
+          <span class="scope rx">Prescribe</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="moa-line">Daily; mucus thickening ± ovulation suppression (drospirenone, desogestrel).</div>
+        <div class="mbody"><div class="mbody-in">
+          <div class="facts">
+            <div class="fact"><div class="k">Quick-start backup</div><div class="v">2 days condoms (mucus, not axis)</div></div>
+            <div class="fact"><div class="k">Missed-pill window</div><div class="v">3 h traditional · 12 h desogestrel · 24 h drospirenone</div></div>
+            <div class="fact wide"><div class="k">Bleeding</div><div class="v">Irregular/spotting common. Milk-safe, no VTE bar.</div></div>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MATCH ================= -->
+  <section class="panel" id="match">
+    <h2 class="section">Match the method to the patient</h2>
+    <p class="lead">The skill the OSCE rewards: anchor the choice to the patient's stated value. Pick the single best fit.</p>
+
+    <div class="q">
+      <div class="qnum">Scenario 1</div>
+      <div class="scenario">Breastfeeding, wants 3–4 years before the next baby, hates needles and daily pills, squeamish about anything "up inside."</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> Depo injection</button>
+        <button class="opt" data-c="1"><span class="mk">B</span> Implant (Implanon)</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> Copper IUD</button>
+        <button class="opt" data-c="0"><span class="mk">D</span> Vaginal ring</button>
+      </div>
+      <div class="fb"><b>Implant.</b> Oestrogen-free (milk-safe), not a daily pill, a rod in the arm — not a uterine insertion — and the 3-year span matches her spacing. Ticks every stated value.</div>
+    </div>
+
+    <div class="q">
+      <div class="qnum">Scenario 2</div>
+      <div class="scenario">"I'd love fewer, lighter periods — or none at all."</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> Copper IUD</button>
+        <button class="opt" data-c="1"><span class="mk">B</span> Mirena (LNG-IUS)</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> Copper IUD + POP</button>
+      </div>
+      <div class="fb"><b>Mirena.</b> Local progestogen thins the endometrium → lighter bleeding, often amenorrhoea. Copper does the opposite (heavier).</div>
+    </div>
+
+    <div class="q">
+      <div class="qnum">Scenario 3</div>
+      <div class="scenario">"I really don't want any hormones in my body."</div>
+      <div class="opts">
+        <button class="opt" data-c="1"><span class="mk">A</span> Copper IUD</button>
+        <button class="opt" data-c="0"><span class="mk">B</span> Kyleena</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> Implant</button>
+      </div>
+      <div class="fb"><b>Copper IUD.</b> The only non-hormonal option — counsel that periods may get heavier/crampier as the trade-off.</div>
+    </div>
+
+    <div class="q">
+      <div class="qnum">Scenario 4</div>
+      <div class="scenario">Wants reliable cover but is planning pregnancy in about a year; dislikes a daily routine.</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> DMPA / Depo</button>
+        <button class="opt" data-c="1"><span class="mk">B</span> Implant (or any LARC)</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> COC pill</button>
+      </div>
+      <div class="fb"><b>Implant / LARC.</b> Not daily and rapidly reversible. Avoid <b>DMPA</b> here — return to fertility can take up to ~9–12 months after the last dose.</div>
+    </div>
+
+    <div class="q">
+      <div class="qnum">Scenario 5</div>
+      <div class="scenario">Gets migraine <i>with aura</i>. Wants ongoing contraception.</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> Vaginal ring</button>
+        <button class="opt" data-c="0"><span class="mk">B</span> COC pill</button>
+        <button class="opt" data-c="1"><span class="mk">C</span> Any progestogen-only or copper method</button>
+      </div>
+      <div class="fb"><b>Avoid all oestrogen</b> (COC &amp; ring are UKMEC 4 with aura). Progestogen-only (POP, implant, DMPA, hormonal IUD) or copper are all fine.</div>
+    </div>
+
+    <div class="q">
+      <div class="qnum">Scenario 6</div>
+      <div class="scenario">Unprotected sex 4 days ago, distressed about pregnancy, <i>and</i> wants long-term cover going forward.</div>
+      <div class="opts">
+        <button class="opt" data-c="1"><span class="mk">A</span> Copper IUD</button>
+        <button class="opt" data-c="0"><span class="mk">B</span> Start the implant today</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> Start DMPA today</button>
+      </div>
+      <div class="fb"><b>Copper IUD.</b> Within 5 days it's the most effective emergency contraception <i>and</i> becomes her ongoing method — two birds, one device.</div>
+    </div>
+  </section>
+
+  <!-- ================= SELF-TEST ================= -->
+  <section class="panel" id="test">
+    <div class="scorebar">
+      <span>Self-test — <span class="val" id="score">0</span> / <span id="answered">0</span> answered</span>
+      <button class="resetbtn" onclick="resetTest()">Reset</button>
+    </div>
+
+    <div class="q" data-quiz>
+      <div class="qnum">Q1 · Scope</div>
+      <div class="qtext">Which set can a QLD pharmacist <b>prescribe</b> under the pilot?</div>
+      <div class="opts">
+        <button class="opt" data-c="1"><span class="mk">A</span> COC, POP, DMPA, vaginal ring</button>
+        <button class="opt" data-c="0"><span class="mk">B</span> COC, POP, implant, Mirena</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> All methods including IUDs</button>
+      </div>
+      <div class="fb"><b>A.</b> Four methods only. The implant and both IUDs are <b>discuss-and-refer</b> — but raising them (LARC-first) is still a scored action.</div>
+    </div>
+
+    <div class="q" data-quiz>
+      <div class="qnum">Q2 · Dosing</div>
+      <div class="qtext">How often is DMPA (Depo) given?</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> Every 4 weeks</button>
+        <button class="opt" data-c="1"><span class="mk">B</span> Every 12 weeks</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> Every 12 months</button>
+      </div>
+      <div class="fb"><b>12 weeks.</b> A classic slip is "12 months" — don't make it in the station.</div>
+    </div>
+
+    <div class="q" data-quiz>
+      <div class="qnum">Q3 · Quick-start</div>
+      <div class="qtext">A patient quick-starts a <b>POP</b> (no period to anchor to). How many days of condom backup?</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> 7 days</button>
+        <button class="opt" data-c="1"><span class="mk">B</span> 2 days</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> None needed</button>
+      </div>
+      <div class="fb"><b>2 days.</b> The POP works via cervical mucus (dense within ~48 h). The <b>7-day</b> rule is for the COC, where backup is anchored to ovulation suppression.</div>
+    </div>
+
+    <div class="q" data-quiz>
+      <div class="qnum">Q4 · Duration</div>
+      <div class="qtext">Current Australian contraceptive duration for <b>Mirena</b>?</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> 3 years</button>
+        <button class="opt" data-c="0"><span class="mk">B</span> 5 years</button>
+        <button class="opt" data-c="1"><span class="mk">C</span> 8 years</button>
+      </div>
+      <div class="fb"><b>8 years</b> — extended from 5 in 2024 (and usable to age 55 if inserted from 45). Kyleena stays at 5.</div>
+    </div>
+
+    <div class="q" data-quiz>
+      <div class="qnum">Q5 · Counselling</div>
+      <div class="qtext">What does a <b>copper IUD</b> typically do to periods?</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> Lightens them / often stops them</button>
+        <button class="opt" data-c="0"><span class="mk">B</span> No change to the cycle</button>
+        <button class="opt" data-c="1"><span class="mk">C</span> Heavier, longer, crampier</button>
+      </div>
+      <div class="fb"><b>Heavier.</b> It's hormone-free so the natural cycle continues, but the inflammatory reaction makes bleeding heavier — the main discontinuation reason.</div>
+    </div>
+
+    <div class="q" data-quiz>
+      <div class="qnum">Q6 · Effectiveness</div>
+      <div class="qtext">Which is the <b>single most effective</b> method (fit-and-forget, &lt;1 in 1000/yr)?</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> COC pill</button>
+        <button class="opt" data-c="1"><span class="mk">B</span> Implant</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> DMPA</button>
+      </div>
+      <div class="fb"><b>Implant.</b> Zero user error → typical and perfect use are essentially identical. The IUDs are also tier 1.</div>
+    </div>
+
+    <div class="q" data-quiz>
+      <div class="qnum">Q7 · Fertility</div>
+      <div class="qtext">Which method has a <b>delayed</b> return to fertility after stopping?</div>
+      <div class="opts">
+        <button class="opt" data-c="0"><span class="mk">A</span> Implant</button>
+        <button class="opt" data-c="0"><span class="mk">B</span> Hormonal IUD</button>
+        <button class="opt" data-c="1"><span class="mk">C</span> DMPA / Depo</button>
+      </div>
+      <div class="fb"><b>DMPA.</b> The depot has a long tail — median up to ~9–12 months from the last dose. The LARCs are rapidly reversible.</div>
+    </div>
+
+    <div class="q" data-quiz>
+      <div class="qnum">Q8 · Emergency</div>
+      <div class="qtext">Most effective emergency contraception (within 5 days of UPSI)?</div>
+      <div class="opts">
+        <button class="opt" data-c="1"><span class="mk">A</span> Copper IUD</button>
+        <button class="opt" data-c="0"><span class="mk">B</span> Ulipristal (EllaOne)</button>
+        <button class="opt" data-c="0"><span class="mk">C</span> Levonorgestrel pill</button>
+      </div>
+      <div class="fb"><b>Copper IUD.</b> Far more effective than oral EC, and it converts straight into ongoing contraception.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Sources:</b> QLD Hormonal Contraception CPG (Community Pharmacy Scope of Practice Pilot, v. 1 Feb 2024) · UKMEC · Sexual Health Victoria &amp; Family Planning NSW (hormonal IUD) · True Relationships &amp; Reproductive Health (copper IUD) · Australian Prescriber. Durations current to 2024–26. Scope is the QLD pilot — confirm your jurisdiction's framework.</p>
+    <p style="margin-top:6px">FSOP Study · topic 02c · companion to 02 (oral contraception) &amp; 02b (initiation).</p>
+  </footer>
+</div>
+
+<script>
+  // ---- Tabs ----
+  function switchTab(id){
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+
+  // ---- Method cards ----
+  function toggleCard(head){ head.parentElement.classList.toggle('open'); }
+  function openMethod(id){
+    switchTab('methods');
+    const card=document.getElementById('m-'+id);
+    if(!card) return;
+    document.querySelectorAll('.mcard.open').forEach(c=>{ if(c!==card) c.classList.remove('open'); });
+    card.classList.add('open');
+    setTimeout(()=>{
+      card.scrollIntoView({behavior:'smooth',block:'center'});
+      card.classList.add('flash');
+      setTimeout(()=>card.classList.remove('flash'),1100);
+    },120);
+  }
+
+  // ---- Quiz / match handler ----
+  let score=0, answered=0;
+  document.addEventListener('click',e=>{
+    const opt=e.target.closest('.opt');
+    if(!opt) return;
+    const q=opt.closest('.q');
+    if(!q || q.classList.contains('done')) return;
+    q.classList.add('done');
+    const correct = opt.dataset.c==='1';
+    q.querySelectorAll('.opt').forEach(o=>{ if(o.dataset.c==='1') o.classList.add('correct'); });
+    if(!correct) opt.classList.add('wrong');
+    if(q.hasAttribute('data-quiz')){
+      answered++; if(correct) score++;
+      document.getElementById('score').textContent=score;
+      document.getElementById('answered').textContent=answered;
+    }
+  });
+
+  function resetTest(){
+    score=0; answered=0;
+    document.getElementById('score').textContent='0';
+    document.getElementById('answered').textContent='0';
+    document.querySelectorAll('#test .q').forEach(q=>{
+      q.classList.remove('done');
+      q.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','wrong'));
+    });
+  }
+</script>
+</body>
+</html>

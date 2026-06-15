@@ -27,6 +27,43 @@
   .refer-out { color: #555; font-size: 12px; font-style: italic; text-align: right; margin-top: 4px; }
   ul, ol { margin: 4px 0; padding-left: 22px; }
   li { margin-bottom: 3px; }
+
+  /* ---- eTG treatment-pathway flowchart ---- */
+  .acne-flow { font-size: 13px; line-height: 1.45; margin: 4px 0 8px; }
+  .acne-flow .af-sub { color:#666; font-size:12px; margin-bottom:14px; }
+  .acne-flow .af-legend { display:flex; flex-wrap:wrap; gap:14px; font-size:12px; margin-bottom:14px; }
+  .acne-flow .af-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .acne-flow .sw { width:16px; height:12px; border-radius:3px; display:inline-block; }
+  .acne-flow .sw-scope { background:#eafaf1; border:2px solid #27ae60; }
+  .acne-flow .sw-refer { background:#fdecea; border:2px dashed #c0392b; }
+  .acne-flow .sw-otc { background:#eaf4fb; border:2px solid #2980b9; }
+  .acne-flow .fbox { border-radius:8px; padding:10px 12px; }
+  .acne-flow .b-otc { background:#eaf4fb; border:2px solid #2980b9; }
+  .acne-flow .b-refer { background:#fdecea; border:2px dashed #c0392b; }
+  .acne-flow .farrow { text-align:center; color:#7f8c9b; font-size:18px; line-height:1; margin:6px 0; }
+  .acne-flow .fcenter { text-align:center; }
+  .acne-flow .topline { display:flex; gap:14px; align-items:stretch; flex-wrap:wrap; }
+  .acne-flow .topline .b-otc { flex:1 1 60%; min-width:260px; }
+  .acne-flow .topline .b-refer { flex:1 1 30%; min-width:220px; font-size:12px; }
+  .acne-flow .triage { background:#34495e; color:#fff; border-radius:6px; padding:8px 12px; text-align:center; font-weight:600; margin:12px 0; }
+  .acne-flow .cols { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .acne-flow .lane { border:1px solid #d8e0e6; border-radius:9px; overflow:hidden; display:flex; flex-direction:column; }
+  .acne-flow .lane .ltype { padding:9px 10px; color:#fff; font-weight:700; font-size:12px; line-height:1.3; }
+  .acne-flow .lane .lesion { font-weight:400; font-size:10.5px; opacity:.92; display:block; margin-top:3px; }
+  .acne-flow .map { text-align:center; color:#9aa7b2; font-size:14px; margin:7px 0 2px; font-weight:700; }
+  .acne-flow .lane .lbody { padding:0 10px 10px; display:flex; flex-direction:column; gap:8px; }
+  .acne-flow .product { border-radius:8px; padding:9px 10px; text-align:center; background:#eafaf1; border:2px solid #27ae60; }
+  .acne-flow .product .ptag { display:block; font-size:9.5px; font-weight:700; letter-spacing:.4px; color:#2c3e50; opacity:.7; margin-bottom:2px; }
+  .acne-flow .product .pname { font-size:14px; font-weight:800; color:#16623a; }
+  .acne-flow .lstep { background:#fff; border:1px solid #cdd9e3; border-radius:7px; padding:8px 9px; font-size:11.5px; }
+  .acne-flow .fref { color:#2980b9; font-weight:700; font-size:10px; vertical-align:super; }
+  .acne-flow .t1 { background:#8e44ad; } .acne-flow .t2 { background:#2980b9; }
+  .acne-flow .t3 { background:#c0392b; } .acne-flow .t4 { background:#d35400; }
+  .acne-flow .ausnote { background:#fff8e1; border:1px solid #f0c000; border-left:4px solid #f0a500; border-radius:6px; padding:6px 8px; font-size:11px; margin-top:2px; }
+  .acne-flow .fnotes { margin-top:14px; font-size:11px; color:#444; display:grid; grid-template-columns:1fr 1fr; gap:4px 18px; }
+  .acne-flow .fnotes b { color:#2c3e50; }
+  .acne-flow .fsrc { margin-top:12px; font-size:10.5px; color:#888; }
+  @media (max-width:680px) { .acne-flow .cols { grid-template-columns:1fr; } .acne-flow .fnotes { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -36,6 +73,88 @@
 
 <div class="note">
   💡 <strong>Mild acne only</strong> = few comedones, pustules, papules; no scarring; lesions often on T-zone (forehead, nose, chin). Diagnosis requires comedones — if only pustules/papules without comedones, it's probably not acne. Pharmacist supplies up to <strong>6 weeks therapy per consultation</strong>; review at 6 weeks. Topical clindamycin capped at <strong>3 months total</strong>.
+</div>
+
+<h2>🗺️ Treatment Pathway — Mild Acne (eTG)</h2>
+<div class="acne-flow">
+  <div class="af-sub">Replicated from eTG (Therapeutic Guidelines, Dermatology — "Treatment of mild acne", Aug 2022) · annotated for NSW Pharmacist Practice Standards (5 Aug 2025)</div>
+
+  <div class="af-legend">
+    <span><i class="sw sw-otc"></i> OTC / general measures</span>
+    <span><i class="sw sw-scope"></i> First-line topical (within NSW pharmacist scope)</span>
+    <span><i class="sw sw-refer"></i> Beyond pharmacist scope → refer</span>
+  </div>
+
+  <div class="topline">
+    <div class="b-otc fbox">
+      <strong>1 · Mild acne — start here</strong><br>
+      <strong>OTC topical products</strong> (benzoyl peroxide, salicylic acid, azelaic acid, niacinamide)<span class="fref">NB1</span><br>
+      <strong>PLUS</strong> general measures for acne
+    </div>
+    <div class="b-refer fbox">
+      <strong>Consider early referral</strong> to a dermatologist for <strong>oral isotretinoin</strong> in specific patients<span class="fref">NB2</span><br>
+      <em>Pharmacist: refer — outside scope</em>
+    </div>
+  </div>
+
+  <div class="farrow">↓</div>
+  <div class="triage">If not sufficiently effective → match treatment to the DOMINANT type of acne ↓</div>
+
+  <div class="cols">
+    <div class="lane">
+      <div class="ltype t1">Mainly comedonal<span class="lesion">minimal inflammation · blackheads/whiteheads</span></div>
+      <div class="map">↓ treat with ↓</div>
+      <div class="lbody">
+        <div class="product"><span class="ptag">TOPICAL RETINOID</span><span class="pname">Adapalene</span><br><span style="font-size:11px;color:#16623a;">or tretinoin / trifarotene</span></div>
+        <div class="lstep">No response at 6 wk → higher-dose retinoid (if on tretinoin), or reassess type &amp; consider <strong>BPO + adapalene</strong></div>
+      </div>
+    </div>
+
+    <div class="lane">
+      <div class="ltype t2">Mainly comedonal + some inflammation<span class="lesion">comedones with a few papules/pustules</span></div>
+      <div class="map">↓ treat with ↓</div>
+      <div class="lbody">
+        <div class="product"><span class="ptag">BPO + RETINOID</span><span class="pname">BPO + Adapalene</span></div>
+        <div class="lstep">If tolerated but not enough → increase adapalene strength
+          <div class="ausnote">⚠ <strong>Australia:</strong> standalone adapalene = <strong>0.1% only</strong>. Adapalene 0.3% exists <strong>only in Epiduo Forte</strong> (adapalene 0.3% + BPO 2.5%) — "increase strength" = step up to Epiduo Forte.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lane">
+      <div class="ltype t3">Mainly inflammatory + some comedones<span class="lesion">papules &amp; pustules dominate</span></div>
+      <div class="map">↓ treat with ↓</div>
+      <div class="lbody">
+        <div class="product"><span class="ptag">BPO + ANTIBIOTIC</span><span class="pname">BPO + Clindamycin</span><span class="fref">NB3</span></div>
+        <div class="lstep">Once inflammation resolves → <strong>stop antibiotic</strong>; BPO alone for maintenance<span class="fref">NB4</span></div>
+      </div>
+    </div>
+
+    <div class="lane">
+      <div class="ltype t4">Mix of comedonal + inflammatory<span class="lesion">both lesion types prominent</span></div>
+      <div class="map">↓ treat with ↓</div>
+      <div class="lbody">
+        <div class="product"><span class="ptag">RETINOID + ANTIBIOTIC</span><span class="pname">Tretinoin + Clindamycin</span><span class="fref">NB3</span></div>
+        <div class="lstep">Once inflammation resolves → <strong>stop antibiotic</strong>; retinoid alone for maintenance<span class="fref">NB4</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="farrow">↓</div>
+  <div class="b-refer fbox fcenter">
+    If topical preparations are <strong>not sufficiently effective</strong> → add <strong>oral therapy</strong> as for moderate–severe acne ·
+    if <strong>not tolerated</strong> → switch to oral therapy<br>
+    <em>Pharmacist: oral antibiotics / isotretinoin / hormonal therapy are outside NSW scope → refer to GP</em>
+  </div>
+
+  <div class="fnotes">
+    <div><b>NB1</b> One or more OTC topicals can be combined for additive effect, but irritation may increase.</div>
+    <div><b>NB2</b> Refer early if acne is scarring (even mild persistent acne can scar), family hx of severe scarring acne, treatment-resistant, relapsing, or marked negative emotional/social effect.</div>
+    <div><b>NB3</b> BPO and tretinoin can irritate; topical clindamycin may be used alone if skin is irritation-prone (e.g. atopic). <b>NSW:</b> clindamycin never as ongoing monotherapy; max 3 months.</div>
+    <div><b>NB4</b> Avoid long-term topical antibiotics. Once inflammation is controlled, switch to a single-agent retinoid or BPO for maintenance; resume the antibiotic combination only if inflammation recurs, and review regularly.</div>
+  </div>
+
+  <div class="fsrc">Source: eTG complete — Therapeutic Guidelines (Dermatology), "Treatment of mild acne", August 2022 · NSW Pharmacist Practice Standards for Acne, 5 Aug 2025.</div>
 </div>
 
 <h2 class="green-band">✅ Eligibility</h2>
@@ -80,7 +199,7 @@
 <h2>💊 NSW Approved Medicines (5 Aug 2025) — topical only</h2>
 <table>
   <tr><th>Drug</th><th>Strength</th><th>Application</th><th>Key Notes</th></tr>
-  <tr class="first-line"><td>Adapalene ✅</td><td>0.1% or 0.3%</td><td>Pea-sized to whole affected area NIGHTLY</td><td>First-line retinoid for comedonal + inflammatory mild acne; less irritating than tretinoin; photosensitivity; initial purge OK 2–4 wk</td></tr>
+  <tr class="first-line"><td>Adapalene ✅</td><td>0.1% (standalone)<br><span style="font-weight:normal;font-size:12px;">0.3% only in Epiduo&nbsp;Forte combo (+ BPO 2.5%)</span></td><td>Pea-sized to whole affected area NIGHTLY</td><td>First-line retinoid for comedonal + inflammatory mild acne; less irritating than tretinoin; photosensitivity; initial purge OK 2–4 wk. <strong>In Australia only the 0.1% gel/cream is sold as a single agent</strong> — there is no standalone 0.3% adapalene product</td></tr>
   <tr><td>Tretinoin</td><td>0.025%</td><td>Pea-sized to whole affected area NIGHTLY</td><td>More irritating — consider starting alternate nights; comedonal mild acne</td></tr>
   <tr><td>Trifarotene</td><td>0.005%</td><td>Pea-sized to whole affected area NIGHTLY</td><td>Newer selective retinoid; trunk-friendly</td></tr>
   <tr><td>Clindamycin 1% topical</td><td>1%</td><td>Apply BD</td><td><strong>NEVER as monotherapy</strong> — always combine with retinoid ± benzoyl peroxide (BPO). <strong>Max 3 months total</strong>.</td></tr>
